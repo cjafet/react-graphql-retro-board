@@ -1,13 +1,248 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.container-fluid {
+  height: 100%;
+  padding: 0 0;
+}
+
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+input {
+  border: 1px solid #E0E0E0;
+  border-radius: 3px;
+  padding: 15px 0;
+  box-sizing: border-box;
+}
+
+.full-width-input {
+  /* display: block; */
+  width: 93% !important;
+  margin-bottom: 10px;
+}
+
+.modal-width-input {
+  /* display: block; */
+  width: 73% !important;
+  margin-bottom: 10px;
+  padding-left: 12px !important;
+}
+
+.btn-add {
+  border: 1px solid #E0E0E0;
+  border-radius: 3px;
+  padding: 15px 0;
+  box-sizing: border-box;
+  background-color: #ed143d !important;
+}
+
+nav {
+  color: #fff;
+  background-color: #ed143d !important;
+  width: 100%;
+  height: 62px;
+  line-height: 56px;
+}
+
+nav .nav-wrapper {
+  position: relative;
+  text-align: left;
+  height: 100%;
+}
+
+nav .brand-logo {
+  position: absolute;
+  color: #fff;
+  display: inline-block;
+  font-size: 2.1rem;
+  margin-left: 8%;
+}
+
+.font-header {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+}
+
+.right {
+  float: right !important;
+  margin-right: 10%;
+}
+
+hr {
+  margin: 0;
+}
+
+.button {
+  padding: 10px;
+  background: #76dc76;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer
+}
+
+.button-default {
+  background: #ed143d;
+  color: white;
+}
+
+/* layout */
+.main-content {
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+}
+
+/* TaskList */
+.new-task-form {
+  padding-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 25px;
+}
+
+.tasks {
+  margin: 0 7%;
+  max-width: 80%;
+  /* max-width: 980px; */
+}
+
+.tasks-header {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Task */
+.task {
+  display: inline-grid;
+  margin-bottom: 15px;
+  background: #2b2e94;
+  box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+}
+
+.task-header {
+  padding: 4px 14px;
+  min-width: 16em;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ed133d; /* #d71c1c #2b2e94 #36398c #960c0c #ed1717 */
+  min-width: 260px;
+  max-width: 260px;
+}
+
+div.task-header > div {
+  color: #fff;
+}
+
+div.task-header > select {
+  border: 3px solid #ed143d;
+  /* box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24); */
+  background-color: #ed143d;
+  color: white;
+  font-weight: 600;
+}
+
+.task-body {
+  padding: 10px 0;
+  /* min-height: 60px; */
+}
+
+.task-lists {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+
+.task-list {
+  width: 300px;
+}
+
+.task-list-title {
+  margin-bottom: 10px;
+}
+
+.item-col-space {
+  padding: 0 18px;
+  max-width: 260px;
+}
+
+.tasks-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.flash-error {
+  text-align: center;
+  padding: 25px;
+  background: #f2dede;
+  border-color: #ebcccc;
+  color: #a94442;
+}
+
+
+/* FONT-AWESOME */
+
+
+.like-content {
+  border-top: 1px solid #ce2626;
+  background-color: #ed133d; /* #ed1717 */
+  display: inline-flex;
+  font-size: 15px;
+  text-align: center;
+  min-height: 27px;
+  max-height: 27px;
+}
+.like-content span {
+color: #9d9da4;
+font-family: monospace;
+}
+.like-content .btn-secondary {
+  display: contents;
+  text-align: center;
+  background: #ed143d;
+  border-radius: 3px;
+  /* box-shadow: 0 10px 20px -8px rgb(240, 75, 113); */
+  padding: 10px 17px;
+  font-size: 13px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  text-decoration: none;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.like-content .btn-secondary:hover {
+  transform: translateY(-3px);
+}
+.like-content .btn-secondary .fa {
+  margin-right: 5px;
+}
+.animate-like {
+animation-name: likeAnimation;
+animation-iteration-count: 1;
+animation-fill-mode: forwards;
+animation-duration: 0.65s;
+}
+@keyframes likeAnimation {
+0%   { transform: scale(30); }
+100% { transform: scale(1); }
 }

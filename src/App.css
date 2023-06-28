@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+.modal {
+  max-height: 50% !important;
+  height: 70% !important;
+  width: 60% !important;
+}
+
+.modal-team-title {
+  padding-top: 20px;
+  margin-left: 15px;
+}
+
+.modal-team-form {
+  padding-left: 2%;
+}
+
+.modal-close-position {
+  position: absolute !important;
+  top: -50px !important;
+  right: 0px !important;
+  color: #fff !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 400;
+}
+
+.toast-color {
+  background-color: #ed143d !important;
+}
+
+/* #toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 10%;
+  right:7%;  
+} */

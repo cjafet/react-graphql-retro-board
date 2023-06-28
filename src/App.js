@@ -1,23 +1,47 @@
-import logo from './logo.svg';
+import React from "react";
 import './App.css';
 
+import { useQuery } from '@apollo/client'; 
+import { Route, Routes, Navigate } from "react-router-dom"; 
+
+// App Components
+import UserRetros from "./components/UserRetros";
+import Board from "./components/Board";
+import NotFound from "./components/NotFound";
+import { GET_ITEMS_BY_TEAM, GET_ALL_TEAMS } from "./constants/Queries";
+import Header from "./components/Header";
+
+
 function App() {
+  let team = [];
+  let last_iteration;
+  const { loading_teams, error: error_teams, data: data_teams } = useQuery(GET_ALL_TEAMS);
+  const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
+    variables: { productTeam: "PBS" },
+  });
+  if (error) return <p>Error</p>;
+  if(!loading && data) {
+    console.log(data.allRetrosByTeam);
+    last_iteration = data.allRetrosByTeam.length;
+  }
+
+  if (error_teams) return <p>Error</p>;
+  if (loading_teams) return <p>Loading teams...</p>;
+
+  if(!loading_teams && data_teams) {
+    console.log(data_teams.allTeams);
+    team = data_teams.allTeams
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header team={team} last_iteration={last_iteration} />
+      <Routes>
+        <Route path="/" element={<Navigate to="/retros" />} />
+        <Route path="/retros" element={<UserRetros />} />
+        <Route path="/board/:iteration" element={<Board />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }

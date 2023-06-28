@@ -3,11 +3,28 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
+const GQL_BASE_URL = "http://localhost:4000";
+
+const client = new ApolloClient({
+  uri: GQL_BASE_URL,
+  cache: new InMemoryCache({
+    freezeResults: true,
+  }),
+  assumeImmutableResults: true,
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      <BrowserRouter>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </BrowserRouter>
   </React.StrictMode>
 );
 
