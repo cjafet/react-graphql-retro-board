@@ -4,17 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, from } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.forEach(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    );
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
 
-const GQL_BASE_URL = "http://localhost:4000";
-
+const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' })
+  
 const client = new ApolloClient({
-  uri: GQL_BASE_URL,
-  cache: new InMemoryCache({
-    freezeResults: true,
-  }),
-  assumeImmutableResults: true,
+  cache: new InMemoryCache(),
+  link: from([errorLink, httpLink]),
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

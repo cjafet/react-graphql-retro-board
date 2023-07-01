@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import Modal from "./modals/Modal";
-import M from 'materialize-css'
-
 
 const Header = props => {
     console.log(props);

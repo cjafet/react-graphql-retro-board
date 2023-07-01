@@ -12,7 +12,10 @@ const UserRetros = props => {
     });
     console.log(data);
 
-    if (error_teams) return <p>Error</p>;
+    if (error_teams) {
+      console.log("Error querying for team information");
+    }
+    
     if (loading_teams) return <p>Loading teams...</p>;
 
     if(!loading_teams && data_teams) {
@@ -20,7 +23,9 @@ const UserRetros = props => {
       team = data_teams.allTeams
     }
 
-    if (error) return <p>Error</p>;
+    if (error) {
+      console.log("Error querying items by team");
+    }
     if(!loading && data) {
       console.log(data.allRetrosByTeam);
       iterations = data.allRetrosByTeam
@@ -28,8 +33,15 @@ const UserRetros = props => {
    
     return (
         <div style={{display: "flex", marginTop: "40px", marginLeft: "8%", alignItems: "center"}}>
-          <div style={{margin: "10px 20px"}}>{team}</div>
-          {iterations.map((it) => {
+          <div style={{margin: "10px 0"}}>{team}</div>
+          
+          {error && (
+            <div>
+              <p><strong>Could not fetch data from the server. Check if the GraphQL server is up and running.</strong></p>  
+            </div>
+          )}
+          
+          {!error && iterations.map((it) => {
             return (
               <div key={it.iteration} style={{margin: "10px 20px"}}>
                 <div className="task-header" style={{minHeight: "auto"}}>

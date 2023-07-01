@@ -19,13 +19,17 @@ function App() {
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
     variables: { productTeam: "PBS" },
   });
-  if (error) return <p>Error</p>;
+  if (error) {
+    console.log("Error querying for items");
+  }
   if(!loading && data) {
     console.log(data.allRetrosByTeam);
     last_iteration = data.allRetrosByTeam.length;
   }
 
-  if (error_teams) return <p>Error</p>;
+  if (error_teams) {
+    console.log("Error querying for teams");
+  }
   if (loading_teams) return <p>Loading teams...</p>;
 
   if(!loading_teams && data_teams) {
