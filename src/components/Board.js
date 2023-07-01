@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import M from 'materialize-css'
-import { gql, useQuery, useMutation } from '@apollo/client'; 
+import { useQuery, useMutation } from '@apollo/client'; 
 
 // App Components
 import RetroItem from './RetroItem';
@@ -10,11 +10,14 @@ import { ADD_ITEM } from "../constants/Mutations";
 
 let i = 1;
 
-function renderItems(data,retroItem, iteration) {
-  return data.retroByIterationAndTeam[retroItem].map(item => {
-      console.log(item);
-      return (<RetroItem key={i++} id={data.retroByIterationAndTeam._id} kudos={item} iteration={iteration} />);
-  })
+function renderItems(data, retroItem, iteration) {
+  console.log("data: ", data);
+  if(iteration>0 && data.retroByIterationAndTeam!=null) {
+    return data.retroByIterationAndTeam[retroItem].map(item => {
+        console.log(item);
+        return (<RetroItem key={i++} id={data.retroByIterationAndTeam._id} kudos={item} iteration={iteration} />);
+    })
+  }
 }
 
 
@@ -125,19 +128,19 @@ function Board() {
           <p className="font-header"> 
             Kudos
           </p>
-          {renderItems(data,"kudos",iteration)}
+          {renderItems(data, "kudos", iteration)}
           </div>
           <div className="item-col-space">
           <p className="font-header">Improvements</p>
-          {renderItems(data, "improvements",iteration)}
+          {renderItems(data, "improvements", iteration)}
           </div>
           <div className="item-col-space">
           <p className="font-header">Action Items</p>
-          {renderItems(data, "actionItems",iteration)}
+          {renderItems(data, "actionItems", iteration)}
           </div>
           <div className="item-col-space">
           <p className="font-header">Last Action Items</p>
-          {renderItems(data, "lastActionItems",iteration)}
+          {renderItems(data, "lastActionItems", iteration)}
           </div>
         </div>
       </div>
