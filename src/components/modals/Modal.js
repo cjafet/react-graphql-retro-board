@@ -4,8 +4,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import { request } from 'graphql-request'
 import { ADD_RETRO } from "../../constants/Mutations";
 import { GET_ITEMS_BY_ITERATION } from "../../constants/Queries";
-
-var url = 'http://localhost:4000/graphql'
+import { GRAPHQL_SERVER } from '../../constants/AppConstants';
 
 
 class Modal extends Component {
@@ -49,14 +48,14 @@ class Modal extends Component {
 
   addRetro(variables) {
     console.log(variables);
-    request(url, ADD_RETRO, variables)
+    request(GRAPHQL_SERVER, ADD_RETRO, variables)
       .then(console.log)
       .catch(console.error)
   }
 
   getLastIterationByTeam(variables) {
     console.log(variables);
-    return request(url, GET_ITEMS_BY_ITERATION, variables)
+    return request(GRAPHQL_SERVER, GET_ITEMS_BY_ITERATION, variables)
     .then(res => {
       console.log("Getting Last iteration: ", res);
       console.log("Getting Last Action Items: ", res.retroByIterationAndTeam.lastActionItems);
