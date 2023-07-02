@@ -1,5 +1,5 @@
 import React from 'react';
-import { gql, useMutation } from '@apollo/client';  
+import { useMutation } from '@apollo/client';  
 import M from 'materialize-css'
 import { DELETE_ITEM, ADD_ITEM_LIKE } from '../constants/Mutations';
 import { GET_ITEMS_BY_ITERATION } from '../constants/Queries';
