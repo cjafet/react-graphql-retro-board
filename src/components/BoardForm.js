@@ -1,11 +1,8 @@
 import React from 'react';
 import M from 'materialize-css'
 
-
 const BoardForm = props => {
   console.log("props", props);
-    
-   
     return (
         <React.Fragment> 
             <form className="new-task-form" onSubmit={e => {
@@ -90,7 +87,6 @@ const BoardForm = props => {
           </div>
         </React.Fragment>  
     );
-
 }
 
 export default BoardForm;
