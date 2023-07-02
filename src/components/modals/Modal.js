@@ -17,6 +17,7 @@ class Modal extends Component {
   }
 
   handleChange = (event) => {
+    console.log("team selection: ", event.target.value);
     this.setState({value: event.target.value});
   }
 
@@ -65,6 +66,7 @@ class Modal extends Component {
   }
 
   render() {
+    console.log("props", this.props);
     return (
         <React.Fragment>
         <a href="modal1" className="waves-light modal-trigger" data-target="modal1">
@@ -88,18 +90,31 @@ class Modal extends Component {
             <form className="new-task-form" onSubmit={e => {
               e.preventDefault();
               const sprint = document.getElementById("sprint").value;
-              const team = document.getElementById("team");
-              var value = team.options[team.selectedIndex].value;
-              console.log(sprint, value);
+              let team;
+              if(this.props.teams.length>0) {
+                team = document.getElementById("team");
+                let value = team.options[team.selectedIndex].value;
+                console.log(sprint, value);
+              } else {
+                team = document.getElementById("team").value;
+                console.log(team);
+              }
               if(sprint !== undefined && sprint !== '') {
-                const variables = {productTeam: this.props.teams[0], iteration: this.props.last_iteration};
+                // const variables = {productTeam: this.props.teams[0], iteration: this.props.last_iteration};
+                const variables = {productTeam: team, iteration: this.props.last_iteration};
                 console.log(variables);
-                this.getLastIterationByTeam(variables).then(res =>{
-                  console.log("Last Action Items", res);
-                  this.addRetro({ input: { kudos: [], improvements: [], actionItems: [], lastActionItems: res, ownedBy: { productGroup: this.state.value, productTeam: this.state.value }, iteration: parseInt(sprint) } } );
+                if(this.props.teams.length>0) {
+                  this.getLastIterationByTeam(variables).then(res =>{
+                    console.log("Last Action Items", res);
+                    this.addRetro({ input: { kudos: [], improvements: [], actionItems: [], lastActionItems: res, ownedBy: { productGroup: this.state.value, productTeam: this.state.value }, iteration: parseInt(sprint) } } );
+                    var toastHTML = '<span>Retro board for sprint #' + sprint + ' added !</span>';
+                    M.toast({html: toastHTML})
+                  });
+                } else {
+                  this.addRetro({ input: { kudos: [], improvements: [], actionItems: [], lastActionItems: [], ownedBy: { productGroup: team, productTeam: team }, iteration: parseInt(sprint) } } );
                   var toastHTML = '<span>Retro board for sprint #' + sprint + ' added !</span>';
                   M.toast({html: toastHTML})
-                });
+                }
               } else {
                 var toast = '<span>Add a description!</span>';
                 M.toast({html: toast, classes: 'toast-color'})
@@ -112,10 +127,21 @@ class Modal extends Component {
                 placeholder="Add your sprint #"
                 defaultValue={""}
               />
+              {this.props.teams.length>0 && (
               <select id="team" name="team" style={{display: "block", maxWidth: "75%"}} onChange={this.handleChange}>
                 <option key={this.state.value} value={this.state.value}>Select a team</option>
                 {this.props.teams.map((t) => <option key={this.state.value} value={t}>{t}</option>)}
               </select>
+              )}
+              {this.props.teams.length===0 && (
+                <input
+                className="modal-width-input"
+                type="text"
+                id="team"
+                placeholder="Add your team name"
+                defaultValue={""}
+              />
+              )}
               <button className="waves-effect waves-teal btn-flat" type="submit">Add</button>
             </form>
           </div>

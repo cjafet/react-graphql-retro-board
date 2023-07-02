@@ -19,12 +19,13 @@ function App() {
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
     variables: { productTeam: team[0] },
   });
+  console.log(data);
   if (error) {
     console.log("Error querying for items");
   }
   if(!loading && data) {
     console.log("all_retros_by_team",data.allRetrosByTeam);
-    setlastIteration(data.allRetrosByTeam.length);
+    setlastIteration(data.allRetrosByTeam);
   }
 
   if (error_teams) {
