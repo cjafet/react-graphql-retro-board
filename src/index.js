@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, from } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import { GRAPHQL_SERVER } from './constants/AppConstants';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -17,7 +18,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' })
+const httpLink = new HttpLink({ uri: GRAPHQL_SERVER })
   
 const client = new ApolloClient({
   cache: new InMemoryCache(),
