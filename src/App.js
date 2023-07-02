@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import './App.css';
-
 import { useQuery } from '@apollo/client'; 
 import { Route, Routes, Navigate } from "react-router-dom"; 
+import './App.css';
 
 // App Components
 import UserRetros from "./components/UserRetros";
 import Board from "./components/Board";
 import NotFound from "./components/NotFound";
-import { GET_ITEMS_BY_TEAM, GET_ALL_TEAMS } from "./constants/Queries";
+import { GET_ALL_TEAMS } from "./constants/Queries";
 import Header from "./components/Header";
 
 
