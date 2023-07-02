@@ -48,26 +48,6 @@ const RetroItem = props => {
             </div>
         </div>
     );
-    
-    function onStatusChange(e) {
-        props.onStatusChange(props.task.id, e.target.value)
-    }
-
-    function onRemoveTask() {
-        console.log("Clicked!!", );
-        props.onRemoveTask(props.task.id);
-    }
-
-    function onToggle() {
-        var x = document.getElementById(props.task.id);
-        console.log(x);
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-
 }
 
 
