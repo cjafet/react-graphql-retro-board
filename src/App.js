@@ -35,12 +35,12 @@ function App() {
 
   if(!loading_teams && data_teams) {
     console.log(data_teams.allTeams);
-    team = data_teams.allTeams
+    team = data_teams.allTeams;
   }
 
   return (
     <div className="App">
-      <Header team={team} last_iteration={lastIteration} />
+      <Header team={team} />
       <Routes>
         <Route path="/" element={<Navigate to="/retros" />} />
         <Route path="/retros" element={<UserRetros team={team} />} />

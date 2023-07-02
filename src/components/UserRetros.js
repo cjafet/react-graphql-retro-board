@@ -21,7 +21,7 @@ const UserRetros = props => {
 
     if(!loading_teams && data_teams) {
       console.log(data_teams.allTeams);
-      team = data_teams.allTeams
+      team = data_teams.allTeams;
     }
 
     if (error) {
@@ -29,7 +29,7 @@ const UserRetros = props => {
     }
     if(!loading && data) {
       console.log(data.allRetrosByTeam);
-      iterations = data.allRetrosByTeam
+      iterations = data.allRetrosByTeam;
     }
    
     return (
