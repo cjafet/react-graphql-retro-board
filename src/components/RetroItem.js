@@ -39,7 +39,6 @@ const RetroItem = props => {
                 </div>
             </div>
             <div className="like-content">
-                {/* <button className="btn-secondary like-review">{props.kudos.likes}</button> */}
                 <div style={{marginLeft: "5%"}}>
                     <a href="#" onClick={() => handleLike(props)} className="btn-secondary like-review" style={{color: "white"}}>+ {props.kudos.likes}</a>
                 </div>
