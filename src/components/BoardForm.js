@@ -6,29 +6,28 @@ const BoardForm = props => {
     return (
         <React.Fragment> 
             <form className="new-task-form" onSubmit={e => {
-            e.preventDefault();
-            props.setItemDescription(document.getElementById("description").value);
-            console.log(props.itemDescription,props.itemType);
-            if(props.itemDescription !== undefined && props.itemDescription !== '') {
-              props.addItem({ variables: { input: { _id: props.data.retroByIterationAndTeam._id, description: props.itemDescription, likes: 0, type: props.itemType, action: 'add' } } });
-              var toastHTML = '<span>' + props.itemType + ' added !</span>';
-              M.toast({html: toastHTML})
-            } else {
-              var toast = '<span>Add a description!</span>';
-              M.toast({html: toast, classes: 'toast-color'})
-            }
-            
+                e.preventDefault();
+                props.setItemDescription(document.getElementById("description").value);
+                console.log(props.itemDescription,props.itemType);
+                if(props.itemDescription !== undefined && props.itemDescription !== '') {
+                props.addItem({ variables: { input: { _id: props.data.retroByIterationAndTeam._id, description: props.itemDescription, likes: 0, type: props.itemType, action: 'add' } } });
+                var toastHTML = '<span>' + props.itemType + ' added !</span>';
+                M.toast({html: toastHTML})
+                } else {
+                var toast = '<span>Add a description!</span>';
+                M.toast({html: toast, classes: 'toast-color'})
+                }
           }}>
-            <input
-              className="full-width-input"
-              type="text"
-              id="description"
-              placeholder="Add your text"
-              defaultValue={""}
-              onChange={e => props.setItemDescription(e.target.value)}
-            />
-            <button className="waves-effect waves-teal btn-flat" type="submit">Add</button>
-            <br/>
+                <input
+                className="full-width-input"
+                type="text"
+                id="description"
+                placeholder="Add your text"
+                defaultValue={""}
+                onChange={e => props.setItemDescription(e.target.value)}
+                />
+                <button className="waves-effect waves-teal btn-flat" type="submit">Add</button>
+                <br/>
           </form>
 
           <div>
