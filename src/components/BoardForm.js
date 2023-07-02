@@ -1,6 +1,4 @@
 import React from 'react';
-import { useQuery } from '@apollo/client'; 
-import { GET_ITEMS_BY_TEAM, GET_ALL_TEAMS } from "../constants/Queries";
 import M from 'materialize-css'
 
 
