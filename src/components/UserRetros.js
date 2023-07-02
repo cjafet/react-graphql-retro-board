@@ -47,7 +47,7 @@ const UserRetros = props => {
               <div key={it.iteration} style={{margin: "10px 20px"}}>
                 <div className="task-header" style={{minHeight: "auto"}}>
                     <div className="task-body">
-                      <a href={"/board/" + it.iteration + "/" + props.team} style={{color: "white"}}>{team} - {it.iteration}</a>
+                      <a href={"/board/" + props.team + "/" + it.iteration} style={{color: "white"}}>{team} - {it.iteration}</a>
                     </div>
                 </div>
               </div>

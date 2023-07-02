@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './App.css';
 
 import { useQuery } from '@apollo/client'; 
@@ -14,7 +14,7 @@ import Header from "./components/Header";
 
 function App() {
   let team = [];
-  let last_iteration;
+  const [lastIteration, setlastIteration] = useState();
   const { loading_teams, error: error_teams, data: data_teams } = useQuery(GET_ALL_TEAMS);
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
     variables: { productTeam: team[0] },
@@ -24,7 +24,7 @@ function App() {
   }
   if(!loading && data) {
     console.log("all_retros_by_team",data.allRetrosByTeam);
-    last_iteration = data.allRetrosByTeam.length;
+    setlastIteration(data.allRetrosByTeam.length);
   }
 
   if (error_teams) {
@@ -39,11 +39,11 @@ function App() {
 
   return (
     <div className="App">
-      <Header team={team} last_iteration={last_iteration} />
+      <Header team={team} last_iteration={lastIteration} />
       <Routes>
         <Route path="/" element={<Navigate to="/retros" />} />
         <Route path="/retros" element={<UserRetros team={team} />} />
-        <Route path="/board/:iteration/:team" element={<Board />} />
+        <Route path="/board/:team/:iteration" element={<Board />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

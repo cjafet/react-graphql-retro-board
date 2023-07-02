@@ -15,7 +15,7 @@ const Header = props => {
                     <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li>
                     <li><Link to="/retros">My Retros</Link></li>
                     {last_iteration > 0 && (
-                    <li><Link to={"/board/" + last_iteration + "/" + props.team}>Board</Link></li>
+                    <li><Link to={"/board/" + props.team + "/" + last_iteration}>Board</Link></li>
                     )}
                     <li><Link to="#">My Teams &nbsp;</Link></li>
                     <li>{props.team} Team</li>
