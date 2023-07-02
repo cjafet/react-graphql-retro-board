@@ -17,13 +17,13 @@ function App() {
   let last_iteration;
   const { loading_teams, error: error_teams, data: data_teams } = useQuery(GET_ALL_TEAMS);
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
-    variables: { productTeam: "PBS" },
+    variables: { productTeam: team[0] },
   });
   if (error) {
     console.log("Error querying for items");
   }
   if(!loading && data) {
-    console.log(data.allRetrosByTeam);
+    console.log("all_retros_by_team",data.allRetrosByTeam);
     last_iteration = data.allRetrosByTeam.length;
   }
 
@@ -42,8 +42,8 @@ function App() {
       <Header team={team} last_iteration={last_iteration} />
       <Routes>
         <Route path="/" element={<Navigate to="/retros" />} />
-        <Route path="/retros" element={<UserRetros />} />
-        <Route path="/board/:iteration" element={<Board />} />
+        <Route path="/retros" element={<UserRetros team={team} />} />
+        <Route path="/board/:iteration/:team" element={<Board />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

@@ -20,14 +20,13 @@ function renderItems(data, retroItem, iteration) {
   }
 }
 
-
-function Board() {
-  let { iteration } = useParams();
+const Board = props => {
+  let { iteration, team } = useParams();
   console.log("Iteration#: ", iteration);
   const [itemDescription, setItemDescription] = useState();
   const [itemType, setItemType] = useState("kudos");
   const { loading, error, data } = useQuery(GET_ITEMS_BY_ITERATION, {
-    variables: { productTeam: "PBS", iteration: parseInt(iteration) },
+    variables: { productTeam: team, iteration: parseInt(iteration) },
   });
   const [addItem, { dataMutation, loadingMutation, errorMutation }] = useMutation(ADD_ITEM, {
     refetchQueries: [

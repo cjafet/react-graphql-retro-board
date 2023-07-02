@@ -4,11 +4,12 @@ import { GET_ITEMS_BY_TEAM, GET_ALL_TEAMS } from "../constants/Queries";
 
 
 const UserRetros = props => {
+  console.log("props", props);
     let team = [];
     let iterations = [];
     const { loading_teams, error: error_teams, data: data_teams } = useQuery(GET_ALL_TEAMS);
     const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
-      variables: { productTeam: "PBS" },
+      variables: { productTeam: props.team[0] },
     });
     console.log(data);
 
@@ -46,7 +47,7 @@ const UserRetros = props => {
               <div key={it.iteration} style={{margin: "10px 20px"}}>
                 <div className="task-header" style={{minHeight: "auto"}}>
                     <div className="task-body">
-                      <a href={"/board/" + it.iteration} style={{color: "white"}}>{team} - {it.iteration}</a>
+                      <a href={"/board/" + it.iteration + "/" + props.team} style={{color: "white"}}>{team} - {it.iteration}</a>
                     </div>
                 </div>
               </div>
