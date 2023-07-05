@@ -1,6 +1,9 @@
 import React from 'react';
 import M from 'materialize-css'
 
+/**
+ * BoardForm component used to render the form that add items to the Retrospective board.
+ */
 const BoardForm = props => {
   console.log("props", props);
     return (
@@ -10,14 +13,14 @@ const BoardForm = props => {
                 props.setItemDescription(document.getElementById("description").value);
                 console.log(props.itemDescription,props.itemType);
                 if(props.itemDescription !== undefined && props.itemDescription !== '') {
-                props.addItem({ variables: { input: { _id: props.data.retroByIterationAndTeam._id, description: props.itemDescription, likes: 0, type: props.itemType, action: 'add' } } });
-                var toastHTML = '<span>' + props.itemType + ' added !</span>';
-                M.toast({html: toastHTML})
+                    props.addItem({ variables: { input: { _id: props.retroId, description: props.itemDescription, likes: 0, type: props.itemType, action: 'add' } } });
+                    var toastHTML = '<span>' + props.itemType + ' added !</span>';
+                    M.toast({html: toastHTML})
                 } else {
-                var toast = '<span>Add a description!</span>';
-                M.toast({html: toast, classes: 'toast-color'})
+                    var toast = '<span>Add a description!</span>';
+                    M.toast({html: toast, classes: 'toast-color'})
                 }
-          }}>
+            }}>
                 <input
                 className="full-width-input"
                 type="text"

@@ -16,7 +16,6 @@ mutation newRetro($input: Retrospective!) {
       description
     }
     ownedBy {
-      productGroup
       productTeam
     }
   }
@@ -35,14 +34,14 @@ export const ADD_ITEM = gql`
 
 
 export const DELETE_ITEM = gql`
-mutation removeItem($id: ID!, $desc: String!, $type: String!) {
-  deleteItem(_id: $id, desc: $desc, type: $type)
+mutation removeItem($id: ID!, $itemId: ID!, $desc: String!, $type: String!) {
+  deleteItem(_id: $id, itemId: $itemId, desc: $desc, type: $type)
 }
 `;
 
 
 export const ADD_ITEM_LIKE = gql`
-mutation postItemLike($id: ID!, $desc: String!, $type: String!) {
-  addItemLike(_id: $id, desc: $desc, type: $type)
+mutation postItemLike($id: ID!, $itemId: ID!, $desc: String!, $type: String!) {
+  addItemLike(_id: $id, itemId: $itemId, desc: $desc, type: $type)
 }
 `;

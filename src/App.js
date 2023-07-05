@@ -10,9 +10,13 @@ import NotFound from "./components/NotFound";
 import { GET_ALL_TEAMS } from "./constants/Queries";
 import Header from "./components/Header";
 
-
+/**
+ * Main app component.
+ */
 function App() {
   let team = [];
+  
+  /** Sets the query to get user teams*/
   const { loading_teams, error: error_teams, data: data_teams } = useQuery(GET_ALL_TEAMS);
 
   if (error_teams) {

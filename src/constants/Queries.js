@@ -20,21 +20,37 @@ query allByIterationAndTeam($productTeam: String!, $iteration: Int!) {
     retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) {
       _id
       kudos {
+        itemId
         description
         likes
         type
       }
       improvements {
+        itemId
         description
         likes
         type
       }
       actionItems {
+        itemId
         description
         likes
         type
       }
       lastActionItems {
+        itemId
+        description
+        likes
+        type
+      }
+    }
+  }
+`;
+
+export const GET_LAST_ACTION_ITEMS_BY_ITERATION = gql`
+query allByIterationAndTeam($productTeam: String!, $iteration: Int!) {
+    retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) {
+      actionItems {
         description
         likes
         type

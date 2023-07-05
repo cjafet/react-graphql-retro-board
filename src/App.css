@@ -66,9 +66,9 @@
   background-color: #ed143d !important;
 }
 
-/* #toast-container {
-  top: auto !important;
-  right: auto !important;
+#toast-container {
+  top: 17% !important;
+  /* right: auto !important;
   bottom: 10%;
-  right:7%;  
-} */
+  right:7%;   */
+}

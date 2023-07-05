@@ -62,7 +62,7 @@ nav .nav-wrapper {
   height: 100%;
 }
 
-nav .brand-logo {
+nav .logo {
   position: absolute;
   color: #fff;
   display: inline-block;
@@ -143,6 +143,14 @@ hr {
   background-color: #ed133d; /* #d71c1c #2b2e94 #36398c #960c0c #ed1717 */
   min-width: 260px;
   max-width: 260px;
+}
+
+.task-header-retros {
+  padding: 4px 14px;
+  display: inline-block;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ed133d; /* #d71c1c #2b2e94 #36398c #960c0c #ed1717 */
 }
 
 div.task-header > div {
