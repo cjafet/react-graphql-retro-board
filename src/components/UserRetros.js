@@ -27,11 +27,20 @@ const UserRetros = props => {
     }
    
     return (
-        <div style={{display: "flex", marginTop: "40px", marginLeft: "8%", alignItems: "center"}}>
-          
+      <div style={{display: "inline-flex", alignItems: "center", height: "400px"}}>
           {error && (
-            <div>
-              <p><strong>Could not fetch data from the server. <strong>Create a new Retrospective board to get started</strong> or check if the GraphQL server is up and running.</strong></p>  
+            <div style={{backgroundColor: "#ed143d", borderRadius: "8px", display: "flex", width: "520px", maxWidth: "520px"}}>
+              <ul style={{display: "flex", color: "white"}}>
+                <li>
+                  <i className="material-icons icn-error" style={{fontSize: "77px", marginLeft: "10px", marginTop: "2px", marginRight: "6px"}}>info</i>
+                </li>
+                <li style={{textAlign: "left"}}>
+                  <h5><strong>Could not fetch data from the server.</strong></h5>
+                  1. Check if the GraphQL server is up and running.<br/>
+                  2. Create a new Retrospective board to get started.
+                </li>
+              </ul>
+              
             </div>
           )}
           
