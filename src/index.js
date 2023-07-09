@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, from } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import 'dotenv/config'
+
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -18,7 +18,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-const GRAPHQL_SERVER = process.env.GRAPHQL_SERVER;
+const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
 console.log(GRAPHQL_SERVER);
 
 const httpLink = new HttpLink({ uri: GRAPHQL_SERVER })

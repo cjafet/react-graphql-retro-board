@@ -3,17 +3,20 @@ import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import { request } from 'graphql-request'
 import { ADD_RETRO } from "../../constants/Mutations";
-import { GET_LAST_ACTION_ITEMS_BY_ITERATION } from "../../constants/Queries";
-import { GRAPHQL_SERVER } from '../../constants/AppConstants';
+import { GET_ITEMS_BY_TEAM, GET_LAST_ACTION_ITEMS_BY_ITERATION } from "../../constants/Queries";
 
 /**
  * RetrospectiveModal component used to render the form to add a new retrospective item to the board.
+ * 
+ * @version 0.0.1
+ * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 class RetrospectiveModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      teamValue: '',
+      message: ''
     };
   }
 
@@ -43,31 +46,84 @@ class RetrospectiveModal extends Component {
     M.Modal.init(this.Modal, options);
   }
 
-  /** Function used to handle team selection change*/
+  /**
+   * Function used to handle team selection change.
+   *
+   * @param {Object} event - The object passed with the current form target element (select#team)
+   * @public
+   */
   handleTeamSelection = (event) => {
     console.log("team selection: ", event.target.value);
-    this.setState({value: event.target.value});
+    this.setState({teamValue: event.target.value});
   }
 
-  /** Sets the mutation to add/ create a new Retrospective board for the reported iteration (sprint)*/
+  /**
+   * Function used to handle team iteration creation.
+   *
+   * @param {string} team - The team name
+   * @param {string} sprint - The sprint number
+   * @param {Object} variables - The object used to send the productTeam and iteration values
+   * @public
+   */
+  handleIterationCreation = (team, sprint, variables) => {
+    this.getTeamIterations({productTeam: team}).then(iterations => {
+      if(!iterations.includes(parseInt(sprint))) {
+        this.getLastIterationByTeam(variables).then(res =>{
+          this.addRetro({ input: { kudos: [], improvements: [], actionItems: [], lastActionItems: res ? res.actionItems : [], ownedBy: { productTeam: team }, iteration: parseInt(sprint) } } );
+          document.getElementById("retro-modal").click();
+          window.location.replace("/retros");
+        });
+      } else {
+        this.setState({message: "Sprint already exists"});
+      }
+    });
+
+  }
+
+  /**
+   * Sets the mutation to add/create a new Retrospective board for the reported sprint iteration.
+   *
+   * @param {Object} variables - The object used to send the Retrospective value
+   * @public
+   */
   addRetro(variables) {
     console.log(variables);
-    request(GRAPHQL_SERVER, ADD_RETRO, variables)
+    request(process.env.REACT_APP_GRAPHQL_SERVER, ADD_RETRO, variables)
       .then(console.log)
       .catch(console.error)
   }
 
-  /** Sets the query to get all Items from the last iteration to return filter*/
+  /**
+   * Sets the query to get all Items from the last iteration to return filter.
+   *
+   * @param {Object} variables - The object used to send the productTeam and iteration values
+   * @public
+   */
   getLastIterationByTeam(variables) {
     console.log(variables);
-    return request(GRAPHQL_SERVER, GET_LAST_ACTION_ITEMS_BY_ITERATION, variables)
+    return request(process.env.REACT_APP_GRAPHQL_SERVER, GET_LAST_ACTION_ITEMS_BY_ITERATION, variables)
     .then(res => {
       console.log("Getting Last iteration: ", res);
-      console.log("Getting Last Action Items: ", res.retroByIterationAndTeam.actionItems);
-      return res.retroByIterationAndTeam.actionItems;
+      console.log("Getting Last Action Items: ", res.retroByIterationAndTeam);
+      return res.retroByIterationAndTeam;
     })
     .catch(console.error)
   }
+
+  /**
+   * Sets the query to get all team iterations.
+   *
+   * @param {Object} variables - The object used to send the productTeam value
+   * @public
+   */
+  getTeamIterations(variables) {
+    let arrayIteration = [];
+    return request(process.env.REACT_APP_GRAPHQL_SERVER, GET_ITEMS_BY_TEAM, variables).then(res => {
+      res.allRetrosByTeam.map(it => arrayIteration.push(it.iteration))
+      return arrayIteration;
+    })
+    .catch(console.error)
+  }  
 
   render() {
     console.log("props", this.props);
@@ -94,46 +150,32 @@ class RetrospectiveModal extends Component {
             <form className="new-task-form" onSubmit={e => {
               e.preventDefault();
               const sprint = document.getElementById("sprint").value;
-              let team, value;
-              if(this.props.teams.length>0) {
-                team = document.getElementById("team");
-                value = team.options[team.selectedIndex].value.toLowerCase();
-                console.log(sprint, value);
-              } else {
-                team = document.getElementById("team").value.toLowerCase();
-                console.log(team);
-              }
-              if(sprint !== undefined && sprint !== '') {
-                const variables = {productTeam: value, iteration: this.props.last_iteration};
-                console.log(variables);
+              let team = document.getElementById("team").value.toLowerCase();
+              if(sprint !== undefined && sprint !== '' && team !== '') {
+                const variables = {productTeam: team, iteration: this.props.last_iteration};
                 if(this.props.teams.length>0) {
-                  this.getLastIterationByTeam(variables).then(res =>{
-                    console.log("Last Action Items", res);
-                    this.addRetro({ input: { kudos: [], improvements: [], actionItems: [], lastActionItems: res ? res : [], ownedBy: { productTeam: this.state.value }, iteration: parseInt(sprint) } } );
-                    document.getElementById("retro-modal").click();
-                    window.location.replace("/retros");
-                  });
+                  this.handleIterationCreation(team, sprint, variables);
                 } else {
                   this.addRetro({ input: { kudos: [], improvements: [], actionItems: [], lastActionItems: [], ownedBy: { productTeam: team }, iteration: parseInt(sprint) } } );
                   document.getElementById("retro-modal").click();
                   window.location.replace("/retros");
                 }
               } else {
-                var toast = '<span>Add a description!</span>';
-                M.toast({html: toast, classes: 'toast-color'});
+                let msg = team==='' ? 'Please, add your team name!' : 'Please, add a sprint number!';
+                this.setState({message: msg});
               }
             }}>
               <input
                 className="modal-width-input"
-                type="text"
+                type="number"
                 id="sprint"
-                placeholder="Add your sprint #"
+                placeholder="Add your sprint number"
                 defaultValue={""}
               />
               {this.props.teams.length>0 && (
               <select id="team" name="team" style={{display: "block", maxWidth: "75%"}} onChange={this.handleTeamSelection}>
-                <option key={this.state.value} value={this.state.value}>Select a team</option>
-                {this.props.teams.map((t) => <option key={this.state.value} value={t}>{t}</option>)}
+                <option key={0} value="">Select a team</option>
+                {this.props.teams.map((t,i) => <option key={i} value={t}>{t}</option>)}
               </select>
               )}
               {this.props.teams.length===0 && (
@@ -146,6 +188,7 @@ class RetrospectiveModal extends Component {
               />
               )}
               <button className="waves-effect waves-teal btn-flat" type="submit">Add</button>
+              <div className="retro-error-message">{this.state.message}</div>
             </form>
           </div>
           <div className="modal-footer">
