@@ -205,6 +205,16 @@ div.task-header > select {
   color: #a94442;
 }
 
+.dropdown-content {
+  top: 65px !important;
+  width: 170px !important;
+  left: 67% !important;
+}
+
+.dropdown-content li > a {
+  color: black !important;
+}
+
 
 /* FONT-AWESOME */
 
