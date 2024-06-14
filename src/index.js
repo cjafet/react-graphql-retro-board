@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache, from } from "@apollo/client";
+import { ApolloClient, ApolloProvider, HttpLink, split, InMemoryCache, from } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-
+import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
+import { createClient } from 'graphql-ws';
+import { getMainDefinition } from '@apollo/client/utilities';
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -22,10 +24,33 @@ const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
 console.log(GRAPHQL_SERVER);
 
 const httpLink = new HttpLink({ uri: GRAPHQL_SERVER })
+
+const wsLink = new GraphQLWsLink(createClient({
+  url: 'wss://localhost:4000/graphql',
+}));
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
   
+// const client = new ApolloClient({
+//   cache: new InMemoryCache(),
+//   link: from([errorLink, httpLink]),
+//   // fetchPolicy: 'cache-and-network'
+// });
+
 const client = new ApolloClient({
+  link: splitLink,
   cache: new InMemoryCache(),
-  link: from([errorLink, httpLink]),
+  fetchPolicy: "no-cache",
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
