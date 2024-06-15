@@ -20,14 +20,14 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
+const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER || 7000;
 console.log(GRAPHQL_SERVER);
 
 const httpLink = new HttpLink({ uri: GRAPHQL_SERVER })
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: "wss://graphql-5a92c0ee750b.herokuapp.com/graphql",
+    url: "ws://graphql-5a92c0ee750b.herokuapp.com/subscriptions",
   })
 );
 
