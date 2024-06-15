@@ -20,7 +20,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
+const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER_WS;
 console.log(GRAPHQL_SERVER);
 
 const httpLink = new HttpLink({ uri: GRAPHQL_SERVER })
