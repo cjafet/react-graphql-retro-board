@@ -11,7 +11,7 @@ import {
   split,
   InMemoryCache,
 } from "@apollo/client";
-import { onError } from "@apollo/client/link/error";
+// import { onError } from "@apollo/client/link/error";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 import { getMainDefinition } from "@apollo/client/utilities";
