@@ -33,7 +33,7 @@ const httpLink = new HttpLink({ uri: GRAPHQL_SERVER });
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: "wss://graphql-5a92c0ee750b.herokuapp.com/subscriptions",
+    url: "wss://graphql-5a92c0ee750b.herokuapp.com/graphql",
   })
 );
 
