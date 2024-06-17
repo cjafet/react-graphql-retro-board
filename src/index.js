@@ -34,6 +34,7 @@ const httpLink = new HttpLink({ uri: GRAPHQL_SERVER });
 const wsLink = new GraphQLWsLink(
   createClient({
     url: "wss://graphql-5a92c0ee750b.herokuapp.com/graphql",
+    // url: "ws://localhost:4000/graphql",
   })
 );
 
@@ -58,7 +59,10 @@ const splitLink = split(
 const client = new ApolloClient({
   link: splitLink,
   cache: new InMemoryCache(),
-  fetchPolicy: "no-cache",
+  fetchOptions: {
+    mode: "no-cors",
+  },
+  fetchPolicy: "cache-and-network",
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

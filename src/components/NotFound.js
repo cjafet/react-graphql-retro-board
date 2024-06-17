@@ -2,6 +2,9 @@ import React from "react";
 
 /**
  * NotFound component used when a route is not found.
+ * 
+ * @version 0.0.1
+ * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const NotFound = () => (
 

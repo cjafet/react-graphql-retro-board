@@ -4,6 +4,9 @@ import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
 
 /**
  * UserRetros component used to render(list) all user retrospectives.
+ * 
+ * @version 0.0.1
+ * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const UserRetros = props => {
   console.log("props", props);
@@ -16,18 +19,16 @@ const UserRetros = props => {
        'allByTeam' // Query name
      ]
     });
-    
-    console.log(data);
 
-    if (error) {
-      console.log("Error querying items by team");
-    }
+    if (error) console.log("Error querying items by team");
+  
     if(!loading && data) {
       console.log(data.allRetrosByTeam);
+      console.log("UserRetros data: ", data);
     }
    
     return (
-      <div style={{display: "inline-flex", alignItems: "center", height: "400px"}}>
+      <div style={{display: "inline-flex", alignItems: "center", height: "400px", adding: "0 13%"}}>
           {error && (
             <div style={{backgroundColor: "#ed143d", borderRadius: "8px", display: "flex", width: "520px", maxWidth: "520px"}}>
               <ul style={{display: "flex", color: "white"}}>
@@ -46,7 +47,7 @@ const UserRetros = props => {
           
           {!error && data?.allRetrosByTeam.map((it) => {
             return (
-              <div key={it.iteration} style={{margin: "10px 10px"}}>
+              <div key={it.iteration} style={{margin: "10px 10px", float: "left"}}>
                 <div className="task-header-retros" style={{minHeight: "auto"}}>
                     <div className="task-body">
                       <a href={"/board/" + props.team + "/" + it.iteration} style={{color: "white"}}>{props.team} - {it.iteration}</a>

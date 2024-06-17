@@ -55,6 +55,7 @@ query allByIterationAndTeam($productTeam: String!, $iteration: Int!) {
         likes
         type
       }
+      iteration
     }
   }
 `;

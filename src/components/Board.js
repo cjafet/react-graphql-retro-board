@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery, useMutation, useSubscription } from '@apollo/client'; 
-import { v4 as uuidv4 } from 'uuid';
+import { useQuery, useMutation, useSubscription } from "@apollo/client";
+import { v4 as uuidv4 } from "uuid";
 
 // App Components
-import RetroItem from './RetroItem';
+import RetroItem from "./RetroItem";
 import { GET_ITEMS_BY_ITERATION } from "../constants/Queries";
 import { ADD_ITEM } from "../constants/Mutations";
 import { ITEMS_SUBSCRIPTION } from "../constants/Subscription";
@@ -13,35 +13,45 @@ import { BOARD_ITEMS, BOARD_TITLES } from "../constants/AppConstants";
 
 /**
  * Board component used to render all the items of any Retrospective board by iteration number and team name.
- * 
+ *
  * @version 0.0.1
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
-const Board = props => {
-
+const Board = (props) => {
   const [itemDescription, setItemDescription] = useState();
   const [itemType, setItemType] = useState("kudos");
   const [boardData, setBoardData] = useState();
-  
+  console.log("Board data", boardData);
+
   /** Gets iteration and team params from the URL to use in the graphQL query*/
   let { iteration, team } = useParams();
   console.log("Iteration#: ", iteration);
 
   /** Sets the query to get all board Items by iteration and team*/
-  const { loading, error, data } = useQuery(GET_ITEMS_BY_ITERATION, {
+  let { loading, error, data, refetch } = useQuery(GET_ITEMS_BY_ITERATION, {
     variables: { productTeam: team, iteration: parseInt(iteration) },
     // onCompleted: setBoardData
   });
+  console.log("Data items:", data);
 
-
-  const { dataItems, loadingItems } = useSubscription(ITEMS_SUBSCRIPTION);
+  const { data: dataItems, loadingItems } = useSubscription(ITEMS_SUBSCRIPTION);
+  // const { dataItems, loadingItems } = useSubscription(ITEMS_SUBSCRIPTION, {
+  //   variables: { input },
+  // });
   console.log("loadingItems Subscription", loadingItems);
   console.log("dataItems Subscription", dataItems);
-  
+  if (dataItems) {
+    refetch({ productTeam: team, iteration: parseInt(iteration) });
+    console.log("Data added from pubsub");
+  }
 
   useEffect(() => {
-    const onCompleted = (data) => { setBoardData(data) };
-    const onError = (error) => { /* magic */ };
+    const onCompleted = (data) => {
+      setBoardData(data);
+    };
+    const onError = (error) => {
+      /* magic */
+    };
     if (onCompleted || onError) {
       if (onCompleted && !loading && !error) {
         onCompleted(data);
@@ -50,14 +60,15 @@ const Board = props => {
       }
     }
   }, [loading, data, error]);
-  
+
   /** Sets the mutation to add an Item to the board and sets the query to fecth updated data from the server*/
-  const [addItem, { dataMutation, loadingMutation, errorMutation }] = useMutation(ADD_ITEM, {
-    refetchQueries: [
-       GET_ITEMS_BY_ITERATION, // DocumentNode object parsed with gql
-      'allByIterationAndTeam' // Query name
-    ],
-  });
+  const [addItem, { dataMutation, loadingMutation, errorMutation }] =
+    useMutation(ADD_ITEM, {
+      refetchQueries: [
+        GET_ITEMS_BY_ITERATION, // DocumentNode object parsed with gql
+        "allByIterationAndTeam", // Query name
+      ],
+    });
 
   if (error) return <p>{error}</p>;
   if (loading) return <p>Loading...</p>;
@@ -70,40 +81,48 @@ const Board = props => {
   const renderItems = (data, retroItem, iteration, index) => {
     console.log("data: ", data);
     console.log(retroItem);
-    if(iteration>0 && data?.retroByIterationAndTeam != null && data?.retroByIterationAndTeam[retroItem] != null) { 
-      return data?.retroByIterationAndTeam[retroItem].map(item => {
-          console.log(item);
-          return (<RetroItem key={item.itemId} id={data?.retroByIterationAndTeam?._id} item={item} iteration={iteration} />);
-      })
+    if (
+      iteration > 0 &&
+      data?.retroByIterationAndTeam != null &&
+      data?.retroByIterationAndTeam[retroItem] != null
+    ) {
+      return data?.retroByIterationAndTeam[retroItem].map((item) => {
+        console.log(item);
+        return (
+          <RetroItem
+            key={item.itemId}
+            id={data?.retroByIterationAndTeam?._id}
+            item={item}
+            iteration={iteration}
+          />
+        );
+      });
     }
-  }
+  };
 
   return (
     <div className="App">
       <div className="tasks">
         <BoardForm
-        itemDescription={itemDescription}
-        setItemDescription={setItemDescription} 
-        itemType={itemType}
-        setItemType={setItemType}
-        addItem={addItem}
-        // LatestItem={LatestItem}
-        retroId={data?.retroByIterationAndTeam?._id}
+          itemDescription={itemDescription}
+          setItemDescription={setItemDescription}
+          itemType={itemType}
+          setItemType={setItemType}
+          addItem={addItem}
+          // LatestItem={LatestItem}
+          retroId={data?.retroByIterationAndTeam?._id}
         />
-        <div className="task-lists"> 
-        
-          {BOARD_TITLES.map((name,index) => (
+        <div className="task-lists">
+          {BOARD_TITLES.map((name, index) => (
             <div key={uuidv4()} className="item-col-space">
               <p className="font-header">{name}</p>
               {renderItems(boardData, BOARD_ITEMS[index], iteration, index)}
             </div>
-            )
-          )}
+          ))}
         </div>
       </div>
     </div>
-    
   );
-}
+};
 
 export default Board;

@@ -32,6 +32,16 @@ export const ADD_ITEM = gql`
   }
 `;
 
+export const MOVE_ITEM = gql`
+  mutation postMoveItem($input: Item!) {
+    moveItem(input: $input) {
+        description
+        likes
+        type
+    }
+  }
+`;
+
 
 export const DELETE_ITEM = gql`
 mutation removeItem($id: ID!, $itemId: ID!, $desc: String!, $type: String!) {
