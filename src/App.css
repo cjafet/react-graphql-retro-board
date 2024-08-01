@@ -88,12 +88,13 @@
 .timer {
   position: absolute;
   display: inline-flex;
-  top: 18%;
+  top: 17%;
   right: 18%;
 }
 
 .time {
   margin: 5px;
+  font-size: 16px;
 }
 
 .btn-timer {
