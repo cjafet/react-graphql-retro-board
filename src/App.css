@@ -80,6 +80,10 @@
   right:7%;   */
 }
 
+.app-nav {
+  margin-right: 21% !important;
+}
+
 .toast-retro {
   top: 150px !important;
   left: -220%;
@@ -87,24 +91,32 @@
 
 .timer {
   position: absolute;
-  display: inline-flex;
-  top: 17%;
-  right: 18%;
+  top: 0%;
+  right: 0%;
+  background-color: #8e1d1d;
+  height: 64px;
+  width: 260px;
+  display: ruby;
+  padding-top: 14px;
+  border-left: 1px solid white;
 }
 
 .time {
-  margin: 5px;
-  font-size: 16px;
+  margin: 4px 5px;
+  font-size: 19px;
+  color: white;
 }
 
 .btn-timer {
   margin: 5px;
   border-radius: 10px;
-  background-color: lightgray;
+}
+
+.btn-small {
+  background-color: #ed153d !important;
 }
 
 .btn-timer:focus {
   margin: 5px;
-  border-radius: 10px;
-  background-color: lightgray;
+  background-color: #ed153d !important;
 }

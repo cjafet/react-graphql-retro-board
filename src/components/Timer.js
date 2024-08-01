@@ -7,19 +7,22 @@ const Timer = () => {
   useEffect(() => {
     let id;
     if (isRunning) {
-        id = setInterval(() => setElapsedTime((prevState) => {
+      id = setInterval(
+        () =>
+          setElapsedTime((prevState) => {
             if (prevState >= 1) {
-                console.log(prevState)
-                return prevState - 1
+              console.log(prevState);
+              return prevState - 1;
             } else {
-                setIsRunning(false);
-                setElapsedTime(300);
+              setIsRunning(false);
+              setElapsedTime(300);
             }
-        }), 1000);
-    } 
+          }),
+        1000
+      );
+    }
     return () => clearInterval(id);
   }, [isRunning]); // Empty array, only runs after the first render
-
 
   const formatTime = (time) => {
     var date = new Date(0);
@@ -33,15 +36,20 @@ const Timer = () => {
       <div className="time">
         {elapsedTime >= 0 ? formatTime(elapsedTime) : formatTime(300)}
       </div>
-      <button
-        className="btn-timer"
-        onClick={() => setIsRunning((prevValue) => !prevValue)}
-      >
-        {isRunning ? "Stop" : "Start"}
-      </button>
-      <button className="btn-timer" onClick={() => setElapsedTime(30)}>
-        Reset
-      </button>
+      <div className="controls">
+        <button
+          className="btn-timer btn btn-small"
+          onClick={() => setIsRunning((prevValue) => !prevValue)}
+        >
+          {isRunning ? "Stop" : "Start"}
+        </button>
+        <button
+          className="btn-timer btn btn-small"
+          onClick={() => setElapsedTime(300)}
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
 };
