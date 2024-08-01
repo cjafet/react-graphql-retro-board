@@ -84,3 +84,26 @@
   top: 150px !important;
   left: -220%;
 }
+
+.timer {
+  position: absolute;
+  display: inline-flex;
+  top: 18%;
+  right: 18%;
+}
+
+.time {
+  margin: 5px;
+}
+
+.btn-timer {
+  margin: 5px;
+  border-radius: 10px;
+  background-color: lightgray;
+}
+
+.btn-timer:focus {
+  margin: 5px;
+  border-radius: 10px;
+  background-color: lightgray;
+}

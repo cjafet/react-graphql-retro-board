@@ -5,11 +5,13 @@ import { v4 as uuidv4 } from "uuid";
 
 // App Components
 import RetroItem from "./RetroItem";
+import BoardForm from "./BoardForm";
+import Timer from "./Timer";
 import { GET_ITEMS_BY_ITERATION } from "../constants/Queries";
 import { ADD_ITEM } from "../constants/Mutations";
 import { ITEMS_SUBSCRIPTION } from "../constants/Subscription";
-import BoardForm from "./BoardForm";
 import { BOARD_ITEMS, BOARD_TITLES } from "../constants/AppConstants";
+
 
 /**
  * Board component used to render all the items of any Retrospective board by iteration number and team name.
@@ -112,6 +114,7 @@ const Board = (props) => {
           // LatestItem={LatestItem}
           retroId={data?.retroByIterationAndTeam?._id}
         />
+        <Timer></Timer>
         <div className="task-lists">
           {BOARD_TITLES.map((name, index) => (
             <div key={uuidv4()} className="item-col-space">
