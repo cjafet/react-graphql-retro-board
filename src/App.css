@@ -99,12 +99,17 @@
   display: ruby;
   padding-top: 14px;
   border-left: 1px solid white;
+  padding-left: 62px;
 }
 
 .time {
   margin: 4px 5px;
   font-size: 19px;
   color: white;
+  position: absolute;
+  margin: auto 0;
+  left: 19px;
+  top: 19px;
 }
 
 .btn-timer {
@@ -114,6 +119,8 @@
 
 .btn-small {
   background-color: #ed153d !important;
+  height: 27.4px !important;
+  line-height: 27.4px !important;
 }
 
 .btn-timer:focus {
