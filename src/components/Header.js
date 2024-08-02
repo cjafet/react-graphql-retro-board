@@ -72,12 +72,15 @@ const Header = (props) => {
                 </Link>
               </li>
             )}
+            <li>
+              <Link to="/settings">Settings</Link>
+            </li>
             {/* <li><Link to="#">My Teams &nbsp;</Link></li> */}
-            {props.team.toString() !== "" && (
+            {/* {props.team.toString() !== "" && (
               <li style={{ marginLeft: "20px", fontSize: "18px" }}>
                 {props.team.toString().toUpperCase()} TEAM
               </li>
-            )}
+            )} */}
           </ul>
           <ul className="right font-header hide-on-med-and-up show-on-medium-and-down">
             <li className="show-on-medium-and-down">
