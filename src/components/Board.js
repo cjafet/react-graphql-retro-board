@@ -92,7 +92,7 @@ const Board = (props) => {
         console.log(item);
         return (
           <RetroItem
-            key={item.itemId}
+            key={item.itemId != null ? item.itemId : uuidv4()}
             id={data?.retroByIterationAndTeam?._id}
             item={item}
             iteration={iteration}
