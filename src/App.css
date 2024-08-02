@@ -81,7 +81,7 @@
 }
 
 .app-nav {
-  margin-right: 21% !important;
+  margin-right: 48% !important;
 }
 
 .toast-retro {
@@ -118,7 +118,7 @@
 }
 
 .btn-small {
-  background-color: #ed153d !important;
+  /* background-color: #ed153d !important; */
   height: 27.4px !important;
   line-height: 27.4px !important;
 }
@@ -126,4 +126,8 @@
 .btn-timer:focus {
   margin: 5px;
   background-color: #ed153d !important;
+}
+
+.settings {
+  display: inline-flex;
 }
