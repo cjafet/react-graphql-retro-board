@@ -1,13 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
-import { request } from 'graphql-request'
+import { request } from "graphql-request";
 import { ADD_RETRO } from "../../constants/Mutations";
-import { GET_ITEMS_BY_TEAM, GET_LAST_ACTION_ITEMS_BY_ITERATION } from "../../constants/Queries";
+import {
+  GET_ITEMS_BY_TEAM,
+  GET_LAST_ACTION_ITEMS_BY_ITERATION,
+} from "../../constants/Queries";
 
 /**
  * RetrospectiveModal component used to render the form to add a new retrospective item to the board.
- * 
+ *
  * @version 0.0.1
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
@@ -15,8 +18,8 @@ class RetrospectiveModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      teamValue: '',
-      message: ''
+      teamValue: "",
+      message: "",
     };
   }
 
@@ -41,7 +44,7 @@ class RetrospectiveModal extends Component {
       opacity: 0.5,
       dismissible: false,
       startingTop: "4%",
-      endingTop: "10%"
+      endingTop: "10%",
     };
     M.Modal.init(this.Modal, options);
   }
@@ -54,8 +57,8 @@ class RetrospectiveModal extends Component {
    */
   handleTeamSelection = (event) => {
     console.log("team selection: ", event.target.value);
-    this.setState({teamValue: event.target.value});
-  }
+    this.setState({ teamValue: event.target.value });
+  };
 
   /**
    * Function used to handle team iteration creation.
@@ -66,19 +69,27 @@ class RetrospectiveModal extends Component {
    * @public
    */
   handleIterationCreation = (team, sprint, variables) => {
-    this.getTeamIterations({productTeam: team}).then(iterations => {
-      if(!iterations.includes(parseInt(sprint))) {
-        this.getLastIterationByTeam(variables).then(res =>{
-          this.addRetro({ input: { kudos: [], improvements: [], actionItems: [], lastActionItems: res ? res.actionItems : [], ownedBy: { productTeam: team }, iteration: parseInt(sprint) } } );
+    this.getTeamIterations({ productTeam: team }).then((iterations) => {
+      if (!iterations.includes(parseInt(sprint))) {
+        this.getLastIterationByTeam(variables).then((res) => {
+          this.addRetro({
+            input: {
+              kudos: [],
+              improvements: [],
+              actionItems: [],
+              lastActionItems: res ? res.actionItems : [],
+              ownedBy: { productTeam: team },
+              iteration: parseInt(sprint),
+            },
+          });
           document.getElementById("retro-modal").click();
           window.location.replace("/retros");
         });
       } else {
-        this.setState({message: "Sprint already exists"});
+        this.setState({ message: "Sprint already exists" });
       }
     });
-
-  }
+  };
 
   /**
    * Sets the mutation to add/create a new Retrospective board for the reported sprint iteration.
@@ -90,7 +101,7 @@ class RetrospectiveModal extends Component {
     console.log(variables);
     request(process.env.REACT_APP_GRAPHQL_SERVER, ADD_RETRO, variables)
       .then(console.log)
-      .catch(console.error)
+      .catch(console.error);
   }
 
   /**
@@ -101,13 +112,17 @@ class RetrospectiveModal extends Component {
    */
   getLastIterationByTeam(variables) {
     console.log(variables);
-    return request(process.env.REACT_APP_GRAPHQL_SERVER, GET_LAST_ACTION_ITEMS_BY_ITERATION, variables)
-    .then(res => {
-      console.log("Getting Last iteration: ", res);
-      console.log("Getting Last Action Items: ", res.retroByIterationAndTeam);
-      return res.retroByIterationAndTeam;
-    })
-    .catch(console.error)
+    return request(
+      process.env.REACT_APP_GRAPHQL_SERVER,
+      GET_LAST_ACTION_ITEMS_BY_ITERATION,
+      variables
+    )
+      .then((res) => {
+        console.log("Getting Last iteration: ", res);
+        console.log("Getting Last Action Items: ", res.retroByIterationAndTeam);
+        return res.retroByIterationAndTeam;
+      })
+      .catch(console.error);
   }
 
   /**
@@ -118,53 +133,92 @@ class RetrospectiveModal extends Component {
    */
   getTeamIterations(variables) {
     let arrayIteration = [];
-    return request(process.env.REACT_APP_GRAPHQL_SERVER, GET_ITEMS_BY_TEAM, variables).then(res => {
-      res.allRetrosByTeam.map(it => arrayIteration.push(it.iteration))
-      return arrayIteration;
-    })
-    .catch(console.error)
-  }  
+    return request(
+      process.env.REACT_APP_GRAPHQL_SERVER,
+      GET_ITEMS_BY_TEAM,
+      variables
+    )
+      .then((res) => {
+        res.allRetrosByTeam.map((it) => arrayIteration.push(it.iteration));
+        return arrayIteration;
+      })
+      .catch(console.error);
+  }
 
   render() {
     console.log("props", this.props);
     return (
-        <React.Fragment>
-        <a href="modal1" className="waves-light modal-trigger" data-target="modal1">
-          <span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Retrospective &nbsp;
+      <React.Fragment>
+        <a
+          href="modal1"
+          className="waves-light modal-trigger"
+          data-target="modal1"
+        >
+          <span style={{ fontSize: "28px", position: "absolute", left: "0" }}>
+            +
+          </span>{" "}
+          New Retrospective &nbsp;
         </a>
 
         <div
-          ref={Modal => {
+          ref={(Modal) => {
             this.Modal = Modal;
           }}
           id="modal1"
           className="modal"
         >
           <nav>
-            <div className="nav-wrapper">
-              <h1 className="font-header modal-team-title">Create a new retrospective board</h1>
-              <div style={{position: "relative"}}><button id="retro-modal" className="modal-action modal-close waves-effect waves-green btn-flat modal-close-position">X</button></div>
+            <div className="nav-wrapper" style = {{backgroundColor: this.props.color}}>
+              <h1 className="font-header modal-team-title">
+                Create a new retrospective board
+              </h1>
+              <div style={{ position: "relative" }}>
+                <button
+                  id="retro-modal"
+                  className="modal-action modal-close waves-effect waves-green btn-flat modal-close-position"
+                >
+                  X
+                </button>
+              </div>
             </div>
           </nav>
           <div className="modal-team-form">
-            <form className="new-task-form" onSubmit={e => {
-              e.preventDefault();
-              const sprint = document.getElementById("sprint").value;
-              let team = document.getElementById("team").value.toLowerCase();
-              if(sprint !== undefined && sprint !== '' && team !== '') {
-                const variables = {productTeam: team, iteration: this.props.last_iteration};
-                if(this.props.teams.length>0) {
-                  this.handleIterationCreation(team, sprint, variables);
+            <form
+              className="new-task-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const sprint = document.getElementById("sprint").value;
+                let team = document.getElementById("team").value.toLowerCase();
+                if (sprint !== undefined && sprint !== "" && team !== "") {
+                  const variables = {
+                    productTeam: team,
+                    iteration: this.props.last_iteration,
+                  };
+                  if (this.props.teams.length > 0) {
+                    this.handleIterationCreation(team, sprint, variables);
+                  } else {
+                    this.addRetro({
+                      input: {
+                        kudos: [],
+                        improvements: [],
+                        actionItems: [],
+                        lastActionItems: [],
+                        ownedBy: { productTeam: team },
+                        iteration: parseInt(sprint),
+                      },
+                    });
+                    document.getElementById("retro-modal").click();
+                    window.location.replace("/retros");
+                  }
                 } else {
-                  this.addRetro({ input: { kudos: [], improvements: [], actionItems: [], lastActionItems: [], ownedBy: { productTeam: team }, iteration: parseInt(sprint) } } );
-                  document.getElementById("retro-modal").click();
-                  window.location.replace("/retros");
+                  let msg =
+                    team === ""
+                      ? "Please, add your team name!"
+                      : "Please, add a sprint number!";
+                  this.setState({ message: msg });
                 }
-              } else {
-                let msg = team==='' ? 'Please, add your team name!' : 'Please, add a sprint number!';
-                this.setState({message: msg});
-              }
-            }}>
+              }}
+            >
               <input
                 className="modal-width-input"
                 type="number"
@@ -172,31 +226,46 @@ class RetrospectiveModal extends Component {
                 placeholder="Add your sprint number"
                 defaultValue={""}
               />
-              {this.props.teams.length>0 && (
-              <select id="team" name="team" style={{display: "block", maxWidth: "75%"}} onChange={this.handleTeamSelection}>
-                <option key={0} value="">Select a team</option>
-                {this.props.teams.map((t,i) => <option key={i} value={t}>{t}</option>)}
-              </select>
+              {this.props.teams.length > 0 && (
+                <select
+                  id="team"
+                  name="team"
+                  style={{ display: "block", maxWidth: "75%" }}
+                  onChange={this.handleTeamSelection}
+                >
+                  <option key={0} value="">
+                    Select a team
+                  </option>
+                  {this.props.teams.map((t, i) => (
+                    <option key={i} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
               )}
-              {this.props.teams.length===0 && (
+              {this.props.teams.length === 0 && (
                 <input
-                className="modal-width-input"
-                type="text"
-                id="team"
-                placeholder="Add your team name"
-                defaultValue={""}
-              />
+                  className="modal-width-input"
+                  type="text"
+                  id="team"
+                  placeholder="Add your team name"
+                  defaultValue={""}
+                />
               )}
-              <button className="waves-effect waves-teal btn-flat" type="submit">Add</button>
+              <button
+                className="waves-effect waves-teal btn-flat"
+                type="submit"
+              >
+                Add
+              </button>
               <div className="retro-error-message">{this.state.message}</div>
             </form>
           </div>
           <div className="modal-footer">
-          <div className="modal-footer">
-          </div>
+            <div className="modal-footer"></div>
           </div>
         </div>
-        </React.Fragment>
+      </React.Fragment>
     );
   }
 }

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "./context/ThemeContext";
 
 const Timer = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [elapsedTime, setElapsedTime] = useState(300);
+  const { timerColor, themeColor } = useContext(ThemeContext);
 
   useEffect(() => {
     let id;
@@ -32,19 +34,21 @@ const Timer = () => {
   };
 
   return (
-    <div className="timer">
+    <div className="timer" style={{ backgroundColor: timerColor }}>
       <div className="time">
         {elapsedTime >= 0 ? formatTime(elapsedTime) : formatTime(300)}
       </div>
       <div className="controls">
         <button
           className="btn-timer btn btn-small"
+          style={{ backgroundColor: themeColor }}
           onClick={() => setIsRunning((prevValue) => !prevValue)}
         >
           {isRunning ? "Stop" : "Start"}
         </button>
         <button
           className="btn-timer btn btn-small"
+          style={{ backgroundColor: themeColor }}
           onClick={() => setElapsedTime(300)}
         >
           Reset
