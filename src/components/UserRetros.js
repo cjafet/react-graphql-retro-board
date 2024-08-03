@@ -48,7 +48,10 @@ const UserRetros = (props) => {
       };
 
       const response = await fetch(GRAPHQL_SERVER, fetchOptions);
-      console.log("UserRetros fetch", response.json());
+      if (response.status === 200) {
+        const data = await response.json();
+        console.log("UserRetros fetch", data);
+      }
     });
   }
 
