@@ -35,7 +35,6 @@ const UserRetros = (props) => {
       let data = {
         "query":
           "query allByIterationAndTeam($productTeam: String!, $iteration: Int!) { retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) { kudos { description likes } improvements { description likes } actionItems { description likes } lastActionItems { description likes } } }",
-        "operationName": "retroByIterationAndTeam",
         "variables": { "productTeam": team, "iteration": element.iteration },
       };
 
