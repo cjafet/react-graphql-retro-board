@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
 import { ThemeContext } from "./context/ThemeContext";
@@ -38,6 +38,7 @@ const UserRetros = (props) => {
         height: "400px",
         adding: "0 13%",
         marginLeft: "110px",
+        marginTop: "35px",
       }}
     >
       {error && (
@@ -81,7 +82,7 @@ const UserRetros = (props) => {
           return (
             <div
               key={it.iteration}
-              style={{ margin: "35px 10px", float: "left" }}
+              style={{ margin: "10px 10px", float: "left" }}
             >
               <div
                 className=""
