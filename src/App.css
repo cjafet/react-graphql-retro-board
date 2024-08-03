@@ -131,3 +131,28 @@
 .settings {
   display: inline-flex;
 }
+
+.stats {
+  color: #fff;
+  text-align: left;
+  font-size: 13px;
+}
+
+.stats-width {
+  /* border-top: 1px solid white; */
+  width: 200px;
+}
+
+.box {
+  border-top: 1px solid rgba(66, 43, 43, 0.2);
+  padding: 15px;
+}
+
+.stats-title {
+  height: 30px;
+  padding-top: 5px;
+}
+
+.stats-padding {
+  padding: 10px;
+}

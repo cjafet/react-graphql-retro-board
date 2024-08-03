@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
 import { ThemeContext } from "./context/ThemeContext";
+import IterationStats from "./IterationStats";
 
 /**
  * UserRetros component used to render(list) all user retrospectives.
@@ -11,11 +12,7 @@ import { ThemeContext } from "./context/ThemeContext";
  */
 const UserRetros = (props) => {
   const { themeColor } = useContext(ThemeContext);
-  const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER || 7000;
-
   console.log("props", props);
-
-  let team = "cjafet";
 
   /** Sets the query to get all team retrospectives*/
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
@@ -31,37 +28,16 @@ const UserRetros = (props) => {
   if (!loading && data) {
     console.log(data.allRetrosByTeam);
     console.log("UserRetros data: ", data);
-    data.allRetrosByTeam.forEach(async (element) => {
-      let data = {
-        "query":
-          "query allByIterationAndTeam($productTeam: String!, $iteration: Int!) { retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) { kudos { description likes } improvements { description likes } actionItems { description likes } lastActionItems { description likes } } }",
-        "variables": { "productTeam": team, "iteration": element.iteration },
-      };
-
-      const fetchOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-        // mode: "cors",
-      };
-
-      const response = await fetch(GRAPHQL_SERVER, fetchOptions);
-      if (response.status === 200) {
-        const data = await response.json();
-        console.log("UserRetros fetch", data);
-      }
-    });
   }
 
   return (
     <div
       style={{
-        display: "inline-flex",
+        // display: "inline-flex",
         alignItems: "center",
         height: "400px",
         adding: "0 13%",
+        marginLeft: "110px",
       }}
     >
       {error && (
@@ -105,19 +81,22 @@ const UserRetros = (props) => {
           return (
             <div
               key={it.iteration}
-              style={{ margin: "10px 10px", float: "left" }}
+              style={{ margin: "35px 10px", float: "left" }}
             >
               <div
-                className="task-header-retros"
+                className=""
                 style={{ minHeight: "auto", backgroundColor: themeColor }}
               >
-                <div className="task-body">
+                <div className="stats-title">
                   <a
                     href={"/board/" + props.team + "/" + it.iteration}
                     style={{ color: "white" }}
                   >
-                    {props.team} - {it.iteration}
+                    Sprint - {it.iteration}
                   </a>
+                </div>
+                <div className="box">
+                  <IterationStats iteration={it.iteration} team={props.team} />
                 </div>
               </div>
             </div>
