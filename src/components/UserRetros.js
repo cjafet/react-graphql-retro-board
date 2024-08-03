@@ -1,9 +1,6 @@
 import React, { useContext } from "react";
 import { useQuery } from "@apollo/client";
-import {
-  GET_ITEMS_BY_TEAM,
-  GET_ITEMS_BY_ITERATION,
-} from "../constants/Queries";
+import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
 import { ThemeContext } from "./context/ThemeContext";
 
 /**
@@ -19,20 +16,6 @@ const UserRetros = (props) => {
   console.log("props", props);
 
   let team = "cjafet";
-  let iteration = 1;
-  /** Sets the query to get all board Items by iteration and team*/
-  let {
-    loading: loadingItems,
-    error: errorItems,
-    data: dataItems,
-    refetch,
-  } = useQuery(GET_ITEMS_BY_ITERATION, {
-    variables: { productTeam: team, iteration: parseInt(iteration) },
-    // onCompleted: setBoardData
-  });
-  console.log("UserRetros Data items:", dataItems);
-  if (errorItems) console.log("Error querying items by team");
-  console.log("loadingItems UserRetros", loadingItems);
 
   /** Sets the query to get all team retrospectives*/
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
@@ -50,16 +33,19 @@ const UserRetros = (props) => {
     console.log("UserRetros data: ", data);
     data.allRetrosByTeam.forEach(async (element) => {
       let data = {
-        query:
-          "query allByIterationAndTeam($productTeam: String!, $iteration: Int!) { retroByIterationAndTeam(productTeam: 'cjafet', iteration: 3) { kudos { description likes } improvements { description likes } actionItems { description likes } lastActionItems { description likes } } }",
-        operationName: "allByIterationAndTeam",
-        variables: { productTeam: team, iteration: element.iteration },
+        "query":
+          "query allByIterationAndTeam($productTeam: String!, $iteration: Int!) { retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) { kudos { description likes } improvements { description likes } actionItems { description likes } lastActionItems { description likes } } }",
+        "operationName": "retroByIterationAndTeam",
+        "variables": { "productTeam": team, "iteration": element.iteration },
       };
 
       const fetchOptions = {
         method: "POST",
-        body: data,
-        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        // mode: "cors",
       };
 
       const response = await fetch(GRAPHQL_SERVER, fetchOptions);
