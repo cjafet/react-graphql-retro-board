@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import { request } from "graphql-request";
