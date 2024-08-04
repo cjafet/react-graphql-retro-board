@@ -20,6 +20,7 @@ class RetrospectiveModal extends Component {
     this.state = {
       teamValue: "",
       message: "",
+      labels: []
     };
   }
 
@@ -60,6 +61,13 @@ class RetrospectiveModal extends Component {
     this.setState({ teamValue: event.target.value });
   };
 
+  handleLabelSelection = (event) => {
+    console.log("lables selection: ", event.target.value);
+    let values =  event.target.value;
+    let labels =  values.split(",");
+    this.setState({ labels: [...labels] });
+  };
+
   /**
    * Function used to handle team iteration creation.
    *
@@ -74,6 +82,7 @@ class RetrospectiveModal extends Component {
         this.getLastIterationByTeam(variables).then((res) => {
           this.addRetro({
             input: {
+              labels: this.state.labels,
               kudos: [],
               improvements: [],
               actionItems: [],
@@ -168,7 +177,10 @@ class RetrospectiveModal extends Component {
           className="modal"
         >
           <nav>
-            <div className="nav-wrapper" style = {{backgroundColor: this.props.color}}>
+            <div
+              className="nav-wrapper"
+              style={{ backgroundColor: this.props.color }}
+            >
               <h1 className="font-header modal-team-title">
                 Create a new retrospective board
               </h1>
@@ -243,6 +255,34 @@ class RetrospectiveModal extends Component {
                   ))}
                 </select>
               )}
+              <select
+                id="labels"
+                name="labels"
+                style={{ display: "block", maxWidth: "75%" }}
+                onChange={this.handleLabelSelection}
+              >
+                <option key={0} value="">
+                  Select title
+                </option>
+                <option
+                  key={"kudos-improvements-action-items"}
+                  value="Kudos, Improvements, Action items, Last Action items"
+                >
+                  Kudos, Improvements, Action Items, Last Action items
+                </option>
+                <option
+                  key={"continue-stop-action-items"}
+                  value="Continue, Stop, Action items, Last Action items"
+                >
+                  Continue, Stop, Action Items, Last Action items
+                </option>
+                <option
+                  key={"wentwell-toimprove-action-items"}
+                  value="Went Well, To Improve, Action items, Last Action items"
+                >
+                  Went well, To Improve, Action Items, Last Action items
+                </option>
+              </select>
               {this.props.teams.length === 0 && (
                 <input
                   className="modal-width-input"

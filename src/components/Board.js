@@ -10,7 +10,7 @@ import Timer from "./Timer";
 import { GET_ITEMS_BY_ITERATION } from "../constants/Queries";
 import { ADD_ITEM } from "../constants/Mutations";
 import { ITEMS_SUBSCRIPTION } from "../constants/Subscription";
-import { BOARD_ITEMS, BOARD_TITLES } from "../constants/AppConstants";
+import { BOARD_ITEMS } from "../constants/AppConstants";
 
 
 /**
@@ -106,6 +106,7 @@ const Board = (props) => {
     <div className="App">
       <div className="tasks">
         <BoardForm
+          labels={data?.retroByIterationAndTeam?.labels}
           itemDescription={itemDescription}
           setItemDescription={setItemDescription}
           itemType={itemType}
@@ -116,7 +117,7 @@ const Board = (props) => {
         />
         <Timer></Timer>
         <div className="task-lists">
-          {BOARD_TITLES.map((name, index) => (
+          {data?.retroByIterationAndTeam?.labels.map((name, index) => (
             <div key={uuidv4()} className="item-col-space">
               <p className="font-header">{name}</p>
               {renderItems(boardData, BOARD_ITEMS[index], iteration, index)}

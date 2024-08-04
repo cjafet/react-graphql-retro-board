@@ -19,6 +19,7 @@ export const GET_ITEMS_BY_ITERATION = gql`
 query allByIterationAndTeam($productTeam: String!, $iteration: Int!) {
     retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) {
       _id
+      labels
       kudos {
         itemId
         description
