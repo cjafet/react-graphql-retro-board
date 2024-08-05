@@ -1,5 +1,6 @@
 import React from 'react';
 import M from 'materialize-css'
+import { BOARD_TITLES } from "../constants/AppConstants";
 
 /**
  * BoardForm component used to render the form that add items to the Retrospective board.
@@ -64,7 +65,8 @@ const BoardForm = props => {
                 checked={props.itemType === "kudos"}
               />
               <div style={{ marginLeft: "20px", marginRight: "20px" }}>
-                {props.labels[0]}
+                {props.labels != null && props.labels[0]}
+                {props.labels == null && BOARD_TITLES[0]}
               </div>
             </label>
           </div>
@@ -82,7 +84,8 @@ const BoardForm = props => {
                 checked={props.itemType === "improvements"}
               />
               <div style={{ marginLeft: "20px", marginRight: "20px" }}>
-                {props.labels[1]}
+                {props.labels != null && props.labels[1]}
+                {props.labels == null && BOARD_TITLES[1]}
               </div>
             </label>
           </div>
@@ -100,7 +103,8 @@ const BoardForm = props => {
                 checked={props.itemType === "actionItems"}
               />
               <div style={{ marginLeft: "20px", marginRight: "20px" }}>
-                {props.labels[2]}
+                {props.labels != null && props.labels[2]}
+                {props.labels == null && BOARD_TITLES[2]}
               </div>
             </label>
           </div>
@@ -118,7 +122,8 @@ const BoardForm = props => {
                 checked={props.itemType === "lastActionItems"}
               />
               <div style={{ marginLeft: "20px", marginRight: "20px" }}>
-                {props.labels[3]}
+                {props.labels != null && props.labels[3]}
+                {props.labels == null && BOARD_TITLES[3]}
               </div>
             </label>
           </div>
