@@ -6,12 +6,13 @@ import { v4 as uuidv4 } from "uuid";
 // App Components
 import RetroItem from "./RetroItem";
 import BoardForm from "./BoardForm";
+import ErrorBoundary from "./ErrorBoundary";
 import Timer from "./Timer";
 import { GET_ITEMS_BY_ITERATION } from "../constants/Queries";
 import { ADD_ITEM } from "../constants/Mutations";
 import { ITEMS_SUBSCRIPTION } from "../constants/Subscription";
 import { BOARD_ITEMS, BOARD_TITLES } from "../constants/AppConstants";
-
+import Network from "./Network";
 
 /**
  * Board component used to render all the items of any Retrospective board by iteration number and team name.
@@ -23,6 +24,7 @@ const Board = (props) => {
   const [itemDescription, setItemDescription] = useState();
   const [itemType, setItemType] = useState("kudos");
   const [boardData, setBoardData] = useState();
+  const [asyncError, setAsyncError] = useState();
   console.log("Board data", boardData);
 
   /** Gets iteration and team params from the URL to use in the graphQL query*/
@@ -51,8 +53,9 @@ const Board = (props) => {
     const onCompleted = (data) => {
       setBoardData(data);
     };
-    const onError = (error) => {
-      /* magic */
+    const onError = (err) => {
+      console.log(err);
+      setAsyncError(err);
     };
     if (onCompleted || onError) {
       if (onCompleted && !loading && !error) {
@@ -72,7 +75,7 @@ const Board = (props) => {
       ],
     });
 
-  if (error) return <p>{error}</p>;
+  // if (error) return <p>{JSON.stringify(error)}</p>;
   if (loading) return <p>Loading...</p>;
   if (errorMutation) return <p>{errorMutation}</p>;
   if (loadingMutation) return <p>Loading...</p>;
@@ -105,37 +108,40 @@ const Board = (props) => {
   return (
     <div className="App">
       <div className="tasks">
-        <BoardForm
-          labels={data?.retroByIterationAndTeam?.labels}
-          itemDescription={itemDescription}
-          setItemDescription={setItemDescription}
-          itemType={itemType}
-          setItemType={setItemType}
-          addItem={addItem}
-          // LatestItem={LatestItem}
-          retroId={data?.retroByIterationAndTeam?._id}
-        />
-        <Timer></Timer>
-        {data?.retroByIterationAndTeam?.labels != null && (
-          <div className="task-lists">
-            {data?.retroByIterationAndTeam?.labels.map((name, index) => (
-              <div key={uuidv4()} className="item-col-space">
-                <p className="font-header">{name}</p>
-                {renderItems(boardData, BOARD_ITEMS[index], iteration, index)}
-              </div>
-            ))}
-          </div>
-        )}
-        {data?.retroByIterationAndTeam?.labels == null && (
-          <div className="task-lists">
-            {BOARD_TITLES.map((name, index) => (
-              <div key={uuidv4()} className="item-col-space">
-                <p className="font-header">{name}</p>
-                {renderItems(boardData, BOARD_ITEMS[index], iteration, index)}
-              </div>
-            ))}
-          </div>
-        )}
+        <ErrorBoundary>
+          <Network networkError={asyncError} />
+          <BoardForm
+            labels={data?.retroByIterationAndTeam?.labels}
+            itemDescription={itemDescription}
+            setItemDescription={setItemDescription}
+            itemType={itemType}
+            setItemType={setItemType}
+            addItem={addItem}
+            // LatestItem={LatestItem}
+            retroId={data?.retroByIterationAndTeam?._id}
+          />
+          <Timer></Timer>
+          {data?.retroByIterationAndTeam?.labels != null && (
+            <div className="task-lists">
+              {data?.retroByIterationAndTeam?.labels.map((name, index) => (
+                <div key={uuidv4()} className="item-col-space">
+                  <p className="font-header">{name}</p>
+                  {renderItems(boardData, BOARD_ITEMS[index], iteration, index)}
+                </div>
+              ))}
+            </div>
+          )}
+          {data?.retroByIterationAndTeam?.labels == null && (
+            <div className="task-lists">
+              {BOARD_TITLES.map((name, index) => (
+                <div key={uuidv4()} className="item-col-space">
+                  <p className="font-header">{name}</p>
+                  {renderItems(boardData, BOARD_ITEMS[index], iteration, index)}
+                </div>
+              ))}
+            </div>
+          )}
+        </ErrorBoundary>
       </div>
     </div>
   );

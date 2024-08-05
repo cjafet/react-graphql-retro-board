@@ -26,7 +26,7 @@ import { getMainDefinition } from "@apollo/client/utilities";
 //   if (networkError) console.log(`[Network error]: ${networkError}`);
 // });
 
-const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER || 7000;
+const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
 console.log(GRAPHQL_SERVER);
 
 const httpLink = new HttpLink({ uri: GRAPHQL_SERVER });
