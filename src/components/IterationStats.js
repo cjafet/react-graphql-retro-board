@@ -33,26 +33,18 @@ const IterationStats = (props) => {
   }, [GRAPHQL_SERVER, props.iteration, props.team]);
 
   return (
-    <div className="stats-width">
-      <div className="stats">
-        <div>
-          <span className="stats-padding">
-            Kudos: {JSON.parse(stats).kudos?.length}
-          </span>
-          <span className="stats-padding">
-            &nbsp;&nbsp; Action Items: {JSON.parse(stats).actionItems?.length}
-          </span>
-        </div>
-        <div>
-          <span className="stats-padding">
-            Improvs: {JSON.parse(stats).improvements?.length}
-          </span>
-          <span className="stats-padding">
-            LA Items: {JSON.parse(stats).lastActionItems?.length}
-          </span>
-        </div>
-      </div>
-    </div>
+    <tr key={props.iteration}>
+      <th scope="row">
+        <a href={"/board/" + props.team[0] + "/" + props.iteration}>
+          {props.iteration}
+        </a>
+      </th>
+      <td>{JSON.parse(stats).kudos?.length}</td>
+      <td>{JSON.parse(stats).improvements?.length}</td>
+      <td>{JSON.parse(stats).actionItems?.length}</td>
+      <td>{JSON.parse(stats).lastActionItems?.length}</td>
+      <td>0</td>
+    </tr>
   );
 };
 

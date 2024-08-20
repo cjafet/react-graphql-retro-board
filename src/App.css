@@ -145,7 +145,7 @@
 
 .box {
   border-top: 1px solid rgba(66, 43, 43, 0.2);
-  padding: 15px;
+  padding: 12px;
 }
 
 .stats-title {
@@ -155,4 +155,18 @@
 
 .stats-padding {
   padding: 10px;
+}
+
+#myChart {
+  max-width: 90%;
+  max-height: 360px;
+}
+
+.table {
+  max-width: 90%;
+}
+
+table.table td,th {
+  max-width: 70px !important;
+  padding: 10px 5px !important;
 }

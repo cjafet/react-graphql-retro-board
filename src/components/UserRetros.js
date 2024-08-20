@@ -11,7 +11,7 @@ import IterationStats from "./IterationStats";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const UserRetros = (props) => {
-  const { themeColor } = useContext(ThemeContext);
+  const { themeColor, timerColor } = useContext(ThemeContext);
   console.log("props", props);
 
   /** Sets the query to get all team retrospectives*/
@@ -86,9 +86,16 @@ const UserRetros = (props) => {
             >
               <div
                 className=""
-                style={{ minHeight: "auto", backgroundColor: themeColor }}
+                style={{
+                  minHeight: "auto",
+                  backgroundColor: themeColor,
+                  boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)",
+                }}
               >
-                <div className="stats-title">
+                <div
+                  className="stats-title"
+                  // style={{ backgroundColor: timerColor }}
+                >
                   <a
                     href={"/board/" + props.team + "/" + it.iteration}
                     style={{ color: "white" }}

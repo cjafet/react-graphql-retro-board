@@ -5,6 +5,7 @@ import "./App.css";
 
 // App Components
 import UserRetros from "./components/UserRetros";
+import DashBoard from "./components/DashBoard";
 import Board from "./components/Board";
 import NotFound from "./components/NotFound";
 import Header from "./components/Header";
@@ -40,10 +41,11 @@ function App() {
       <Provider>
         <Header team={team} />
         <Routes>
-          <Route path="/" element={<Navigate to="/retros" />} />
-          <Route path="/retros" element={<UserRetros team={team} />} />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+          {/* <Route path="/retros" element={<UserRetros team={team} />} /> */}
           <Route path="/settings" element={<Settings />} />
           <Route path="/board/:team/:iteration" element={<Board />} />
+          <Route path="/dashboard" element={<DashBoard team={team} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Provider>

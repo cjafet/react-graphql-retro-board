@@ -55,7 +55,9 @@ const Header = (props) => {
             </li>
             {/* <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li> */}
             <li>
-              <Link to="/retros">My Retros</Link>
+              <Link reloadDocument to="/dashboard">
+                Dashboard
+              </Link>
             </li>
             {data?.allRetrosByTeam.length > 0 && (
               <li>
