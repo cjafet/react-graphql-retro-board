@@ -70,7 +70,7 @@ const DashBoard = (props) => {
         </thead>
         <tbody>
           {!error &&
-            data?.allRetrosByTeam.map((it) => {
+            data?.allRetrosByTeam.slice(0).reverse().map((it) => {
               return (
                 <IterationStats iteration={it.iteration} team={props.team} />
               );

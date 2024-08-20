@@ -4,7 +4,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 
 // App Components
-import UserRetros from "./components/UserRetros";
 import DashBoard from "./components/DashBoard";
 import Board from "./components/Board";
 import NotFound from "./components/NotFound";
