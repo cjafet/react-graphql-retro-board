@@ -3,7 +3,6 @@ import { useQuery } from "@apollo/client";
 import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
 import { ThemeContext } from "./context/ThemeContext";
 import IterationStats from "./IterationStats";
-import Chart from "./Chart";
 
 /**
  * UserRetros component used to render(list) all user retrospectives.
