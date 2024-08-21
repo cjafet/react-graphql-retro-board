@@ -158,15 +158,13 @@ class RetrospectiveModal extends Component {
     console.log("props", this.props);
     return (
       <React.Fragment>
+        {/* <i class="custom-small material-icons">add</i> */}
         <a
           href="modal1"
-          className="waves-light modal-trigger"
+          className="retrospective-menu waves-light modal-trigger"
           data-target="modal1"
         >
-          <span style={{ fontSize: "28px", position: "absolute", left: "0" }}>
-            +
-          </span>{" "}
-          New Retrospective &nbsp;
+          New Retrospective
         </a>
 
         <div

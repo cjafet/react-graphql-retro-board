@@ -35,7 +35,7 @@ const IterationStats = (props) => {
   return (
     <tr key={props.iteration}>
       <th scope="row">
-        <a href={"/board/" + props.team[0] + "/" + props.iteration}>
+        <a href={"/board/" + props.team[0] + "/" + props.iteration} style={{color: props.color}}>
           {props.iteration}
         </a>
       </th>

@@ -46,10 +46,10 @@ const DashBoard = (props) => {
       </div>
 
       <table className="table responsive-table highlight">
-        <thead key="00">
+        <thead key="00" style={{ color: "white", backgroundColor: themeColor }}>
           <tr key="0">
             <th key="sprint-number" scope="col">
-              #
+              Sprint
             </th>
             <th key="sprint-kudos" scope="col">
               Kudos
@@ -70,11 +70,18 @@ const DashBoard = (props) => {
         </thead>
         <tbody>
           {!error &&
-            data?.allRetrosByTeam.slice(0).reverse().map((it) => {
-              return (
-                <IterationStats iteration={it.iteration} team={props.team} />
-              );
-            })}
+            data?.allRetrosByTeam
+              .slice(0)
+              .reverse()
+              .map((it) => {
+                return (
+                  <IterationStats
+                    color={themeColor}
+                    iteration={it.iteration}
+                    team={props.team}
+                  />
+                );
+              })}
         </tbody>
       </table>
       {error && (

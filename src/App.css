@@ -170,3 +170,42 @@ table.table td,th {
   max-width: 70px !important;
   padding: 10px 5px !important;
 }
+
+table.table tr:hover {
+  background-color: #6b1cb81a !important
+}
+
+i.large {
+  font-size: 6rem !important;
+}
+
+i.medium {
+  font-size: 4rem !important;
+}
+
+i.small {
+  font-size: 2.5rem !important;
+}
+
+i.custom-small {
+  display: inline-block !important;
+  font-size: 1.5rem !important;
+}
+
+nav {
+  min-height: 64px !important;
+}
+
+.menu {
+  padding-left: 20px !important;
+  display: inline-flex !important;
+}
+
+.retrospective-menu {
+  transition: background-color .3s;
+  font-size: 1rem;
+  color: #fff;
+  display: block;
+  padding: 0 15px;
+  cursor: pointer;
+}

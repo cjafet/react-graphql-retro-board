@@ -36,14 +36,15 @@ const Header = (props) => {
     <React.Fragment>
       <nav style={{ backgroundColor: themeColor }}>
         <div className="nav-wrapper">
-          <a href="/" className="logo font-header">
-            RetroBoard
-          </a>
-          <ul
-            id="nav-mobile"
-            className="right app-nav font-header hide-on-med-and-down"
-          >
-            <li style={{ position: "relative" }}>
+          <ul id="nav-mobile" className="font-header" style={{marginLeft: "9%"}}>
+            <li>
+              <Link reloadDocument to="/" className="logo font-header">
+                RetroBoard
+              </Link>
+            </li>
+          </ul>
+          <ul id="nav-mobile" className="menu font-header hide-on-med-and-down">
+            <li>
               <RetrospectiveModal
                 color={themeColor}
                 teams={props.team}
@@ -51,7 +52,7 @@ const Header = (props) => {
                   data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
                     .iteration
                 }
-              />{" "}
+              />
             </li>
             {/* <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li> */}
             <li>
@@ -84,6 +85,11 @@ const Header = (props) => {
               </li>
             )} */}
           </ul>
+          {/* <ul id="nav-mobile" className="font-header hide-on-med-and-down">
+            <li>
+              <i class="small material-icons">account_circle</i>
+            </li>
+          </ul> */}
           <ul className="right font-header hide-on-med-and-up show-on-medium-and-down">
             <li className="show-on-medium-and-down">
               <a
@@ -102,7 +108,7 @@ const Header = (props) => {
             {/* <li style={{position: "relative"}}><RetrospectiveModal teams={props.team} last_iteration={data?.allRetrosByTeam[data?.allRetrosByTeam.length-1].iteration} /> </li> */}
             {/* <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li> */}
             <li>
-              <a href="/retros">My Retros</a>
+              <a href="/dashboard">Dashboard</a>
             </li>
             {data?.allRetrosByTeam.length > 0 && (
               <li>
@@ -119,6 +125,9 @@ const Header = (props) => {
                 </a>
               </li>
             )}
+            <li>
+              <Link to="/settings">Settings</Link>
+            </li>
             {props.team.toString() !== "" && (
               <li
                 style={{
@@ -130,7 +139,9 @@ const Header = (props) => {
                 <strong>{props.team.toString().toUpperCase()} TEAM</strong>
               </li>
             )}
-            {/* <li><Link to="#">My Teams &nbsp;</Link></li> */}
+            {/* <li>
+              <i class="small material-icons">account_circle</i>
+            </li> */}
           </ul>
         </div>
       </nav>

@@ -63,11 +63,11 @@ nav .nav-wrapper {
 }
 
 nav .logo {
-  position: absolute;
+  /* position: absolute; */
   color: #fff;
   display: inline-block;
   font-size: 2.1rem;
-  margin-left: 8%;
+  /* margin-left: 8%; */
 }
 
 .font-header {
