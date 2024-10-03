@@ -52,6 +52,7 @@ export const GET_LAST_ACTION_ITEMS_BY_ITERATION = gql`
 query allByIterationAndTeam($productTeam: String!, $iteration: Int!) {
     retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) {
       actionItems {
+        itemId
         description
         likes
         type

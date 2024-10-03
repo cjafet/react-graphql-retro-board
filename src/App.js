@@ -40,7 +40,7 @@ function App() {
       <Provider>
         <Header team={team} />
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" />} />
+          <Route path="/" element={<Navigate replace="true" to="/dashboard" />} />
           {/* <Route path="/retros" element={<UserRetros team={team} />} /> */}
           <Route path="/settings" element={<Settings />} />
           <Route path="/board/:team/:iteration" element={<Board />} />

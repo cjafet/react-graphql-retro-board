@@ -11,7 +11,7 @@ import IterationStats from "./IterationStats";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const UserRetros = (props) => {
-  const { themeColor, timerColor } = useContext(ThemeContext);
+  const { themeColor } = useContext(ThemeContext);
   console.log("props", props);
 
   /** Sets the query to get all team retrospectives*/
