@@ -20,7 +20,7 @@ class RetrospectiveModal extends Component {
     this.state = {
       teamValue: "",
       message: "",
-      labels: []
+      labels: [],
     };
   }
 
@@ -63,9 +63,14 @@ class RetrospectiveModal extends Component {
 
   handleLabelSelection = (event) => {
     console.log("lables selection: ", event.target.value);
-    let values =  event.target.value;
-    let labels =  values.split(",");
+    let values = event.target.value;
+    let labels = values.split(",");
     this.setState({ labels: [...labels] });
+  };
+
+  handleActionItems = (actionItems) => {
+    actionItems.map(item => item["type"]="lastActionItems")
+    return actionItems;
   };
 
   /**
@@ -86,7 +91,7 @@ class RetrospectiveModal extends Component {
               kudos: [],
               improvements: [],
               actionItems: [],
-              lastActionItems: res ? res.actionItems : [],
+              lastActionItems: res ? this.handleActionItems(res.actionItems) : [],
               ownedBy: { productTeam: team },
               iteration: parseInt(sprint),
             },

@@ -36,7 +36,11 @@ const Header = (props) => {
     <React.Fragment>
       <nav style={{ backgroundColor: themeColor }}>
         <div className="nav-wrapper">
-          <ul id="nav-mobile" className="font-header" style={{marginLeft: "9%"}}>
+          <ul
+            id="nav-mobile"
+            className="font-header"
+            style={{ marginLeft: "9%" }}
+          >
             <li>
               <Link reloadDocument to="/" className="logo font-header">
                 RetroBoard
@@ -65,7 +69,7 @@ const Header = (props) => {
                 <Link
                   to={
                     "/board/" +
-                    props.team +
+                    props.team[0] +
                     "/" +
                     data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
                       .iteration
