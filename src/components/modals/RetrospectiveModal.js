@@ -92,7 +92,7 @@ class RetrospectiveModal extends Component {
             },
           });
           document.getElementById("retro-modal").click();
-          window.location.replace("/retros");
+          window.location.replace("/dashboard");
         });
       } else {
         this.setState({ message: "Sprint already exists" });
@@ -218,7 +218,7 @@ class RetrospectiveModal extends Component {
                       },
                     });
                     document.getElementById("retro-modal").click();
-                    window.location.replace("/retros");
+                    window.location.replace("/dashboard");
                   }
                 } else {
                   let msg =
