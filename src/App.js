@@ -9,6 +9,7 @@ import Okr from "./components/Okr";
 import Board from "./components/Board";
 import NotFound from "./components/NotFound";
 import Header from "./components/Header";
+import Home from "./components/Home";
 import Settings from "./components/Settings";
 import { Provider } from "./components/context/ThemeContext";
 import { GET_ALL_TEAMS } from "./constants/Queries";
@@ -50,6 +51,7 @@ function App() {
             element={<Navigate replace="true" to="dashboard" />}
           />
           {/* <Route path="/retros" element={<UserRetros team={team} />} /> */}
+          <Route path="/" element={<Home />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/board/:team/:iteration" element={<Board />} />
           <Route path="/:team/dashboard" element={<DashBoard />} />
