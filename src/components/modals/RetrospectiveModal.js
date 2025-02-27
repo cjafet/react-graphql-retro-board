@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import M from "materialize-css";
 import "materialize-css/dist/css/materialize.min.css";
 import { request } from "graphql-request";
@@ -20,6 +21,7 @@ class RetrospectiveModal extends Component {
     this.state = {
       teamValue: "",
       message: "",
+      nextIteration: 0,
       labels: [],
     };
   }
@@ -29,7 +31,8 @@ class RetrospectiveModal extends Component {
       onOpenStart: () => {
         console.log("Open Start");
         console.log(this.props.teams);
-        console.log(this.props.last_iteration);
+        console.log("LastIteration from Modal", this.props.last_iteration);
+        this.setState({ nextIteration: this.props.last_iteration+1 });
       },
       onOpenEnd: () => {
         console.log("Open End");
@@ -161,6 +164,9 @@ class RetrospectiveModal extends Component {
 
   render() {
     console.log("props", this.props);
+    // const { teams } = this.props.match.params;
+    const { match } = this.props;
+    console.log("Match: ", match);
     return (
       <React.Fragment>
         {/* <i class="custom-small material-icons">add</i> */}
@@ -239,7 +245,8 @@ class RetrospectiveModal extends Component {
                 type="number"
                 id="sprint"
                 placeholder="Add your sprint number"
-                defaultValue={""}
+                defaultValue={0}
+                value={this.state.nextIteration}
               />
               {this.props.teams.length > 0 && (
                 <select
@@ -251,6 +258,11 @@ class RetrospectiveModal extends Component {
                   <option key={0} value="">
                     Select a team
                   </option>
+                  {/* {this.props.teams.map((t, i) => (
+                    <option key={i} value={t}>
+                      {t}
+                    </option>
+                  ))} */}
                   {this.props.teams.map((t, i) => (
                     <option key={i} value={t}>
                       {t}

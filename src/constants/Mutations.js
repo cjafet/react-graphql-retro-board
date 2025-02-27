@@ -55,3 +55,17 @@ mutation postItemLike($id: ID!, $itemId: ID!, $desc: String!, $type: String!) {
   addItemLike(_id: $id, itemId: $itemId, desc: $desc, type: $type)
 }
 `;
+
+
+export const ADD_OBJECTIVE = `
+mutation newObjective($input: Objective!) { 
+  postObjective(input: $input) {
+    year
+    quarter
+    title
+    owner
+    dueDate
+    status
+  }
+}
+`;

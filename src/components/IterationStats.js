@@ -9,7 +9,7 @@ const IterationStats = (props) => {
     let data = {
       query:
         "query allByIterationAndTeam($productTeam: String!, $iteration: Int!) { retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) { kudos { description likes } improvements { description likes } actionItems { description likes } lastActionItems { description likes } } }",
-      variables: { productTeam: props.team[0], iteration: props.iteration },
+      variables: { productTeam: props.team, iteration: props.iteration },
     };
 
     const fetchOptions = {
@@ -35,7 +35,7 @@ const IterationStats = (props) => {
   return (
     <tr key={props.iteration}>
       <th scope="row">
-        <a href={"/board/" + props.team[0] + "/" + props.iteration} style={{color: props.color}}>
+        <a href={"/board/" + props.team + "/" + props.iteration} style={{color: props.color}}>
           {props.iteration}
         </a>
       </th>

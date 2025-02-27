@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
 import { ThemeContext } from "./context/ThemeContext";
@@ -14,9 +15,13 @@ const DashBoard = (props) => {
   const { themeColor } = useContext(ThemeContext);
   console.log("props", props);
 
+  /** Gets team param from the URL to use in the graphQL query*/
+  let { team } = useParams();
+  console.log("Dashboard for team: ", team);
+
   /** Sets the query to get all team retrospectives*/
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
-    variables: { productTeam: props.team[0] },
+    variables: { productTeam: team },
     refetchQueries: [
       GET_ITEMS_BY_TEAM, // DocumentNode object parsed with gql
       "allByTeam", // Query name
@@ -69,7 +74,7 @@ const DashBoard = (props) => {
           </tr>
         </thead>
         <tbody>
-          {!error &&
+          {(!error && team !== "") &&
             data?.allRetrosByTeam
               .slice(0)
               .reverse()
@@ -78,7 +83,7 @@ const DashBoard = (props) => {
                   <IterationStats
                     color={themeColor}
                     iteration={it.iteration}
-                    team={props.team}
+                    team={team}
                   />
                 );
               })}

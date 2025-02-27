@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import RetrospectiveModal from "./modals/RetrospectiveModal";
@@ -16,9 +17,13 @@ const Header = (props) => {
   const { themeColor } = useContext(ThemeContext);
   console.log(props);
 
+  /** Gets team param from the URL to use in the graphQL query*/
+  let { team, it } = useParams();
+  console.log("Header for team: ", team, it);
+
   /** Sets the query to get all team retrospectives*/
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
-    variables: { productTeam: props.team[0] },
+    variables: { productTeam: props.team[2] },
   });
 
   if (error) console.log("Error querying for items");
@@ -60,7 +65,7 @@ const Header = (props) => {
             </li>
             {/* <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li> */}
             <li>
-              <Link reloadDocument to="/dashboard">
+              <Link reloadDocument to={props.team[2] + '/dashboard'}>
                 Dashboard
               </Link>
             </li>
@@ -69,7 +74,7 @@ const Header = (props) => {
                 <Link
                   to={
                     "/board/" +
-                    props.team[0] +
+                    props.team[2] +
                     "/" +
                     data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
                       .iteration

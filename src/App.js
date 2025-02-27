@@ -5,6 +5,7 @@ import "./App.css";
 
 // App Components
 import DashBoard from "./components/DashBoard";
+import Okr from "./components/Okr";
 import Board from "./components/Board";
 import NotFound from "./components/NotFound";
 import Header from "./components/Header";
@@ -31,7 +32,7 @@ function App() {
   if (loading_teams) return <p>Loading teams...</p>;
 
   if (!loading_teams && data_teams) {
-    console.log(data_teams.allTeams);
+    console.log("All Teams", data_teams.allTeams);
     team = data_teams.allTeams;
   }
 
@@ -40,11 +41,19 @@ function App() {
       <Provider>
         <Header team={team} />
         <Routes>
-          <Route path="/" element={<Navigate replace="true" to="/dashboard" />} />
+          {/* <Route
+            path="/:teams"
+            element={<Navigate replace="true" to={mainRoute} />}
+          /> */}
+          <Route
+            path=":team"
+            element={<Navigate replace="true" to="dashboard" />}
+          />
           {/* <Route path="/retros" element={<UserRetros team={team} />} /> */}
           <Route path="/settings" element={<Settings />} />
           <Route path="/board/:team/:iteration" element={<Board />} />
-          <Route path="/dashboard" element={<DashBoard team={team} />} />
+          <Route path="/:team/dashboard" element={<DashBoard />} />
+          <Route path="/okrs" element={<Okr team={team} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Provider>
