@@ -32,6 +32,23 @@ const IterationStats = (props) => {
       });
   }, [GRAPHQL_SERVER, props.iteration, props.team]);
 
+  /** Function used to calculate the number of likes per iteration*/
+  const handleLikesCount = () => {
+    let count = 0;
+    
+    Object.keys(JSON.parse(stats)).forEach(function(key,index) {
+      JSON.parse(stats)[key]?.forEach(function(item, index) {
+        count += item["likes"];
+        console.log("Item likes: ", item["likes"]);
+      });
+    });
+
+    console.log("Stats count: ", count);
+
+    return count;
+    
+  };
+
   return (
     <tr key={props.iteration}>
       <th scope="row">
@@ -43,7 +60,7 @@ const IterationStats = (props) => {
       <td>{JSON.parse(stats).improvements?.length}</td>
       <td>{JSON.parse(stats).actionItems?.length}</td>
       <td>{JSON.parse(stats).lastActionItems?.length}</td>
-      <td>0</td>
+      <td>{handleLikesCount()}</td>
     </tr>
   );
 };
