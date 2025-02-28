@@ -100,7 +100,8 @@ class RetrospectiveModal extends Component {
             },
           });
           document.getElementById("retro-modal").click();
-          window.location.replace("/dashboard");
+          let board = "/" + team + "/dashboard"
+          window.location.replace(board);
         });
       } else {
         this.setState({ message: "Sprint already exists" });
@@ -229,7 +230,8 @@ class RetrospectiveModal extends Component {
                       },
                     });
                     document.getElementById("retro-modal").click();
-                    window.location.replace("/dashboard");
+                    let board = "/" + team + "/dashboard"
+                    window.location.replace(board);
                   }
                 } else {
                   let msg =
