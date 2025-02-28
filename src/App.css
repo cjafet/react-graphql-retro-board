@@ -209,3 +209,9 @@ nav {
   padding: 0 15px;
   cursor: pointer;
 }
+
+.dropdown-content {
+  top: 65px !important;
+  width: 170px !important;
+  left: 79% !important;
+}

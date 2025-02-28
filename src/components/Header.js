@@ -37,8 +37,20 @@ const Header = (props) => {
     console.log("Header data: ", data);
   }
 
+    /** Function used to calculate the number of likes per iteration*/
+  const truncate = (username) => {
+    if(username.length > 10 ) {
+      return username.substring(0,10) + "...";
+    }
+    return username;
+  };
+
   return (
     <React.Fragment>
+      <ul id="dropdown2" class="dropdown-content">
+          <li><a href="/settings">Settings</a></li>
+          <li><a href="#!">Log Out</a></li>
+      </ul>
       <nav style={{ backgroundColor: themeColor }}>
         <div className="nav-wrapper">
           <ul
@@ -86,6 +98,18 @@ const Header = (props) => {
             )}
             <li>
               <Link to="/settings">Settings</Link>
+            </li>
+            <li>
+              <a class="dropdown-trigger" href="#!" data-target="dropdown2">
+                  <div style={{position: "absolute", top: "5px", right: "220px",marginRight: "100px",}}>
+                    <i class="tiny material-icons">person_outline</i>
+                    {props.team[2]?.toString() !== undefined && (
+                        <span style={{position: "absolute", top: "1px",left: "30px", textTransform: "capitalize", width: "max-content"}}>
+                          {truncate(props.team[2] + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i class="material-icons right">arrow_drop_down</i></span>
+                        </span>
+                    )}
+                  </div>
+                </a>
             </li>
             {/* <li><Link to="#">My Teams &nbsp;</Link></li> */}
             {/* {props.team.toString() !== "" && (
@@ -153,6 +177,7 @@ const Header = (props) => {
             </li> */}
           </ul>
         </div>
+        
       </nav>
     </React.Fragment>
   );
