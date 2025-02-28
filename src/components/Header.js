@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import RetrospectiveModal from "./modals/RetrospectiveModal";
@@ -18,8 +18,11 @@ const Header = (props) => {
   console.log(props);
 
   /** Gets team param from the URL to use in the graphQL query*/
-  let { team, it } = useParams();
-  console.log("Header for team: ", team, it);
+  let params = useParams();
+  console.log("Header for team: ", params.team);
+
+  const location = useLocation();
+  console.log(location.pathname);
 
   /** Sets the query to get all team retrospectives*/
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
@@ -102,8 +105,10 @@ const Header = (props) => {
             <li>
               <a class="dropdown-trigger" href="#!" data-target="dropdown2">
                   <div style={{position: "absolute", top: "5px", right: "220px",marginRight: "100px",}}>
-                    <i class="tiny material-icons">person_outline</i>
-                    {props.team[2]?.toString() !== undefined && (
+                    { !location.pathname.includes("/board/") && (
+                      <i class="tiny material-icons">person_outline</i>
+                    )}
+                    {props.team[2]?.toString() !== undefined && !location.pathname.includes("/board/") && (
                         <span style={{position: "absolute", top: "1px",left: "30px", textTransform: "capitalize", width: "max-content"}}>
                           {truncate(props.team[2] + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i class="material-icons right">arrow_drop_down</i></span>
                         </span>
