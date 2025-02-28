@@ -105,10 +105,12 @@ const Header = (props) => {
             <li>
               <a class="dropdown-trigger" href="#!" data-target="dropdown2">
                   <div style={{position: "absolute", top: "5px", right: "220px",marginRight: "100px",}}>
-                    { !location.pathname.includes("/board/") && (
+                    { !location.pathname.includes("/board/") && 
+                      !location.pathname.includes("settings") && (
                       <i class="tiny material-icons">person_outline</i>
                     )}
-                    {props.team[2]?.toString() !== undefined && !location.pathname.includes("/board/") && (
+                    {props.team[2]?.toString() !== undefined && !location.pathname.includes("/board/") && 
+                      !location.pathname.includes("settings") && (
                         <span style={{position: "absolute", top: "1px",left: "30px", textTransform: "capitalize", width: "max-content"}}>
                           {truncate(props.team[2] + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i class="material-icons right">arrow_drop_down</i></span>
                         </span>
