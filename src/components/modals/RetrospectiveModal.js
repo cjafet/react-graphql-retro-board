@@ -21,6 +21,7 @@ class RetrospectiveModal extends Component {
     this.state = {
       teamValue: "",
       message: "",
+      text: 0,
       nextIteration: 0,
       labels: [],
     };
@@ -33,6 +34,7 @@ class RetrospectiveModal extends Component {
         console.log(this.props.teams);
         console.log("LastIteration from Modal", this.props.last_iteration);
         this.setState({ nextIteration: this.props.last_iteration+1 });
+        this.setState({ text: this.props.last_iteration+1 });
       },
       onOpenEnd: () => {
         console.log("Open End");
@@ -247,8 +249,9 @@ class RetrospectiveModal extends Component {
                 type="number"
                 id="sprint"
                 placeholder="Add your sprint number"
-                defaultValue={0}
-                value={this.state.nextIteration}
+                defaultValue={this.state.text}
+                value={this.state.text}
+                onChange={e => this.setState({ text: e.target.value })}
               />
               {this.props.teams.length > 0 && (
                 <select
