@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta name="description"content="React Retrospective Board" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <script type="text/javascript">
       ; window.NREUM || (NREUM = {}); NREUM.init = { distributed_tracing: { enabled: true }, privacy: { cookies_enabled: true }, ajax: { deny_list: ["bam.nr-data.net"] } };
 
@@ -45,7 +43,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>React App</title>
   </head>
   <body>
@@ -67,39 +64,6 @@
         $(".dropdown-trigger").dropdown({ hover: false });
         $(document).ready(function () {
           $('.collapsible').collapsible();
-        });
-        const ctx = document.getElementById('myChart');
-        new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: ['Kudos', 'Improvs', 'Action Items', 'Last Action Items', 'Likes'],
-            datasets: [{
-              label: '#',
-              data: [12, 19, 3, 5, 2],
-              backgroundColor: [
-                'rgba(53, 5, 240, 0.5)',
-                'rgba(207, 5, 240, 0.5)',
-                'rgba(130, 5, 240, 0.5)',
-                'rgba(5, 32, 240, 0.5)',
-                'rgba(240, 5, 159, 0.5)'
-              ],
-              borderColor: [
-                'rgb(53, 5, 240)',
-                'rgb(207, 5, 240)',
-                'rgb(130, 5, 240)',
-                'rgb(5, 32, 240)',
-                'rgb(240, 5, 159)'
-              ],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
         });
       });
     </script>

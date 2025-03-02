@@ -50,7 +50,7 @@ const Header = (props) => {
 
   return (
     <React.Fragment>
-      <ul id="dropdown2" class="dropdown-content">
+      <ul id="dropdown2" className="dropdown-content">
           <li><a href="/settings">Settings</a></li>
           <li><a href="#!">Log Out</a></li>
       </ul>
@@ -103,16 +103,16 @@ const Header = (props) => {
               <Link to="/settings">Settings</Link>
             </li>
             <li>
-              <a class="dropdown-trigger" href="#!" data-target="dropdown2">
-                  <div style={{position: "absolute", top: "5px", right: "220px",marginRight: "100px",}}>
+              <a className="dropdown-trigger" href="#!" data-target="dropdown2">
+                  <div style={{position: "absolute", top: "0", right: "220px",marginRight: "100px",}}>
                     { !location.pathname.includes("/board/") && 
                       !location.pathname.includes("settings") && (
-                      <i class="tiny material-icons">person_outline</i>
+                      <i className="tiny material-icons">person_outline</i>
                     )}
                     {props.team[2]?.toString() !== undefined && !location.pathname.includes("/board/") && 
                       !location.pathname.includes("settings") && (
                         <span style={{position: "absolute", top: "1px",left: "30px", textTransform: "capitalize", width: "max-content"}}>
-                          {truncate(props.team[2] + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i class="material-icons right">arrow_drop_down</i></span>
+                          {truncate(props.team[2] + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i className="material-icons right">arrow_drop_down</i></span>
                         </span>
                     )}
                   </div>
@@ -127,7 +127,7 @@ const Header = (props) => {
           </ul>
           {/* <ul id="nav-mobile" className="font-header hide-on-med-and-down">
             <li>
-              <i class="small material-icons">account_circle</i>
+              <i className="small material-icons">account_circle</i>
             </li>
           </ul> */}
           <ul className="right font-header hide-on-med-and-up show-on-medium-and-down">
@@ -180,7 +180,7 @@ const Header = (props) => {
               </li>
             )}
             {/* <li>
-              <i class="small material-icons">account_circle</i>
+              <i className="small material-icons">account_circle</i>
             </li> */}
           </ul>
         </div>

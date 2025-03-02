@@ -29,8 +29,11 @@ const IterationStats = (props) => {
         console.log("Response", response);
         setStats(JSON.stringify(response?.data.retroByIterationAndTeam));
         console.log("Stats detail", response?.data.retroByIterationAndTeam);
+        if (props.lastIteration) {
+          props.handleLastSprintSentiment(response?.data.retroByIterationAndTeam);
+        }
       });
-  }, [GRAPHQL_SERVER, props.iteration, props.team]);
+  }, [GRAPHQL_SERVER, props]);
 
   /** Function used to calculate the number of likes per iteration*/
   const handleLikesCount = () => {
@@ -49,6 +52,19 @@ const IterationStats = (props) => {
     
   };
 
+  /** Function used to calculate iteration sentiment*/
+  const handleSentimentAnalysis = () => {
+    let sentiment = 
+    (
+      (JSON.parse(stats).kudos?.length-JSON.parse(stats).improvements?.length)
+      /(JSON.parse(stats).kudos?.length+JSON.parse(stats).improvements?.length)
+    );
+
+    if(sentiment>0) props.handleLowestSprintSentiment(sentiment);    
+
+    return sentiment.toFixed(2);
+  };
+
   return (
     <tr key={props.iteration}>
       <th scope="row">
@@ -61,6 +77,7 @@ const IterationStats = (props) => {
       <td>{JSON.parse(stats).actionItems?.length}</td>
       <td>{JSON.parse(stats).lastActionItems?.length}</td>
       <td>{handleLikesCount()}</td>
+      <td>{handleSentimentAnalysis()}</td>
     </tr>
   );
 };

@@ -172,7 +172,7 @@ class RetrospectiveModal extends Component {
     console.log("Match: ", match);
     return (
       <React.Fragment>
-        {/* <i class="custom-small material-icons">add</i> */}
+        {/* <i className="custom-small material-icons">add</i> */}
         <a
           href="modal1"
           className="retrospective-menu waves-light modal-trigger"
@@ -249,7 +249,7 @@ class RetrospectiveModal extends Component {
                 type="number"
                 id="sprint"
                 placeholder="Add your sprint number"
-                defaultValue={this.state.text}
+                // defaultValue={this.state.text}
                 value={this.state.text}
                 onChange={e => this.setState({ text: e.target.value })}
               />

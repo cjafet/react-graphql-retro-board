@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import { ThemeContext } from "./context/ThemeContext";
 
 /**
- * NotFound component used when a route is not found.
+ * Home component.
  * 
  * @version 0.0.1
  * @author [Carlos Jafet Neto](https://github.com/cjafet)

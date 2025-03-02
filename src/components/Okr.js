@@ -86,12 +86,12 @@ const Okr = (props) => {
           </select>
         </li>
       </ul>
-      <ul class="collapsible">
+      <ul className="collapsible">
         <li>
-          <div class="collapsible-header">
-            <i class="material-icons">menu</i>Q1
+          <div className="collapsible-header">
+            <i className="material-icons">menu</i>Q1
           </div>
-          <div class="collapsible-body">
+          <div className="collapsible-body">
             <table className="striped">
               <thead>
                 <tr>
@@ -219,10 +219,10 @@ const Okr = (props) => {
           </div>
         </li>
         <li>
-          <div class="collapsible-header">
-            <i class="material-icons">menu</i>Q2
+          <div className="collapsible-header">
+            <i className="material-icons">menu</i>Q2
           </div>
-          <div class="collapsible-body">
+          <div className="collapsible-body">
             <table>
               <thead>
                 <tr>
@@ -248,10 +248,10 @@ const Okr = (props) => {
           </div>
         </li>
         <li>
-          <div class="collapsible-header">
-            <i class="material-icons">menu</i>Q3
+          <div className="collapsible-header">
+            <i className="material-icons">menu</i>Q3
           </div>
-          <div class="collapsible-body">
+          <div className="collapsible-body">
             <table>
               <thead>
                 <tr>
@@ -277,10 +277,10 @@ const Okr = (props) => {
           </div>
         </li>
         <li>
-          <div class="collapsible-header">
-            <i class="material-icons">menu</i>Q4
+          <div className="collapsible-header">
+            <i className="material-icons">menu</i>Q4
           </div>
-          <div class="collapsible-body">
+          <div className="collapsible-body">
             <table>
               <thead>
                 <tr>

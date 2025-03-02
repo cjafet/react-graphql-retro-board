@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
+import { GET_ALL_ITEMS_BY_TEAM } from "../constants/Queries";
 import { ThemeContext } from "./context/ThemeContext";
 import IterationStats from "./IterationStats";
+import ChartBar from "./ChartBar";
+import Analysis from "./Analysis";
 
 /**
  * UserRetros component used to render(list) all user retrospectives.
@@ -12,6 +14,8 @@ import IterationStats from "./IterationStats";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const DashBoard = (props) => {
+  const [lastTeamSentiment, setLastTeamSentiment] = useState(0);
+  const [lowestTeamSentiment, setLowestTeamSentiment] = useState(1);
   const { themeColor } = useContext(ThemeContext);
   console.log("props", props);
 
@@ -19,20 +23,53 @@ const DashBoard = (props) => {
   let { team } = useParams();
   console.log("Dashboard for team: ", team);
 
+  let kudosCounter = 0, improvementsCounter = 0, actionItemsCounter = 0, 
+  lastActionItemsCounter = 0, totalLikesCounter = 0, totalItemsCounter = 0;
+
   /** Sets the query to get all team retrospectives*/
-  const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
+  const { loading, error, data } = useQuery(GET_ALL_ITEMS_BY_TEAM, {
     variables: { productTeam: team },
     refetchQueries: [
-      GET_ITEMS_BY_TEAM, // DocumentNode object parsed with gql
+      GET_ALL_ITEMS_BY_TEAM, // DocumentNode object parsed with gql
       "allByTeam", // Query name
     ],
   });
+
+  /** Sets last sprint team sentiment*/
+  const handleLastSprintSentiment = (stats) => {
+    let lastSentiment = ((stats.kudos?.length-stats.improvements?.length)/(stats.kudos?.length+stats.improvements?.length));
+    console.log("lastSentiment", lastSentiment);
+    setLastTeamSentiment(lastSentiment);
+  };
+
+  /** Sets lowest team sentiment*/
+  const handleLowestSprintSentiment = (lowest) => {
+    console.log("Lowest", lowest);
+    if (lowest < lowestTeamSentiment) {
+      setLowestTeamSentiment(() => lowest);
+    }
+  };
 
   if (error) console.log("Error querying items by team");
 
   if (!loading && data) {
     console.log(data.allRetrosByTeam);
     console.log("UserRetros data: ", data);
+    data.allRetrosByTeam.forEach(el => {
+      console.log("elemento", el);
+      ["kudos", "improvements", "actionItems", "lastActionItems"]?.forEach(function(key,index) {
+        el[key].forEach(function(item, index) {
+          totalLikesCounter += item.likes;
+          console.log("Item likes: ", item.likes);
+        });
+      });
+      console.log("total likes:", totalLikesCounter);
+      kudosCounter += el.kudos.length;
+      improvementsCounter += el.improvements.length;
+      actionItemsCounter += el.actionItems.length;
+      lastActionItemsCounter += el.lastActionItems.length;
+      totalItemsCounter = kudosCounter + improvementsCounter + actionItemsCounter + lastActionItemsCounter;
+    });
   }
 
   return (
@@ -40,19 +77,43 @@ const DashBoard = (props) => {
       style={{
         // display: "inline-flex",
         alignItems: "center",
-        height: "400px",
+        height: "600px",
         adding: "0 13%",
         marginLeft: "110px",
         marginTop: "35px",
       }}
     >
-      <div style={{ marginBottom: "30px" }}>
-        <canvas id="myChart"></canvas>
+
+      {/* <div style={{backgroundColor: "#faebd7", maxWidth: "300px"}}> */}
+        <div className="row" style={{alignItems: "center"}}>
+          <div className="col" style={{backgroundColor: "#b326ef", width: "335px", margin: "10px", height: "100px"}}>
+            <Analysis title={"General Sentiment Analysis"} data={(kudosCounter-improvementsCounter)/(kudosCounter+improvementsCounter)} />
+          </div>
+          <div className="col" style={{backgroundColor: "#b326ef", width: "335px", margin: "10px", height: "100px"}}>
+            <Analysis title="Last Sentiment Analysis" data={lastTeamSentiment} />
+          </div>
+          <div className="col" style={{backgroundColor: "#b326ef", width: "335px", margin: "10px", height: "100px"}}>
+            <Analysis title={"Lowest Sentiment Analysis"} data={lowestTeamSentiment} />
+          </div>
+          <div className="col" style={{backgroundColor: "#268def", width: "335px", margin: "10px", height: "100px"}}>
+            <Analysis title={"Team Engagement"} data={totalLikesCounter/totalItemsCounter} />
+          </div>
+        </div>
+      {/* </div> */}
+
+      <div style={{width: "90%"}}>
+        <ChartBar 
+            kudos={kudosCounter} 
+            improvements={improvementsCounter} 
+            actionItems={actionItemsCounter}  
+            lastActionItems={lastActionItemsCounter}
+            totalLikeCount={totalLikesCounter}
+        />
       </div>
 
-      <table className="table responsive-table highlight">
-        <thead key="00" style={{ color: "white", backgroundColor: themeColor }}>
-          <tr key="0">
+      <table key="sprint-table" className="table responsive-table highlight">
+        <thead key="t-head" style={{ color: "white", backgroundColor: themeColor }}>
+          <tr key="t-row">
             <th key="sprint-number" scope="col">
               Sprint
             </th>
@@ -71,6 +132,9 @@ const DashBoard = (props) => {
             <th key="sprint-likes" scope="col">
               Likes
             </th>
+            <th key="sprint-sentiment" scope="col">
+              Sentiment
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -83,7 +147,10 @@ const DashBoard = (props) => {
                   <IterationStats
                     color={themeColor}
                     iteration={it.iteration}
+                    lastIteration={(it.iteration == data?.allRetrosByTeam.length) ? true : false}
                     team={team}
+                    handleLastSprintSentiment={handleLastSprintSentiment}
+                    handleLowestSprintSentiment={handleLowestSprintSentiment}
                   />
                 );
               })}

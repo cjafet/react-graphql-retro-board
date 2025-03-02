@@ -15,6 +15,30 @@ query allByTeam($productTeam: String!) {
 }
 `;
 
+export const GET_ALL_ITEMS_BY_TEAM = gql`
+query allByTeam($productTeam: String!) {
+  allRetrosByTeam(productTeam: $productTeam) {
+    kudos {
+      description
+      likes
+    }
+    improvements {
+      description
+      likes
+    }
+    actionItems {
+      description
+      likes
+    }
+    lastActionItems {
+      description
+      likes
+    }
+    iteration
+  }
+}
+`;
+
 export const GET_ITEMS_BY_ITERATION = gql`
 query allByIterationAndTeam($productTeam: String!, $iteration: Int!) {
     retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) {
