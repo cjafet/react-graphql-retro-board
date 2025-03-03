@@ -43,9 +43,9 @@ const RetroItem = (props) => {
     console.log("Item: ", item);
   };
 
-  const handleMoveItem = (item) => {
+  const handleMoveItem = (item, moveTo) => {
     // moveItem({ variables: { id: props.id, itemId: props.item.itemId} });
-    moveItem({
+    moveItemTo({
       variables: {
         input: {
           _id: props.id,
@@ -55,6 +55,7 @@ const RetroItem = (props) => {
           type: props.item.type,
           action: "move",
         },
+        moveTo
       },
     });
     M.toast({ html: "<span>Item moved!</span>" });
@@ -82,7 +83,7 @@ const RetroItem = (props) => {
   );
 
   /** Sets the mutation to move an Item in the board*/
-  const [moveItem, { dataItem, loadingItem, errorItem }] = useMutation(
+  const [moveItemTo, { dataItem, loadingItem, errorItem }] = useMutation(
     MOVE_ITEM,
     {
       refetchQueries: [
@@ -132,7 +133,28 @@ const RetroItem = (props) => {
           >
             <button
               title="Move to Action Items"
-              onClick={() => handleMoveItem(props)}
+              onClick={() => handleMoveItem(props, "actionItems")}
+              className="btn-secondary like-review"
+              style={{ color: "white" }}
+            >
+              <i className="material-icons right" style={{ fontSize: "22px" }}>
+                swap_horiz
+              </i>
+            </button>
+          </div>
+        )}
+        {props.item.type == "actionItems" && (
+          <div
+            style={{
+              position: "absolute",
+              marginLeft: "14%",
+              top: "2px",
+              right: "8%",
+            }}
+          >
+            <button
+              title="Move to Action Items"
+              onClick={() => handleMoveItem(props, "improvements")}
               className="btn-secondary like-review"
               style={{ color: "white" }}
             >
