@@ -130,6 +130,8 @@
 
 .settings {
   display: inline-flex;
+  width: 100%;
+  margin-left: 22%;
 }
 
 .stats {
