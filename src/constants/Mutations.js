@@ -33,8 +33,8 @@ export const ADD_ITEM = gql`
 `;
 
 export const MOVE_ITEM = gql`
-  mutation postMoveItem($input: Item!) {
-    moveItemTo(input: $input, $moveTo: String!) {
+  mutation postMoveItem($input: Item!, $moveTo: String!) {
+    moveItemTo(input: $input, moveTo: $moveTo) {
         description
         likes
         type
