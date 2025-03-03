@@ -153,7 +153,7 @@ const RetroItem = (props) => {
             }}
           >
             <button
-              title="Move to Action Items"
+              title="Move back to Improvements"
               onClick={() => handleMoveItem(props, "improvements")}
               className="btn-secondary like-review"
               style={{ color: "white" }}
