@@ -165,7 +165,7 @@ const RetroItem = (props) => {
             </button>
           </div>
         )}
-        <div style={{ marginLeft: "78%" }}>
+        <div style={{ marginLeft: "79%" }}>
           <button
             onClick={() => handleDelete(props)}
             style={{ background: "none", border: "0" }}
