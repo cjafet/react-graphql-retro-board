@@ -13,6 +13,7 @@ import { ThemeContext } from "./context/ThemeContext";
  */
 const RetroItem = (props) => {
   const { themeColor } = useContext(ThemeContext);
+  const { timerColor } = useContext(ThemeContext);
   console.log(props);
 
   /** Function used to handle deleting Items from the board*/
@@ -111,7 +112,7 @@ const RetroItem = (props) => {
       </div>
       <div
         className="like-content"
-        style={{ position: "relative", backgroundColor: themeColor }}
+        style={{ position: "relative", backgroundColor: timerColor }}
       >
         <div style={{ marginLeft: "5%" }}>
           <button
