@@ -59,7 +59,7 @@ const Header = (props) => {
           <ul
             id="nav-mobile"
             className="font-header"
-            style={{ marginLeft: "9%" }}
+            style={{ marginLeft: "6%" }}
           >
             <li>
               <Link reloadDocument to="/" className="logo font-header">
