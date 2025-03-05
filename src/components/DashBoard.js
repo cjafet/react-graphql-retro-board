@@ -37,7 +37,7 @@ const DashBoard = (props) => {
 
   /** Sets last sprint team sentiment*/
   const handleLastSprintSentiment = (stats) => {
-    let lastSentiment = ((stats.kudos?.length-stats.improvements?.length)/(stats.kudos?.length+stats.improvements?.length));
+    let lastSentiment = ((stats.kudos?.length-(stats.improvements?.length+stats.actionItems?.length))/(stats.kudos?.length+stats.improvements?.length+stats.actionItems?.length));
     console.log("lastSentiment", lastSentiment);
     setLastTeamSentiment(lastSentiment);
   };

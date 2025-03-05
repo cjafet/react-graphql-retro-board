@@ -56,8 +56,8 @@ const IterationStats = (props) => {
   const handleSentimentAnalysis = () => {
     let sentiment = 
     (
-      (JSON.parse(stats).kudos?.length-JSON.parse(stats).improvements?.length)
-      /(JSON.parse(stats).kudos?.length+JSON.parse(stats).improvements?.length)
+      (JSON.parse(stats).kudos?.length-(JSON.parse(stats).improvements?.length+JSON.parse(stats).actionItems.length))
+      /(JSON.parse(stats).kudos?.length+JSON.parse(stats).improvements?.length+JSON.parse(stats).actionItems.length)
     );
 
     if(sentiment>0) props.handleLowestSprintSentiment(sentiment);    
