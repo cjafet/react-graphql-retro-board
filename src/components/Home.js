@@ -8,7 +8,21 @@ import { ThemeContext } from "./context/ThemeContext";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const Home = () => {
-    const { themeColor } = useContext(ThemeContext);
+    const { themeColor, actions } = useContext(ThemeContext);
+
+    const handleLogin = async (credential) => {  
+        const credentials = {
+          userName: "comms",
+          password: "comms",
+        };
+        const user = await actions.signIn(credentials);
+          if (user) {
+            console.log("Logged user", user.data);
+            // navigate("/me");
+          }
+      }
+    
+      handleLogin({});
     
     return (
 
