@@ -6,7 +6,7 @@ export const ThemeContext = React.createContext();
 export const Provider = (props) => {
   const [themeColor, setThemeColor] = useState("#6a1cb8"); // #ed143d
   const [timerColor, setTimerColor] = useState("#8922f1"); // #8e1d1d
-  const [authUser, setAuthUser] = useState(null);
+  const [authUser, setAuthUser] = useState({name: "", team: "", userName: ""});
   const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
 
   const signIn = async (credentials) => {
@@ -37,10 +37,12 @@ export const Provider = (props) => {
 
     if (response.status === 200) {
       user = await response.json();
-      setAuthUser(user);
+      console.log("userResponse", user.data.user.user);
+      setAuthUser({...user.data.user.user});
+      console.log("AuthUser", authUser);  
     }
 
-    return user;
+    return user.data.user.user;
   };
 
   const handleColorSelection = (bgColor) => {

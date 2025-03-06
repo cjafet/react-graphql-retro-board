@@ -18,6 +18,7 @@ const DashBoard = (props) => {
   const [lowestTeamSentiment, setLowestTeamSentiment] = useState(1);
   const { themeColor } = useContext(ThemeContext);
   console.log("props", props);
+  
 
   /** Gets team param from the URL to use in the graphQL query*/
   let { team } = useParams();
@@ -147,7 +148,7 @@ const DashBoard = (props) => {
                   <IterationStats
                     color={themeColor}
                     iteration={it.iteration}
-                    lastIteration={(it.iteration == data?.allRetrosByTeam.length) ? true : false}
+                    lastIteration={(it.iteration === data?.allRetrosByTeam.length) ? true : false}
                     team={team}
                     handleLastSprintSentiment={handleLastSprintSentiment}
                     handleLowestSprintSentiment={handleLowestSprintSentiment}

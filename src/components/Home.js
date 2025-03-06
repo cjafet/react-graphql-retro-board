@@ -1,5 +1,5 @@
 import React, {useContext, useRef} from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "./context/ThemeContext";
 
 /**
@@ -13,6 +13,8 @@ const Home = () => {
     const username = useRef(null);
     const password = useRef(null);
 
+    const navigate = useNavigate();
+
     const handleLogin = async (event) => {  
         event.preventDefault();
 
@@ -24,7 +26,7 @@ const Home = () => {
         const user = await actions.signIn(credentials);
           if (user) {
             console.log("Logged user", user.data);
-            // navigate("/me");
+            navigate("/" + user.team + "/dashboard");
           }
     }
 
@@ -42,7 +44,7 @@ const Home = () => {
           <div className="form-group">
             <input
               type="username"
-              className="form-control"
+              className="form-control login"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               ref={username}
@@ -52,7 +54,7 @@ const Home = () => {
           <div className="form-group mt-3">
             <input
               type="password"
-              className="form-control"
+              className="form-control login"
               id="exampleInputPassword1"
               ref={password}
               placeholder="Password"
