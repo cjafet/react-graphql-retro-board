@@ -16,8 +16,22 @@ import Analysis from "./Analysis";
 const DashBoard = (props) => {
   const [lastTeamSentiment, setLastTeamSentiment] = useState(0);
   const [lowestTeamSentiment, setLowestTeamSentiment] = useState(1);
-  const { themeColor } = useContext(ThemeContext);
+  const { themeColor, actions } = useContext(ThemeContext);
   console.log("props", props);
+
+  const handleLogin = async (credential) => {  
+    const credentials = {
+      userName: "comms",
+      password: "comms",
+    };
+    const user = await actions.signIn(credentials);
+      if (user) {
+        console.log("Logged user", user);
+        // navigate("/me");
+      }
+  }
+
+  handleLogin({});
 
   /** Gets team param from the URL to use in the graphQL query*/
   let { team } = useParams();
