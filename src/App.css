@@ -218,7 +218,8 @@ nav {
   left: 79% !important;
 }
 
-input {
+.login {
+  border: 1px solid #E0E0E0 !important;
   background-color: #e8f0fe !important;
   width: 100% !important;
   color: #000000;
@@ -228,7 +229,7 @@ input {
   outline: none !important;
   box-sizing: border-box !important;
   font-size: 100%;
-  /* font-size: 16px; */
+  font-size: 16px;
 }
 
 .form-group {
