@@ -51,7 +51,7 @@ export const Provider = (props) => {
 
     let data = {
       query:
-        "query userSignup($user: String!) { signup(user: $user) { user { name email team userName organization } } }",
+        "mutation userSignup($user: String!) { signup(user: $user) { user { name email team userName organization } } }",
       variables: { user: credentials },
     };
 
