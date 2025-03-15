@@ -73,10 +73,10 @@ export const Provider = (props) => {
 
     if (response.status === 200) {
       user = await response.json();
-      console.log("signUpResponse", user.data.user.user); 
+      console.log("signUpResponse", user.data.signUp); 
     }
 
-    return user.data.user.user;
+    return user.data.signUp;
   };
 
   const handleColorSelection = (bgColor) => {
