@@ -37,12 +37,12 @@ export const Provider = (props) => {
 
     if (response.status === 200) {
       user = await response.json();
-      console.log("userResponse", user.data.user.user);
-      setAuthUser({...user.data.user.user});
+      console.log("userResponse", user.data.user);
+      setAuthUser({...user.data.user});
       console.log("AuthUser", authUser);  
     }
 
-    return user.data.user.user;
+    return user.data.user;
   };
 
   const signUp = async (credentials) => {
