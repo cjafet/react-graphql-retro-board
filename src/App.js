@@ -13,6 +13,7 @@ import Home from "./components/Home";
 import Settings from "./components/Settings";
 import { Provider } from "./components/context/ThemeContext";
 import { GET_ALL_TEAMS } from "./constants/Queries";
+import SignUp from "./components/SignUp";
 
 /**
  * Main app component.
@@ -52,6 +53,7 @@ function App() {
           />
           {/* <Route path="/retros" element={<UserRetros team={team} />} /> */}
           <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/board/:team/:iteration" element={<Board />} />
           <Route path="/:team/dashboard" element={<DashBoard />} />

@@ -15,7 +15,7 @@ export const Provider = (props) => {
 
     let data = {
       query:
-        "query login($userName: String!, $password: String!) { user(userName: $userName, password: $password) { user { name team userName } } }",
+        "query login($userName: String!, $password: String!) { user(userName: $userName, password: $password) { user { name team organization userName } } }",
       variables: { userName: credentials.userName, password: credentials.password },
     };
 
@@ -45,6 +45,40 @@ export const Provider = (props) => {
     return user.data.user.user;
   };
 
+  const signUp = async (credentials) => {
+
+    let user = {};
+
+    let data = {
+      query:
+        "query userSignup($user: String!) { signup(user: $user) { user { name email team userName organization } } }",
+      variables: { user: credentials },
+    };
+
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    const response = await fetch(
+      GRAPHQL_SERVER,
+      fetchOptions
+    );
+
+    console.log("signup response", response);
+    
+
+    if (response.status === 200) {
+      user = await response.json();
+      console.log("signUpResponse", user.data.user.user); 
+    }
+
+    return user.data.user.user;
+  };
+
   const handleColorSelection = (bgColor) => {
     setThemeColor(bgColor);
     console.log("selectedColor", bgColor);
@@ -67,6 +101,7 @@ export const Provider = (props) => {
         authUser,
         actions: {
           signIn,
+          signUp
         },
       }}
     >
