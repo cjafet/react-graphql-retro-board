@@ -70,7 +70,7 @@ const Header = (props) => {
           >
             <li>
               <Link reloadDocument to="/" className="logo font-header">
-                <img src="/neretro-logo.png" alt="oneretro-logo" style={{marginTop: "8px", maxHeight: "40px"}} />
+                <img src="/neretro-logo.png" alt="oneretro-logo" style={{marginTop: "13px", maxHeight: "38px"}} />
               </Link>
             </li>
           </ul>
