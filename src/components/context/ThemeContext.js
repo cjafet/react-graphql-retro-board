@@ -4,9 +4,9 @@ import React, { useState } from "react";
 export const ThemeContext = React.createContext();
 
 export const Provider = (props) => {
-  const [themeColor, setThemeColor] = useState("#6a1cb8"); // #ed143d
-  const [timerColor, setTimerColor] = useState("#8922f1"); // #8e1d1d
-  const [authUser, setAuthUser] = useState({name: "", team: "", userName: ""});
+  const [themeColor, setThemeColor] = useState("#53047c"); // #ed143d
+  const [timerColor, setTimerColor] = useState("#7316a1"); // #8e1d1d
+  const [authUser, setAuthUser] = useState({name: "", team: "", organization: "", userName: ""});
   const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
 
   const signIn = async (credentials) => {
@@ -39,9 +39,9 @@ export const Provider = (props) => {
       user = await response.json();
       console.log("userResponse", user.data.user);
       setAuthUser({...user.data.user});
-      console.log("AuthUser", authUser);  
     }
-
+    
+    console.log("AuthUser", authUser);  
     return user.data.user;
   };
 
