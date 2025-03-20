@@ -6,6 +6,7 @@ import RetrospectiveModal from "./modals/RetrospectiveModal";
 import { ThemeContext } from "./context/ThemeContext";
 
 import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
+// import MoodModal from "./modals/MoodModal";
 
 /**
  * Header component used to render the top navigation menu.
@@ -14,7 +15,7 @@ import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const Header = (props) => {
-  const { themeColor } = useContext(ThemeContext);
+  const { themeColor, authUser } = useContext(ThemeContext);
   console.log(props);
 
   /** Gets team param from the URL to use in the graphQL query*/
@@ -52,6 +53,12 @@ const Header = (props) => {
     <React.Fragment>
       <ul id="dropdown2" className="dropdown-content">
           <li><a href="/settings">Settings</a></li>
+          { authUser.organization !== "" && authUser.userName !== "" && (
+            <li><a href="#!">Add team</a></li>
+          )}
+          { authUser.organization !== "" && authUser.userName !== "" && (
+            <li><a href="#!">View boards</a></li>
+          )}
           <li><a href="#!">Log Out</a></li>
       </ul>
       <nav style={{ backgroundColor: themeColor }}>
@@ -63,7 +70,7 @@ const Header = (props) => {
           >
             <li>
               <Link reloadDocument to="/" className="logo font-header">
-                RetroBoard
+                <img src="neretro-logo.png" alt="oneretro-logo" style={{marginTop: "8px", maxHeight: "40px"}} />
               </Link>
             </li>
           </ul>
@@ -77,6 +84,9 @@ const Header = (props) => {
                     .iteration
                 }
               />
+            </li>
+            <li>
+              {/* <MoodModal /> */}
             </li>
             {/* <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li> */}
             <li>
