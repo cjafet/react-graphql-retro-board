@@ -26,7 +26,8 @@ const Home = () => {
         const user = await actions.signIn(credentials);
           if (user) {
             console.log("Logged user", user.data);
-            navigate("/" + user.team + "/dashboard");
+            // navigate("/" + user.team + "/dashboard");
+            navigate("/admin");
           }
     }
 
@@ -40,17 +41,17 @@ const Home = () => {
 
     <div style={{display: "inline-flex", alignItems: "center", width: "50%", height: "400px"}}>
         <div style={{borderRadius: "8px", display: "block", width: "50%"}}>
-            <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <input
-              type="username"
-              className="form-control login"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              ref={username}
-              placeholder="Enter email"
-            />
-          </div>
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <input
+                type="username"
+                className="form-control login"
+                id="exampleInputEmail1"
+                aria-describedby="emailHelp"
+                ref={username}
+                placeholder="Enter email"
+              />
+            </div>
           <div className="form-group mt-3">
             <input
               type="password"
