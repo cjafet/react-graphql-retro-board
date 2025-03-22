@@ -69,7 +69,6 @@ export const Provider = (props) => {
     );
 
     console.log("signup response", response);
-    
 
     if (response.status === 200) {
       user = await response.json();
@@ -77,6 +76,40 @@ export const Provider = (props) => {
     }
 
     return user.data.signUp;
+  };
+
+  const userSignUp = async (credentials) => {
+
+    let user = {};
+
+    let data = {
+      query:
+        "mutation userSignup($input: SignUp!) { userSignUp(input: $input) { name email } }",
+      variables: { input: credentials },
+    };
+
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    const response = await fetch(
+      GRAPHQL_SERVER,
+      fetchOptions
+    );
+
+    console.log("signup response", response);
+    
+
+    if (response.status === 200) {
+      user = await response.json();
+      console.log("signUpResponse", user.data); 
+    }
+
+    return user.data;
   };
 
   const handleColorSelection = (bgColor) => {
@@ -101,7 +134,8 @@ export const Provider = (props) => {
         authUser,
         actions: {
           signIn,
-          signUp
+          signUp,
+          userSignUp
         },
       }}
     >
