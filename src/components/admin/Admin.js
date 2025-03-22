@@ -23,7 +23,7 @@ const Admin = () => {
         event.preventDefault();
         if (authUser.organization !== "" && authUser.userName !== "") {
           let data = {
-            query: "mutation newTeam($teamName: String!, $organization: String!) { addTeam(teamName: $teamName, organization: $organization) { addTeam } }",
+            query: "mutation newTeam($teamName: String!, $organization: String!) { addTeam(teamName: $teamName, organization: $organization) }",
             variables: { teamName: teamname.current.value, organization: authUser.organization },
           };
 
