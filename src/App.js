@@ -16,6 +16,7 @@ import { GET_ALL_TEAMS } from "./constants/Queries";
 import SignUp from "./components/SignUp";
 import Admin from "./components/admin/Admin";
 import UserSignUp from "./components/UserSignUp";
+import UserSignIn from "./components/UserSignIn";
 
 /**
  * Main app component.
@@ -61,6 +62,7 @@ function App() {
           <Route path="/board/:team/:iteration" element={<Board />} />
           <Route path="/:team/dashboard" element={<DashBoard />} />
           <Route path="/:team/:hash/signup" element={<UserSignUp />} />
+          <Route path="/:organization/:team/signin" element={<UserSignIn />} />
           <Route path="/okrs" element={<Okr team={team} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
