@@ -12,8 +12,7 @@ import { ThemeContext } from "./context/ThemeContext";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const RetroItem = (props) => {
-  const { themeColor } = useContext(ThemeContext);
-  const { timerColor } = useContext(ThemeContext);
+  const { themeColor, timerColor } = useContext(ThemeContext);
   console.log(props);
 
   /** Function used to handle deleting Items from the board*/
@@ -105,7 +104,7 @@ const RetroItem = (props) => {
   console.log(dataItem);
 
   return (
-    <div className="task">
+    <div className="task col s3 l3">
       <div className="task-header" style={{ backgroundColor: themeColor }}>
         <input type="hidden" value={props.item.type} />
         <div className="task-body">{props.item.description}</div>
@@ -114,7 +113,7 @@ const RetroItem = (props) => {
         className="like-content"
         style={{ position: "relative", backgroundColor: timerColor }}
       >
-        <div style={{ marginLeft: "5%" }}>
+        <div style={{ marginLeft: "3%" }}>
           <button
             onClick={() => handleLike(props)}
             className="btn-secondary like-review"
@@ -129,7 +128,7 @@ const RetroItem = (props) => {
               position: "absolute",
               marginLeft: "14%",
               top: "2px",
-              right: "8%",
+              right: "5%",
             }}
           >
             <button
@@ -144,13 +143,13 @@ const RetroItem = (props) => {
             </button>
           </div>
         )}
-        {props.item.type == "actionItems" && (
+        {props.item.type === "actionItems" && (
           <div
             style={{
               position: "absolute",
               marginLeft: "14%",
               top: "2px",
-              right: "8%",
+              right: "5%",
             }}
           >
             <button
@@ -165,7 +164,7 @@ const RetroItem = (props) => {
             </button>
           </div>
         )}
-        <div style={{ marginLeft: "79%" }}>
+        <div style={{ marginLeft: "89%" }}>
           <button
             onClick={() => handleDelete(props)}
             style={{ background: "none", border: "0" }}

@@ -117,7 +117,7 @@ hr {
 
 .tasks {
   margin: 0 5%;
-  max-width: 85%;
+  max-width: 90%;
   /* max-width: 980px; */
 }
 
@@ -131,20 +131,21 @@ hr {
 .task {
   display: inline-grid;
   margin-bottom: 22px;
+  max-width: 100%;
+  min-width: 100%;
   background: #2b2e94;
   box-shadow: 0 -1px 0 #e0e0e0, 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
 }
 
 .task-header {
   padding: 4px 14px;
-  min-width: 16em;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ed133d;
   /* #d71c1c #2b2e94 #36398c #960c0c #ed1717 */
-  min-width: 339px;
-  max-width: 339px;
+  min-width: 100%;
+  max-width: 100%;
 }
 
 .task-header-retros {
@@ -178,6 +179,7 @@ div.task-header>select {
   justify-content: space-between;
   padding-top: 20px;
   padding-left: 10px;
+  width: 100%;
 }
 
 .task-list {
@@ -190,7 +192,9 @@ div.task-header>select {
 
 .item-col-space {
   padding: 0 12px;
-  max-width: 375px;
+  min-width: 26%;
+  max-width: 26%;
+  max-width: 26%;
 }
 
 .tasks-loading {
