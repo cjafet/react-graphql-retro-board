@@ -192,9 +192,8 @@ div.task-header>select {
 
 .item-col-space {
   padding: 0 12px;
-  min-width: 26%;
-  max-width: 26%;
-  max-width: 26%;
+  min-width: 25%;
+  max-width: 25%;
 }
 
 .tasks-loading {
