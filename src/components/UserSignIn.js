@@ -23,13 +23,14 @@ const UserSignIn = () => {
         const credentials = {
             userName: username.current.value,
             password: password.current.value,
+            organization,
+            team
         };
 
-        const user = await actions.signIn(credentials);
+        const user = await actions.userSignIn(credentials);
           if (user) {
             console.log("Logged user", user.data);
-            // navigate("/" + user.team + "/dashboard");
-            navigate("/admin");
+            navigate("/" + team + "/dashboard");
           }
     }
 
