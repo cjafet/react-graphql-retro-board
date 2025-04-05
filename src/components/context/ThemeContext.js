@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import bcrypt from "bcryptjs";
 
 // Craetes a context and returns a Consumer/Provider object
 export const ThemeContext = React.createContext();
@@ -47,6 +48,11 @@ export const Provider = (props) => {
 
   const signUp = async (credentials) => {
 
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(credentials.password, salt);
+
+    credentials.password = hash;
+
     let user = {};
 
     let data = {
@@ -80,6 +86,11 @@ export const Provider = (props) => {
 
   const userSignUp = async (credentials) => {
 
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(credentials.password, salt);
+
+    credentials.password = hash;
+
     let user = {};
 
     let data = {
@@ -112,7 +123,7 @@ export const Provider = (props) => {
     return user.data;
   };
 
-  const userSignIn = async (credentials) => {
+  const userSignIn = async (credentials) => { 
 
     let user = {};
 
