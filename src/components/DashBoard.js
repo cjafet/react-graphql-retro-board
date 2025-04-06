@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_ALL_ITEMS_BY_TEAM } from "../constants/Queries";
 import { ThemeContext } from "./context/ThemeContext";
@@ -8,17 +8,23 @@ import ChartBar from "./ChartBar";
 import Analysis from "./Analysis";
 
 /**
- * UserRetros component used to render(list) all user retrospectives.
+ * DashBoard component used to render(list) all user retrospectives.
  *
  * @version 0.0.1
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const DashBoard = (props) => {
+  const { themeColor, authUser } = useContext(ThemeContext);
+  const navigate = useNavigate();
+  
+  // if (authUser.team.length === 0) {
+  //   navigate("/");
+  // }
+
   const [lastTeamSentiment, setLastTeamSentiment] = useState(0);
   const [lowestTeamSentiment, setLowestTeamSentiment] = useState(1);
-  const { themeColor } = useContext(ThemeContext);
   console.log("props", props);
-  
+  console.log("authUser", authUser);
 
   /** Gets team param from the URL to use in the graphQL query*/
   let { team } = useParams();
@@ -168,7 +174,7 @@ const DashBoard = (props) => {
             maxWidth: "460px",
           }}
         >
-          <div style={{ display: "flex", color: "white", height: "70px" }}>
+          <div style={{ display: "flex", color: "#53047c", height: "70px" }}>
             <div style={{ lineHeight: "70px" }}>
               <i
                 className="material-icons icn-error"
@@ -184,12 +190,13 @@ const DashBoard = (props) => {
             </div>
             <div
               style={{
+                color: "#53047c",
                 textAlign: "left",
                 alignContent: "center",
                 fontSize: "23px",
               }}
             >
-              Could not fetch data from the server.
+              Could not fetch data from server.
               {/* 1. Check if the GraphQL server is up and running.
               <br />
               2. Create a new Retrospective board to get started. */}
