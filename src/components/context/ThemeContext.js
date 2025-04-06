@@ -120,12 +120,13 @@ export const Provider = (props) => {
       console.log("signUpResponse", user.data); 
     }
 
-    return user.data;
+    return user.data.userSignUp;
   };
 
   const userSignIn = async (credentials) => { 
 
     let user = {};
+    let loggedUser = authUser;
 
     let data = {
       query:
@@ -147,17 +148,17 @@ export const Provider = (props) => {
     );
 
     console.log("userSignin response", response);
-    
 
     if (response.status === 200) {
       user = await response.json();
       console.log("userSignin", user.data); 
       let signedUser = user.data.userSignIn;
-      let loggedUser = {"name": signedUser.team.users.name, "team": signedUser.team.name, "organization": signedUser.organization, "userName": signedUser.team.users.email};
-      setAuthUser({...loggedUser});
+      if (signedUser !== null) {
+        loggedUser = {"name": signedUser.team.users.name, "team": signedUser.team.name, "organization": signedUser.organization, "userName": signedUser.team.users.email};
+        setAuthUser({...loggedUser});
+      }
     }
-
-    return user.data;
+    return loggedUser;
   };
 
   const handleColorSelection = (bgColor) => {

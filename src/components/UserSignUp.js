@@ -32,8 +32,8 @@ const UserSignUp = () => {
         };
 
         const user = await actions.userSignUp(credentials);
-          if (user) {
-            navigate("/");
+          if (user.name.length !== 0 && user.email.length !== 0) {
+            navigate("/" + credentials.team + "/" + credentials.hash + "/signin");
           }
     }
 

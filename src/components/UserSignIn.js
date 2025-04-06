@@ -28,7 +28,7 @@ const UserSignIn = () => {
         };
 
         const user = await actions.userSignIn(credentials);
-          if (user) {
+          if (user.team.length !== 0 && user.organization.length !== 0) {
             console.log("Logged user", user.data);
             navigate("/" + team + "/dashboard");
           }
