@@ -12,8 +12,8 @@ const UserSignIn = () => {
     const { themeColor, actions } = useContext(ThemeContext);
     const username = useRef(null);
     const password = useRef(null);
-    let { organization, team } = useParams();
-    console.log(organization, team);
+    let { team, hash } = useParams();
+    console.log(team, hash);
 
     const navigate = useNavigate();
 
@@ -23,7 +23,6 @@ const UserSignIn = () => {
         const credentials = {
             userName: username.current.value,
             password: password.current.value,
-            organization,
             team
         };
 
