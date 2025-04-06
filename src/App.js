@@ -17,7 +17,7 @@ import SignUp from "./components/SignUp";
 import Admin from "./components/admin/Admin";
 import UserSignUp from "./components/UserSignUp";
 import UserSignIn from "./components/UserSignIn";
-import { ThemeContext } from "./context/ThemeContext";
+import { ThemeContext } from "./components/context/ThemeContext";
 
 /**
  * Main app component.
