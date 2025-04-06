@@ -153,7 +153,7 @@ export const Provider = (props) => {
       user = await response.json();
       console.log("userSignin", user.data); 
       let signedUser = user.data.userSignIn;
-      let loggedUser = {"name": signedUser.team.users.name, "team": signedUser.team.name, "organization": signedUser.organization, "userName": signedUser.team.users.name};
+      let loggedUser = {"name": signedUser.team.users.name, "team": signedUser.team.name, "organization": signedUser.organization, "userName": signedUser.team.users.email};
       setAuthUser({...loggedUser});
     }
 
