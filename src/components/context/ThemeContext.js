@@ -130,7 +130,7 @@ export const Provider = (props) => {
 
     let data = {
       query:
-        "query userSignin($userName: String!, $password: String!, $team: String!) { userSignIn(userName: $userName, password: $password, organization: $organization, team: $team) { organization team { name users { email name } } } }",
+        "query userSignin($userName: String!, $password: String!, $team: String!) { userSignIn(userName: $userName, password: $password, team: $team) { organization team { name users { email name } } } }",
       variables: { userName: credentials.userName, password: credentials.password, team: credentials.team },
     };
 
