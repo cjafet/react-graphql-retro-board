@@ -62,7 +62,7 @@ function App() {
           <Route path="/board/:team/:iteration" element={<Board />} />
           <Route path="/:team/dashboard" element={<DashBoard />} />
           <Route path="/:team/:hash/signup" element={<UserSignUp />} />
-          <Route path="/:organization/:team/signin" element={<UserSignIn />} />
+          <Route path="/:team/:hash/signin" element={<UserSignIn />} />
           <Route path="/okrs" element={<Okr team={team} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
