@@ -152,7 +152,8 @@ export const Provider = (props) => {
     if (response.status === 200) {
       user = await response.json();
       console.log("userSignin", user.data); 
-      setAuthUser({...user.data.userSignIn});
+      let loggedUser = {name: user.team.users.name, team: user.team.name, organization: user.organization, userName: user.team.users.name};
+      setAuthUser({...loggedUser});
     }
 
     return user.data;
