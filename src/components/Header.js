@@ -16,8 +16,6 @@ import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
  */
 const Header = (props) => {
   const { themeColor, authUser } = useContext(ThemeContext);
-  console.log("authUser", authUser);
-  
   console.log(props);
 
   /** Gets team param from the URL to use in the graphQL query*/
@@ -29,7 +27,7 @@ const Header = (props) => {
 
   /** Sets the query to get all team retrospectives*/
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
-    variables: { productTeam: authUser.team },
+    variables: { productTeam: props.team[2] },
   });
 
   if (error) console.log("Error querying for items");
@@ -92,7 +90,7 @@ const Header = (props) => {
             </li>
             {/* <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li> */}
             <li>
-              <Link reloadDocument to={authUser.team + '/dashboard'}>
+              <Link reloadDocument to={props.team[2] + '/dashboard'}>
                 Dashboard
               </Link>
             </li>
@@ -101,7 +99,7 @@ const Header = (props) => {
                 <Link
                   to={
                     "/board/" +
-                    authUser.team +
+                    props.team[2] +
                     "/" +
                     data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
                       .iteration
@@ -121,10 +119,10 @@ const Header = (props) => {
                       !location.pathname.includes("settings") && (
                       <i className="tiny material-icons">person_outline</i>
                     )}
-                    {authUser.team?.toString() !== undefined && !location.pathname.includes("/board/") && 
+                    {props.team[2]?.toString() !== undefined && !location.pathname.includes("/board/") && 
                       !location.pathname.includes("settings") && (
                         <span style={{position: "absolute", top: "1px",left: "30px", textTransform: "capitalize", width: "max-content"}}>
-                          {truncate(authUser.team + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i className="material-icons right">arrow_drop_down</i></span>
+                          {truncate(props.team[2] + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i className="material-icons right">arrow_drop_down</i></span>
                         </span>
                     )}
                   </div>
