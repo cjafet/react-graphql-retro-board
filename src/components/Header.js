@@ -29,7 +29,7 @@ const Header = (props) => {
 
   /** Sets the query to get all team retrospectives*/
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
-    variables: { productTeam: props.team[2] },
+    variables: { productTeam: authUser.team },
   });
 
   if (error) console.log("Error querying for items");
@@ -92,7 +92,7 @@ const Header = (props) => {
             </li>
             {/* <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li> */}
             <li>
-              <Link reloadDocument to={props.team[2] + '/dashboard'}>
+              <Link reloadDocument to={authUser.team + '/dashboard'}>
                 Dashboard
               </Link>
             </li>
@@ -101,7 +101,7 @@ const Header = (props) => {
                 <Link
                   to={
                     "/board/" +
-                    props.team[2] +
+                    authUser.team +
                     "/" +
                     data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
                       .iteration
@@ -121,10 +121,10 @@ const Header = (props) => {
                       !location.pathname.includes("settings") && (
                       <i className="tiny material-icons">person_outline</i>
                     )}
-                    {props.team[2]?.toString() !== undefined && !location.pathname.includes("/board/") && 
+                    {authUser.team?.toString() !== undefined && !location.pathname.includes("/board/") && 
                       !location.pathname.includes("settings") && (
                         <span style={{position: "absolute", top: "1px",left: "30px", textTransform: "capitalize", width: "max-content"}}>
-                          {truncate(props.team[2] + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i className="material-icons right">arrow_drop_down</i></span>
+                          {truncate(authUser.team + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i className="material-icons right">arrow_drop_down</i></span>
                         </span>
                     )}
                   </div>
