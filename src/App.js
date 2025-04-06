@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
@@ -17,15 +17,11 @@ import SignUp from "./components/SignUp";
 import Admin from "./components/admin/Admin";
 import UserSignUp from "./components/UserSignUp";
 import UserSignIn from "./components/UserSignIn";
-import { ThemeContext } from "./components/context/ThemeContext";
 
 /**
  * Main app component.
  */
 function App() {
-  const { authUser } = useContext(ThemeContext);
-  console.log("authUser", authUser);
-  
   let team = [];
 
   /** Sets the query to get user teams*/

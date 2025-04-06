@@ -16,6 +16,8 @@ import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
  */
 const Header = (props) => {
   const { themeColor, authUser } = useContext(ThemeContext);
+  console.log("authUser", authUser);
+  
   console.log(props);
 
   /** Gets team param from the URL to use in the graphQL query*/
