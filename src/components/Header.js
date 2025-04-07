@@ -18,7 +18,7 @@ const Header = (props) => {
   const { themeColor } = useContext(ThemeContext);
   const authUser = JSON.parse(localStorage.getItem('loggedUser'));
   let userTeam = "";
-  if (authUser?.team.length !== 0) {
+  if (authUser !== null && authUser.team.length !== 0) {
     userTeam = authUser.team;
     
   }
