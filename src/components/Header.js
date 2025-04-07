@@ -15,7 +15,13 @@ import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const Header = (props) => {
-  const { themeColor, authUser } = useContext(ThemeContext);
+  const { themeColor } = useContext(ThemeContext);
+  const authUser = JSON.parse(localStorage.getItem('loggedUser'));
+  let userTeam = "";
+  if (authUser.team.length !== 0) {
+    userTeam = authUser.team;
+    
+  }
   console.log(props);
 
   /** Gets team param from the URL to use in the graphQL query*/
@@ -27,12 +33,12 @@ const Header = (props) => {
 
   /** Sets the query to get all team retrospectives*/
   const { loading, error, data } = useQuery(GET_ITEMS_BY_TEAM, {
-    variables: { productTeam: props.team[2] },
+    variables: { productTeam: userTeam },
   });
 
   if (error) console.log("Error querying for items");
 
-  if (!loading && data) {
+  if (!loading && data && authUser.team.length !== 0) {
     console.log(
       "last_iteration",
       data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1].iteration
@@ -75,22 +81,24 @@ const Header = (props) => {
             </li>
           </ul>
           <ul id="nav-mobile" className="menu font-header hide-on-med-and-down">
-            <li>
-              <RetrospectiveModal
-                color={themeColor}
-                teams={props.team}
-                last_iteration={
-                  data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
-                    .iteration
-                }
-              />
-            </li>
+            {data?.allRetrosByTeam.length > 0 && (            
+              <li>
+                <RetrospectiveModal
+                  color={themeColor}
+                  teams={userTeam}
+                  last_iteration={
+                    data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
+                      .iteration
+                  }
+                />
+              </li>
+            )}
             <li>
               {/* <MoodModal /> */}
             </li>
             {/* <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li> */}
             <li>
-              <Link reloadDocument to={props.team[2] + '/dashboard'}>
+              <Link reloadDocument to={userTeam + '/dashboard'}>
                 Dashboard
               </Link>
             </li>
@@ -99,7 +107,7 @@ const Header = (props) => {
                 <Link
                   to={
                     "/board/" +
-                    props.team[2] +
+                    userTeam +
                     "/" +
                     data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
                       .iteration
@@ -119,10 +127,10 @@ const Header = (props) => {
                       !location.pathname.includes("settings") && (
                       <i className="tiny material-icons">person_outline</i>
                     )}
-                    {props.team[2]?.toString() !== undefined && !location.pathname.includes("/board/") && 
+                    {userTeam?.toString() !== undefined && !location.pathname.includes("/board/") && 
                       !location.pathname.includes("settings") && (
                         <span style={{position: "absolute", top: "1px",left: "30px", textTransform: "capitalize", width: "max-content"}}>
-                          {truncate(props.team[2] + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i className="material-icons right">arrow_drop_down</i></span>
+                          {truncate(userTeam + " Team")} <span style={{position: "absolute", top: "-1px",left: "85px"}}><i className="material-icons right">arrow_drop_down</i></span>
                         </span>
                     )}
                   </div>
@@ -165,7 +173,7 @@ const Header = (props) => {
                 <a
                   href={
                     "/board/" +
-                    props.team +
+                    userTeam +
                     "/" +
                     data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
                       .iteration
@@ -178,7 +186,7 @@ const Header = (props) => {
             <li>
               <Link to="/settings">Settings</Link>
             </li>
-            {props.team.toString() !== "" && (
+            {userTeam.toString() !== "" && (
               <li
                 style={{
                   marginTop: "5px",
@@ -186,7 +194,7 @@ const Header = (props) => {
                   fontSize: "16px",
                 }}
               >
-                <strong>{props.team.toString().toUpperCase()} TEAM</strong>
+                <strong>{userTeam.toString().toUpperCase()} TEAM</strong>
               </li>
             )}
             {/* <li>

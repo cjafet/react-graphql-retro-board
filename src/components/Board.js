@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation, useSubscription } from "@apollo/client";
 import { v4 as uuidv4 } from "uuid";
 
@@ -25,11 +25,20 @@ const Board = (props) => {
   const [itemType, setItemType] = useState("kudos");
   const [boardData, setBoardData] = useState();
   const [asyncError, setAsyncError] = useState();
+  const navigate = useNavigate();
+  const authUser = JSON.parse(localStorage.getItem('loggedUser'));
+
+  console.log("authUser", authUser);
   console.log("Board data", boardData);
 
   /** Gets iteration and team params from the URL to use in the graphQL query*/
   let { iteration, team } = useParams();
   console.log("Iteration#: ", iteration);
+
+
+  if (authUser.team !== team || authUser.team.length === 0) {
+    navigate("/");
+  }
 
   /** Sets the query to get all board Items by iteration and team*/
   let { loading, error, data, refetch } = useQuery(GET_ITEMS_BY_ITERATION, {
@@ -124,7 +133,7 @@ const Board = (props) => {
           {data?.retroByIterationAndTeam?.labels != null && (
             <div className="task-lists">
               {data?.retroByIterationAndTeam?.labels.map((name, index) => (
-                <div key={uuidv4()} className="item-col-space">
+                <div key={uuidv4()} className="item-col-space col s3 xl3">
                   <p className="font-header">{name}</p>
                   {renderItems(boardData, BOARD_ITEMS[index], iteration, index)}
                 </div>

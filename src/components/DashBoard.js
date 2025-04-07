@@ -14,12 +14,14 @@ import Analysis from "./Analysis";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const DashBoard = (props) => {
-  const { themeColor, authUser } = useContext(ThemeContext);
+  const { themeColor } = useContext(ThemeContext);
   const navigate = useNavigate();
+
+  const authUser = JSON.parse(localStorage.getItem('loggedUser'));
   
-  // if (authUser.team.length === 0) {
-  //   navigate("/");
-  // }
+  if (authUser.team.length === 0) {
+    navigate("/");
+  }
 
   const [lastTeamSentiment, setLastTeamSentiment] = useState(0);
   const [lowestTeamSentiment, setLowestTeamSentiment] = useState(1);

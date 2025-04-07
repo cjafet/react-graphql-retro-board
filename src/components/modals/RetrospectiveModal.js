@@ -268,11 +268,14 @@ class RetrospectiveModal extends Component {
                       {t}
                     </option>
                   ))} */}
-                  {this.props.teams.map((t, i) => (
+                  {/* {this.props.teams.map((t, i) => (
                     <option key={i} value={t}>
                       {t}
                     </option>
-                  ))}
+                  ))} */}
+                  <option key={this.props.teams} value={this.props.teams}>
+                    {this.props.teams}
+                  </option>
                 </select>
               )}
               <select
