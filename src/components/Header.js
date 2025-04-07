@@ -59,10 +59,10 @@ const Header = (props) => {
     <React.Fragment>
       <ul id="dropdown2" className="dropdown-content">
           <li><a href="/settings">Settings</a></li>
-          { authUser.organization !== "" && authUser.userName !== "" && (
+          { authUser !== null && authUser?.organization !== "" && authUser?.userName !== "" && (
             <li><a href="#!">Add team</a></li>
           )}
-          { authUser.organization !== "" && authUser.userName !== "" && (
+          { authUser !== null && authUser?.organization !== "" && authUser?.userName !== "" && (
             <li><a href="#!">View boards</a></li>
           )}
           <li><a href="#!">Log Out</a></li>
