@@ -38,7 +38,7 @@ const Header = (props) => {
 
   if (error) console.log("Error querying for items");
 
-  if (!loading && data && authUser.team.length !== 0) {
+  if (!loading && data && authUser !== null && authUser?.team.length !== 0) {
     console.log(
       "last_iteration",
       data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1].iteration
