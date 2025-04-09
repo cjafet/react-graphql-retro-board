@@ -10,7 +10,7 @@ import { ThemeContext } from "../context/ThemeContext";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const Admin = () => {
-    const { themeColor, authUser } = useContext(ThemeContext);
+    const { themeColor, authUser, actions} = useContext(ThemeContext);
     const teamname = useRef(null);
     const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
     console.log("authUser", authUser);
@@ -19,6 +19,16 @@ const Admin = () => {
     if (authUser.team === "") {
         navigate("/");
     }
+
+    const handleTeamLoading = async () => {  
+        const teams = await actions.getTeamsByOrg("gap");
+          if (teams) {
+            console.log("Org teams", teams);
+          }
+    }
+
+    handleTeamLoading();
+    
 
     const handleTeam = async (event) => {  
         event.preventDefault();

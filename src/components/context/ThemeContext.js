@@ -10,6 +10,40 @@ export const Provider = (props) => {
   const [authUser, setAuthUser] = useState({name: "", team: "", organization: "", userName: ""});
   const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
 
+    const getTeamsByOrg = async (organization) => {
+
+    let teamsResponse = {};
+
+    let data = {
+      query:
+        "query allTeams($org: String!) { allTeamsByOrg(org: $org) }",
+      variables: { org: organization },
+    };
+
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    const response = await fetch(
+      GRAPHQL_SERVER,
+      fetchOptions
+    );
+
+    console.log("allTeams response", response);
+    
+
+    if (response.status === 200) {
+      teamsResponse = await response.json();
+      console.log("allTeams", teamsResponse.data.allTeamsByOrg);
+    }
+    
+    return teamsResponse.data?.allTeamsByOrg;
+  };
+
   const signIn = async (credentials) => {
 
     let user = {};
@@ -186,7 +220,8 @@ export const Provider = (props) => {
           signIn,
           signUp,
           userSignIn,
-          userSignUp
+          userSignUp,
+          getTeamsByOrg
         },
       }}
     >
