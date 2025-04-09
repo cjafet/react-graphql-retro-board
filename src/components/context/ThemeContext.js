@@ -16,7 +16,7 @@ export const Provider = (props) => {
 
     let data = {
       query:
-        "query allTeams($org: String!) { allTeamsByOrg(org: $org) }",
+        "query allTeams($org: String!) { allTeamsByOrg(org: $org) { name hash } }",
       variables: { org: organization },
     };
 
