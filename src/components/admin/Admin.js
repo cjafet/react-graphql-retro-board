@@ -1,7 +1,7 @@
 import React, {useContext, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
-import Team from "./Team";
+// import Team from "./Team";
 
 /**
  * Admin component.
