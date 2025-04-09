@@ -53,7 +53,7 @@ const UserSignIn = () => {
                 </div>
                 <div className="row">
                     <div className="col s1 m1 l1"></div>
-                    <div className="col s3 m3 l3" style={{color: "white", textAlign: "left", padding: "0"}}>Welcome back! This is your team login page.</div>
+                    <div className="col s9 m9 l9" style={{color: "white", textAlign: "left", padding: "0"}}>Welcome back! This is your team login page.</div>
                     <div className="col s2 m2 l2"></div>
                 </div>
                 <div className="row" style={{color: "white", textAlign: "left"}}>
