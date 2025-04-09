@@ -77,7 +77,7 @@ const Admin = () => {
                         className="form-control login"
                         id="teamname"
                         aria-describedby="teamname"
-                        // ref={teamname}
+                        ref={teamname}
                         placeholder="Enter new team name"
                     /> 
                   </div>
