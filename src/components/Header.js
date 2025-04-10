@@ -196,7 +196,7 @@ const Header = (props) => {
                 <strong>{userTeam.toString().toUpperCase()} TEAM</strong>
               </li>
             )}
-            {userTeam.toString() === "" && authUser.organization !== "" && (
+            {userTeam.toString() === "" && authUser !== null && authUser.organization !== "" && (
               <li
                 style={{
                   marginTop: "5px",
