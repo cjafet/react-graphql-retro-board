@@ -17,6 +17,7 @@ import SignUp from "./components/SignUp";
 import Admin from "./components/admin/Admin";
 import UserSignUp from "./components/UserSignUp";
 import UserSignIn from "./components/UserSignIn";
+import Teams from "./components/admin/Teams";
 
 /**
  * Main app component.
@@ -57,6 +58,7 @@ function App() {
           {/* <Route path="/retros" element={<UserRetros team={team} />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/teams" element={<Teams />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/board/:team/:iteration" element={<Board />} />

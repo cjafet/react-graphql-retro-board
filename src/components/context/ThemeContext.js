@@ -74,6 +74,7 @@ export const Provider = (props) => {
       user = await response.json();
       console.log("userResponse", user.data.user);
       setAuthUser({...user.data.user});
+      localStorage.setItem('loggedUser', JSON.stringify(user.data.user));
     }
     
     console.log("AuthUser", authUser);  

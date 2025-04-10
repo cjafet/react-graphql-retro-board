@@ -18,9 +18,8 @@ const Header = (props) => {
   const { themeColor } = useContext(ThemeContext);
   const authUser = JSON.parse(localStorage.getItem('loggedUser'));
   let userTeam = "";
-  if (authUser !== null && authUser.team.length !== 0) {
+  if (authUser !== null && authUser.team !== null && authUser.team.length !== 0) {
     userTeam = authUser.team;
-    
   }
   console.log(props);
 
@@ -38,7 +37,7 @@ const Header = (props) => {
 
   if (error) console.log("Error querying for items");
 
-  if (!loading && data && authUser !== null && authUser?.team.length !== 0) {
+  if (!loading && data && authUser !== null && authUser.team !== null && authUser?.team.length !== 0) {
     console.log(
       "last_iteration",
       data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1].iteration
@@ -60,12 +59,12 @@ const Header = (props) => {
       <ul id="dropdown2" className="dropdown-content">
           <li><a href="/settings">Settings</a></li>
           { authUser !== null && authUser?.organization !== "" && authUser?.userName !== "" && (
-            <li><a href="#!">Add team</a></li>
+            <li><a href="/admin">Add team</a></li>
           )}
           { authUser !== null && authUser?.organization !== "" && authUser?.userName !== "" && (
-            <li><a href="#!">View boards</a></li>
+            <li><a href="/admin/teams">View teams</a></li>
           )}
-          <li><a href="#!">Log Out</a></li>
+          <li><a href="#">Log Out</a></li>
       </ul>
       <nav style={{ backgroundColor: themeColor }}>
         <div className="nav-wrapper">
@@ -195,6 +194,17 @@ const Header = (props) => {
                 }}
               >
                 <strong>{userTeam.toString().toUpperCase()} TEAM</strong>
+              </li>
+            )}
+            {userTeam.toString() === "" && authUser.organization !== "" && (
+              <li
+                style={{
+                  marginTop: "5px",
+                  paddingLeft: "16px",
+                  fontSize: "16px",
+                }}
+              >
+                <strong>{authUser.organization.toString().toUpperCase()} TEAM</strong>
               </li>
             )}
             {/* <li>

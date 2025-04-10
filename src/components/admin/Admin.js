@@ -1,7 +1,6 @@
 import React, {useContext, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../context/ThemeContext";
-// import Team from "./Team";
 
 /**
  * Admin component.
@@ -10,25 +9,16 @@ import { ThemeContext } from "../context/ThemeContext";
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const Admin = () => {
-    const { themeColor, authUser, actions} = useContext(ThemeContext);
+    const { themeColor} = useContext(ThemeContext);
     const teamname = useRef(null);
     const GRAPHQL_SERVER = process.env.REACT_APP_GRAPHQL_SERVER;
+    const authUser = JSON.parse(localStorage.getItem('loggedUser'));
     console.log("authUser", authUser);
 
     const navigate = useNavigate();
-    if (authUser.team === "") {
+    if (authUser === null || authUser.team === "") {
         navigate("/");
-    }
-
-    const handleTeamLoading = async () => {  
-        const teams = await actions.getTeamsByOrg("gap");
-          if (teams) {
-            console.log("Org teams", teams);
-          }
-    }
-
-    handleTeamLoading();
-    
+    }    
 
     const handleTeam = async (event) => {  
         event.preventDefault();
@@ -55,26 +45,25 @@ const Admin = () => {
         }
     }
 
-    const handleCancel = (event) => {
-        event.preventDefault();
-        // navigate("/");
-    };
+    // const handleCancel = (event) => {
+    //     event.preventDefault();
+    //     // navigate("/");
+    // };
 
     
     return (
 
-    <div style={{display: "inline-flex", alignItems: "center", width: "100%", height: "400px"}}>
+    <div style={{display: "inline-flex", alignItems: "center", width: "100%"}}>
         <div style={{borderRadius: "8px", display: "block", width: "100%"}}>
-          {/* <Team /> */}
           <form onSubmit={handleTeam}>
-            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "250px"}}>
+            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "250px", marginTop: "60px"}}>
               <div className="col s12 m12 l12">
-                <div className="row" style={{backgroundColor: "#4B0B6D", color: "white", height: "42px", alignContent: "center", marginTop: "13px"}}>
+                <div className="row" style={{backgroundColor: "#4B0B6D", color: "white", height: "42px", alignContent: "center", marginTop: "0"}}>
                     <div className="col s12 m12 l12">
                         + ADD TEAM
                     </div>
                 </div>
-                <div className="row">
+                <div className="row" style={{marginTop: "30px"}}>
                     <div className="col s1 m1 l1"></div>
                     <div className="col s6 m6 l6" style={{color: "white", textAlign: "left", padding: "0"}}>Enter your new team name:</div>
                     <div className="col s5 m5 l5"></div>

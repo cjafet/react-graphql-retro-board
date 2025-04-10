@@ -226,7 +226,7 @@ nav {
   width: 100% !important;
   height: 46px !important;
   /* color: #000000; */
-  /* border-radius: 8px !important; */
+  border-radius: 0 !important;
   padding: 15px !important;
   /* margin: 10px 0 !important; */
   outline: none !important;
