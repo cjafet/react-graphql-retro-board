@@ -30,7 +30,7 @@ input {
 
 .full-width-input {
   /* display: block; */
-  width: 93% !important;
+  width: 91% !important;
   margin-bottom: 10px;
 }
 
@@ -128,7 +128,8 @@ hr {
 }
 
 .tasks {
-  margin: 0 5%;
+  /* margin: 0 5%; */
+  margin-left: 80px;
   max-width: 90%;
   /* max-width: 980px; */
 }
