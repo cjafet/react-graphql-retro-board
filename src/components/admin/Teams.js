@@ -35,7 +35,7 @@ const Teams = () => {
     
     return (
     <div style={{marginLeft: "10px",display: "inline-flex", alignItems: "center", width: "90%"}}>
-        <div style={{borderRadius: "8px", display: "block", width: "100%", marginTop: "40px"}}>
+        <div style={{borderRadius: "8px", display: "block", width: "90%", marginTop: "40px"}}>
             {teams.length !== 0 && (
               JSON.parse(teams).map(array => (
                 <div className="row">

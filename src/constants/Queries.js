@@ -34,6 +34,13 @@ query allByTeam($productTeam: String!) {
       description
       likes
     }
+    moods {
+      angry
+      sad
+      tired
+      happy
+      xhappy
+    }
     iteration
   }
 }
@@ -67,6 +74,13 @@ query allByIterationAndTeam($productTeam: String!, $iteration: Int!) {
         description
         likes
         type
+      }
+      moods {
+        angry
+        sad
+        tired
+        happy
+        xhappy
       }
     }
   }

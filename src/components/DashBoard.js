@@ -94,17 +94,17 @@ const DashBoard = (props) => {
     >
 
       {/* <div style={{backgroundColor: "#faebd7", maxWidth: "300px"}}> */}
-        <div className="row" style={{alignItems: "center"}}>
-          <div className="col" style={{backgroundColor: "#b326ef", width: "335px", margin: "10px", height: "100px"}}>
+        <div className="row" style={{position: "relative", alignItems: "center"}}>
+          <div className="col s3 m3 l3 dash-stats" style={{backgroundColor: "#b326ef"}}>
             <Analysis title={"General Sentiment Analysis"} data={(kudosCounter-improvementsCounter)/(kudosCounter+improvementsCounter)} />
           </div>
-          <div className="col" style={{backgroundColor: "#b326ef", width: "335px", margin: "10px", height: "100px"}}>
+          <div className="col s3 m3 l3 dash-stats" style={{backgroundColor: "#b326ef"}}>
             <Analysis title="Last Sentiment Analysis" data={lastTeamSentiment} />
           </div>
-          <div className="col" style={{backgroundColor: "#b326ef", width: "335px", margin: "10px", height: "100px"}}>
+          <div className="col s3 m3 l3 dash-stats" style={{backgroundColor: "#b326ef"}}>
             <Analysis title={"Lowest Sentiment Analysis"} data={lowestTeamSentiment} />
           </div>
-          <div className="col" style={{backgroundColor: "#268def", width: "335px", margin: "10px", height: "100px"}}>
+          <div className="col s3 m3 l3 dash-stats" style={{backgroundColor: "#268def"}}>
             <Analysis title={"Team Engagement"} data={totalLikesCounter/totalItemsCounter} />
           </div>
         </div>
@@ -143,6 +143,21 @@ const DashBoard = (props) => {
             </th>
             <th key="sprint-sentiment" scope="col">
               Sentiment
+            </th>
+            <th key="sprint-sentiment" scope="col">
+              Angry
+            </th>
+            <th key="sprint-sentiment" scope="col">
+              Sad
+            </th>
+            <th key="sprint-sentiment" scope="col">
+              Tired
+            </th>
+            <th key="sprint-sentiment" scope="col">
+              Happy
+            </th>
+            <th key="sprint-sentiment" scope="col">
+              XHappy
             </th>
           </tr>
         </thead>

@@ -13,6 +13,7 @@ import { ADD_ITEM } from "../constants/Mutations";
 import { ITEMS_SUBSCRIPTION } from "../constants/Subscription";
 import { BOARD_ITEMS, BOARD_TITLES } from "../constants/AppConstants";
 import Network from "./Network";
+import Mood from "./Mood";
 
 /**
  * Board component used to render all the items of any Retrospective board by iteration number and team name.
@@ -119,6 +120,7 @@ const Board = (props) => {
       <div className="tasks">
         <ErrorBoundary>
           <Network networkError={asyncError} />
+          <Mood iteration={iteration} team={team} retroId={data?.retroByIterationAndTeam?._id} />
           <BoardForm
             labels={data?.retroByIterationAndTeam?.labels}
             itemDescription={itemDescription}

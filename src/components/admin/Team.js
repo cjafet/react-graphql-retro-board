@@ -13,14 +13,14 @@ const Team = (props) => {
     
     return (
 
-        <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "100%", height: "200px"}}>
+        <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "100%", height: "180px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
             <div className="col s12 m12 l12">
                 <div className="row" style={{backgroundColor: "#4B0B6D", color: "white", height: "42px", alignContent: "center", marginTop: "0"}}>
                     <div className="col s12 m12 l12">
                         {props.name.toUpperCase()}
                     </div>
                 </div>
-                <div className="row" style={{color: "white", textAlign: "left"}}>
+                <div className="row" style={{color: "white", textAlign: "left", marginBottom: "10px"}}>
                     <div className="col s1 m1 l1"></div>
                     <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
                         <input

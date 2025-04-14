@@ -99,6 +99,13 @@ class RetrospectiveModal extends Component {
               lastActionItems: res ? this.handleActionItems(res.actionItems) : [],
               ownedBy: { productTeam: team },
               iteration: parseInt(sprint),
+              moods: {
+                angry: 0,
+                sad: 0,
+                tired: 0,
+                happy: 0,
+                xhappy: 0
+              }
             },
           });
           document.getElementById("retro-modal").click();
@@ -229,6 +236,13 @@ class RetrospectiveModal extends Component {
                         lastActionItems: [],
                         ownedBy: { productTeam: team },
                         iteration: parseInt(sprint),
+                        moods: {
+                          angry: 0,
+                          sad: 0,
+                          tired: 0,
+                          happy: 0,
+                          xhappy: 0
+                        }
                       },
                     });
                     document.getElementById("retro-modal").click();

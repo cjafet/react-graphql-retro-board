@@ -56,6 +56,12 @@ mutation postItemLike($id: ID!, $itemId: ID!, $desc: String!, $type: String!) {
 }
 `;
 
+export const ADD_TODAY_MOOD = gql`
+mutation postTodayMood($id: ID!, $iteration: Int!, $key: String!) {
+  addTodayMood(_id: $id, iteration: $iteration, key: $key)
+}
+`;
+
 
 export const ADD_OBJECTIVE = `
 mutation newObjective($input: Objective!) { 

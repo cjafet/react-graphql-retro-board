@@ -8,7 +8,7 @@ const IterationStats = (props) => {
   useEffect(() => {
     let data = {
       query:
-        "query allByIterationAndTeam($productTeam: String!, $iteration: Int!) { retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) { kudos { description likes } improvements { description likes } actionItems { description likes } lastActionItems { description likes } } }",
+        "query allByIterationAndTeam($productTeam: String!, $iteration: Int!) { retroByIterationAndTeam(productTeam: $productTeam, iteration: $iteration) { kudos { description likes } improvements { description likes } actionItems { description likes } lastActionItems { description likes } moods { angry sad tired happy xhappy } } }",
       variables: { productTeam: props.team, iteration: props.iteration },
     };
 
@@ -40,10 +40,12 @@ const IterationStats = (props) => {
     let count = 0;
     
     Object.keys(JSON.parse(stats)).forEach(function(key,index) {
-      JSON.parse(stats)[key]?.forEach(function(item, index) {
-        count += item["likes"];
-        console.log("Item likes: ", item["likes"]);
-      });
+      if(key !== "moods") {
+        JSON.parse(stats)[key]?.forEach(function(item, index) {
+          count += item["likes"];
+          console.log("Item likes: ", item["likes"]);
+        });
+      }
     });
 
     console.log("Stats count: ", count);
@@ -78,6 +80,11 @@ const IterationStats = (props) => {
       <td>{JSON.parse(stats).lastActionItems?.length}</td>
       <td>{handleLikesCount()}</td>
       <td>{handleSentimentAnalysis()}</td>
+      <td>{JSON.parse(stats)?.moods?.angry}</td>
+      <td>{JSON.parse(stats)?.moods?.sad}</td>
+      <td>{JSON.parse(stats)?.moods?.tired}</td>
+      <td>{JSON.parse(stats)?.moods?.happy}</td>
+      <td>{JSON.parse(stats)?.moods?.xhappy}</td>
     </tr>
   );
 };

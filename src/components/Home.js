@@ -39,10 +39,10 @@ const Home = () => {
     
     return (
 
-    <div style={{alignItems: "center", width: "50%", height: "330px", textAlign: "center", margin: "8% auto"}}>
-        <div style={{borderRadius: "8px", display: "inline-grid", width: "100%", height: "100%", margin: "auto", textAlign: "center", alignItems: "center"}}>
+    <div style={{alignItems: "center", width: "100%", height: "330px", textAlign: "center", margin: "0"}}>
+        <div style={{borderRadius: "8px", display: "inline-grid", width: "100%", height: "100%", margin: "0", textAlign: "center", alignItems: "center"}}>
           <form onSubmit={handleLogin}>
-            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "325px", textAlign: "center"}}>
+            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "325px", textAlign: "center", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
               <div className="col s12 m12 l12">
                 <div className="row" style={{backgroundColor: "#4B0B6D", color: "white", height: "42px", alignContent: "center", marginTop: "0"}}>
                     <div className="col s12 m12 l12">
@@ -103,7 +103,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-        </form>
+          </form>
         </div>
     </div>
  )};

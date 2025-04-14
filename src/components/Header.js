@@ -6,7 +6,7 @@ import RetrospectiveModal from "./modals/RetrospectiveModal";
 import { ThemeContext } from "./context/ThemeContext";
 
 import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
-// import MoodModal from "./modals/MoodModal";
+import MoodModal from "./modals/MoodModal";
 
 /**
  * Header component used to render the top navigation menu.
@@ -40,7 +40,7 @@ const Header = (props) => {
   if (!loading && data && authUser !== null && authUser.team !== null && authUser?.team.length !== 0) {
     console.log(
       "last_iteration",
-      data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1].iteration
+      data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]?.iteration
     );
     console.log("all_retros_by_team", data.allRetrosByTeam);
     console.log("Header data: ", data);
@@ -80,14 +80,14 @@ const Header = (props) => {
             </li>
           </ul>
           <ul id="nav-mobile" className="menu font-header hide-on-med-and-down">
-            {data?.allRetrosByTeam.length > 0 && (            
+            {data?.allRetrosByTeam && (            
               <li>
                 <RetrospectiveModal
                   color={themeColor}
                   teams={userTeam}
                   last_iteration={
                     data?.allRetrosByTeam[data?.allRetrosByTeam.length - 1]
-                      .iteration
+                      ?.iteration
                   }
                 />
               </li>

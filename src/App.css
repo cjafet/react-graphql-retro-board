@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+body {
+  /* background-color: #f1c0ff54 */
+  background-color: #f0cbfa54
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -95,7 +100,7 @@
   top: 0%;
   right: 0%;
   background-color: #8e1d1d;
-  height: 64px;
+  height: 67px;
   width: 260px;
   display: ruby;
   padding-top: 14px;
@@ -231,7 +236,7 @@ nav {
   /* margin: 10px 0 !important; */
   outline: none !important;
   box-sizing: border-box !important;
-  font-size: 100%;
+  font-size: 13px !important;
 }
 
 /* input:-webkit-autofill, input:-webkit-autofill:focus {
@@ -258,4 +263,11 @@ input:-webkit-autofill:focus {
   background-color: transparent;
   color: gray !important;
   box-shadow: none !important;
+}
+
+.dash-stats {
+  width: 22% !important;
+  margin: 10px; 
+  height: 100px;
+  padding: 0 !important;
 }
