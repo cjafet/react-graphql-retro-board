@@ -6,7 +6,7 @@ import RetrospectiveModal from "./modals/RetrospectiveModal";
 import { ThemeContext } from "./context/ThemeContext";
 
 import { GET_ITEMS_BY_TEAM } from "../constants/Queries";
-import MoodModal from "./modals/MoodModal";
+// import MoodModal from "./modals/MoodModal";
 
 /**
  * Header component used to render the top navigation menu.
