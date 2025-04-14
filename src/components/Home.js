@@ -1,6 +1,9 @@
 import React, {useContext, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "./context/ThemeContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
 
 /**
  * Home component.
@@ -41,69 +44,42 @@ const Home = () => {
 
     <div style={{alignItems: "center", width: "100%", height: "330px", textAlign: "center", margin: "0"}}>
         <div style={{borderRadius: "8px", display: "inline-grid", width: "100%", height: "100%", margin: "0", textAlign: "center", alignItems: "center"}}>
-          <form onSubmit={handleLogin}>
-            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "325px", textAlign: "center", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
-              <div className="col s12 m12 l12">
-                <div className="row" style={{backgroundColor: "#4B0B6D", color: "white", height: "42px", alignContent: "center", marginTop: "0"}}>
-                    <div className="col s12 m12 l12">
-                        + LOGIN
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col s1 m1 l1"></div>
-                    <div className="col s6 m6 l6" style={{color: "white", textAlign: "left", padding: "0"}}>Welcome back!</div>
-                    <div className="col s5 m5 l5"></div>
-                </div>
-                <div className="row" style={{color: "white", textAlign: "left"}}>
-                  <div className="col s1 m1 l1"></div>
-                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
-                    <input
-                      type="username"
-                      className="form-control login"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      ref={username}
-                      placeholder="Enter email"
-                    />
-                  </div>
-                </div>
-                <div className="row" style={{color: "white", textAlign: "left"}}>
-                  <div className="col s1 m1 l1"></div>
-                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
-                    <input
-                      type="password"
-                      className="form-control login"
-                      id="exampleInputPassword1"
-                      ref={password}
-                      placeholder="Password"
-                    />
-                  </div>
-                  
-                </div>
-                <div className="row" style={{color: "white", textAlign: "left"}}>
-                  <div className="col s4 m4 l4"></div>
-                  <div className="col s2 m2 l2" style={{padding: 0, margin: 0, textAlign: "left"}}>
-                    <button
-                        className="add-team-btn"
-                        type="submit"
-                        style={{ backgroundColor: themeColor }}
-                        >
-                            LOGIN
-                    </button>
-                  </div>
-                  <div className="col s2 m2 l2">
+            <div className="row" style={{marginTop: "70px", width: "100%", height: "600px", textAlign: "center"}}>
+              <div className="col s1 m1 l1" style={{width: "6.3333333333%", paddingLeft: "15px"}}></div>
+              <div className="col s5 m5 l5" style={{textAlign: "left", width: "43.6666666667%"}}>
+                  <h3 style={{fontWeight: "bold", color: "#53047c"}}>Everything your team need <br/>and even more!!</h3>
+                  <ul style={{lineHeight: "28px"}}>
+                    <li>                    
+                      <FontAwesomeIcon icon={faCheck} color="#53047c" style={{fontSize: "18px"}} /> &nbsp;
+                      Analysis of team mood in every sprint retro
+                    </li>
+                    <li>
+                      <FontAwesomeIcon icon={faCheck} color="#53047c" style={{fontSize: "18px"}} /> &nbsp;
+                      Team engagement and sentiment analysis
+                    </li>
+                    <li>
+                      <FontAwesomeIcon icon={faCheck} color="#53047c" style={{fontSize: "18px"}} /> &nbsp;
+                      Your own team’s DashBoard
+                    </li>
+                    <li>
+                      <FontAwesomeIcon icon={faCheck} color="#53047c" style={{fontSize: "18px"}} /> &nbsp;
+                      Your own team’s history</li>
+                  </ul>
+                    <h5 style={{marginTop: "30px", lineHeight: "32px"}}>
+                      Get insights at every step of your team, so it can <br/>keep doing an awesome job!!
+                    </h5>
                     <button
                       className="add-team-btn"
-                      style={{ backgroundColor: themeColor }}
+                      style={{ borderRadius: "22px", backgroundColor: themeColor, margin: "15px 0", lineHeight: "0", fontSize: "18px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 1px 15px" }}
                       onClick={handleCancel}
                     >
-                      Cancel
+                      Start your 30 days free trial!
                     </button>
-                  </div>
-                </div>
+              </div>
+              <div className="col s6 m6 l6" style={{margin: "0", padding: "0"}}>
+                <img src="/images/oneretro-board.png" width="100%" height="100%" style={{boxShadow: "rgba(0, 0, 0, 0.35) 0px 0px 15px"}}/>
               </div>
             </div>
-          </form>
         </div>
     </div>
  )};
