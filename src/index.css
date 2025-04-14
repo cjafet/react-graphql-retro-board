@@ -30,7 +30,7 @@ input {
 
 .full-width-input {
   /* display: block; */
-  width: 91% !important;
+  width: 90% !important;
   margin-bottom: 10px;
 }
 
@@ -124,7 +124,7 @@ hr {
 .new-task-form {
   padding-top: 20px;
   margin-bottom: 10px;
-  margin-left: 17px;
+  margin-left: 5px;
 }
 
 .tasks {
