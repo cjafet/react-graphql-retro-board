@@ -39,6 +39,12 @@ const Home = () => {
         // navigate("/");
     };
 
+    /** Function used to send user to sign up page*/
+    const handleUserSignUp = (event) => {
+      event.preventDefault();
+      navigate("/signup");
+    };
+
     
     return (
 
@@ -71,7 +77,7 @@ const Home = () => {
                     <button
                       className="add-team-btn"
                       style={{ borderRadius: "22px", backgroundColor: themeColor, margin: "15px 0", lineHeight: "0", fontSize: "18px", boxShadow: "rgba(0, 0, 0, 0.35) 0px 1px 15px" }}
-                      onClick={handleCancel}
+                      onClick={handleUserSignUp}
                     >
                       Start your 30 days free trial!
                     </button>

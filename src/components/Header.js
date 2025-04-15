@@ -70,9 +70,6 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <ul id="dropdown2" className="dropdown-content">
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/pricing">Pricing</Link></li>
-          <li><Link to="/support">Support</Link></li>
           <li><a href="/settings">Settings</a></li>
           { authUser !== null && authUser?.organization !== "" && authUser?.userName !== "" && (
             <li><a href="/admin">Add team</a></li>
