@@ -19,7 +19,7 @@ const DashBoard = (props) => {
 
   const authUser = JSON.parse(localStorage.getItem('loggedUser'));
   
-  if (authUser.team.length === 0) {
+  if (!authUser || authUser.team.length === 0) {
     navigate("/");
   }
 

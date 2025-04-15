@@ -43,74 +43,97 @@ const SignUp = () => {
     
     return (
 
-    <div style={{display: "inline-flex", alignItems: "center", width: "50%", height: "400px"}}>
-        <div style={{borderRadius: "8px", display: "block", width: "50%", marginTop: "100px"}}>
+    <div style={{display: "inline-flex", alignItems: "center", width: "100%", height: "550px"}}>
+        <div style={{borderRadius: "8px", display: "block", width: "100%", marginTop: "160px"}}>
           <form onSubmit={handleSignUp}>
-            <div className="form-group">
-              <input
-                type="email"
-                className="form-control login"
-                id="email"
-                aria-describedby="email"
-                ref={email}
-                placeholder="Enter email"
-              />
-            </div>
-             <div className="form-group">
-              <input
-                type="organization"
-                className="form-control login"
-                id="organization"
-                aria-describedby="organization name"
-                ref={organization}
-                placeholder="Enter organization name"
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="team"
-                className="form-control login"
-                id="team"
-                aria-describedby="team name"
-                ref={team}
-                placeholder="Enter team name"
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="username"
-                className="form-control login"
-                id="username"
-                aria-describedby="user name"
-                ref={username}
-                placeholder="Enter your username"
-              />
-            </div>
-            <div className="form-group mt-3">
-                <input
-                type="password"
-                className="form-control login"
-                id="password"
-                ref={password}
-                placeholder="Password"
-                />
-            </div>
-            <div className="pad-bottom mt-3 btn-login">
-                <button
-                className="button"
-                type="submit"
-                style={{ backgroundColor: themeColor }}
-                >
-                Sign up
-                </button>
-                &nbsp;
-                <button
-                className="button button-secondary btn-login"
-                style={{ backgroundColor: themeColor }}
-                onClick={handleCancel}
-                >
-                Cancel
-                </button>
+            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "575px", textAlign: "center", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+              <div className="col s12 m12 l12">
+                <div className="row" style={{backgroundColor: "#4B0B6D", color: "white", height: "42px", alignContent: "center", marginTop: "0"}}>
+                    <div className="col s12 m12 l12">
+                        + SIGNUP
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col s1 m1 l1"></div>
+                    <div className="col s10 m10 l10" style={{color: "white", textAlign: "center", padding: "0"}}>Welcome to your team's new retrospective board!</div>
+                </div>
+                <div className="row" style={{color: "white", textAlign: "left"}}>
+                  <div className="col s1 m1 l1"></div>
+                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
+                    <input
+                      type="email"
+                      className="form-control login"
+                      id="email"
+                      aria-describedby="email"
+                      ref={email}
+                      placeholder="Enter email"
+                    />
+                  </div>
+                </div>
+                <div className="row" style={{color: "white", textAlign: "left"}}>
+                  <div className="col s1 m1 l1"></div>
+                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
+                    <input
+                      type="text"
+                      className="form-control login"
+                      id="organization"
+                      aria-describedby="organization name"
+                      ref={organization}
+                      placeholder="Enter organization name"
+                    />
+                  </div> 
+                </div>
+                <div className="row" style={{color: "white", textAlign: "left"}}>
+                  <div className="col s1 m1 l1"></div>
+                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
+                    <input
+                      type="text"
+                      className="form-control login"
+                      id="team"
+                      aria-describedby="team name"
+                      ref={team}
+                      placeholder="Enter team name."
+                    />
+                  </div> 
+                </div>
+                <div className="row" style={{color: "white", textAlign: "left"}}>
+                  <div className="col s1 m1 l1"></div>
+                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
+                    <input
+                      type="text"
+                      className="form-control login"
+                      id="username"
+                      aria-describedby="user name"
+                      ref={username}
+                      placeholder="Enter your username"
+                    />
+                  </div> 
+                </div>
+                <div className="row" style={{color: "white", textAlign: "left"}}>
+                  <div className="col s1 m1 l1"></div>
+                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
+                    <input
+                      type="password"
+                      className="form-control login"
+                      id="password"
+                      ref={password}
+                      placeholder="Password"
+                    />
+                  </div> 
+                </div>
+                <div className="row" style={{color: "white", textAlign: "center"}}>
+                  <div className="col s1 m1 l1"></div>
+                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0, textAlign: "center"}}>
+                    <button
+                        className="add-team-btn"
+                        type="submit"
+                        style={{ backgroundColor: themeColor }}
+                        >
+                            SIGN UP
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
         </form>
         </div>

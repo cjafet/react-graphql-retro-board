@@ -107,6 +107,17 @@ hr {
   height: 47px !important;
 }
 
+.signup-btn {
+  border: 0;
+  padding: 10px 20px;
+  background: #76dc76;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  width: max-content;
+  height: 40px !important;
+}
+
 .button-default {
   background: #ed143d;
   color: white;

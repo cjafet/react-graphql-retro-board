@@ -197,6 +197,10 @@ export const Provider = (props) => {
     return loggedUser;
   };
 
+  const logOut = async () => { 
+    localStorage.clear();
+  }
+
   const handleColorSelection = (bgColor) => {
     setThemeColor(bgColor);
     console.log("selectedColor", bgColor);
@@ -222,7 +226,8 @@ export const Provider = (props) => {
           signUp,
           userSignIn,
           userSignUp,
-          getTeamsByOrg
+          getTeamsByOrg,
+          logOut
         },
       }}
     >

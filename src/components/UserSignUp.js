@@ -1,6 +1,7 @@
 import React, {useContext, useRef} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ThemeContext } from "./context/ThemeContext";
+import M from "materialize-css";
 
 /**
  * SignUp component.
@@ -32,9 +33,11 @@ const UserSignUp = () => {
         };
 
         const user = await actions.userSignUp(credentials);
-          if (user.name.length !== 0 && user.email.length !== 0) {
-            navigate("/" + credentials.team + "/" + credentials.hash + "/signin");
-          }
+        if (user.name.length !== 0 && user.email.length !== 0) {
+          navigate("/" + credentials.team + "/" + credentials.hash + "/signin");
+        } else {
+          M.toast({ html: "<span>An unexpected error occurred. Please,<br/>try again later!</span>" });
+        } 
     }
 
     const handleCancel = (event) => {

@@ -1,6 +1,7 @@
 import React, {useContext, useRef} from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ThemeContext } from "./context/ThemeContext";
+import M from "materialize-css";
 
 /**
  * Home component.
@@ -30,6 +31,8 @@ const UserSignIn = () => {
           if (user.team.length !== 0 && user.organization.length !== 0) {
             console.log("Logged user", user.data);
             navigate("/" + team + "/dashboard");
+          } else {
+            M.toast({ html: "<span>Your authentication failed. Please,<br/>check your credentials and try again!</span>" });
           }
     }
 
