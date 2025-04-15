@@ -115,7 +115,7 @@ export const Provider = (props) => {
       user = await response.json();
 
       if (user !== null) {
-        const loggedUser = {"name": user.name, "team": user.team, "organization": user.organization, "userName": user.userName};
+        const loggedUser = {"name": user.data.signUp.name, "team": user.data.signUp.team, "organization": user.data.signUp.organization, "userName": user.data.signUp.userName};
         setAuthUser({...loggedUser});
         localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
       }
