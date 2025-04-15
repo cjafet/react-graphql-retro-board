@@ -55,7 +55,11 @@ body {
 
 .modal-team-form {
   margin-top: 20px;
-  /* padding-left: 2%; */
+}
+
+.team-form-modal {
+  margin-top: 0;
+  margin-left: 20px;
 }
 
 .modal-close-position {

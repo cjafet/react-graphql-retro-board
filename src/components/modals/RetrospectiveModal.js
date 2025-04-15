@@ -213,7 +213,7 @@ class RetrospectiveModal extends Component {
               </div>
             </div>
           </nav>
-          <div className="modal-team-form">
+          <div className="team-form-modal">
             <form
               className="new-task-form"
               onSubmit={(e) => {
