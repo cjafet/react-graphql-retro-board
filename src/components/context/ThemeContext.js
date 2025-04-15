@@ -113,6 +113,13 @@ export const Provider = (props) => {
 
     if (response.status === 200) {
       user = await response.json();
+
+      if (user !== null) {
+        loggedUser = {"name": user.name, "team": user.team, "organization": user.organization, "userName": user.userName};
+        setAuthUser({...loggedUser});
+        localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+      }
+
       console.log("signUpResponse", user.data.signUp); 
     }
 
