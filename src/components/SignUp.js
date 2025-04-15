@@ -30,7 +30,9 @@ const SignUp = () => {
         };
 
         const user = await actions.signUp(credentials);
-          if (user) {
+          if (user.team !== "" && user.userName != "" && user.organization !== "") {
+            navigate("/" + user.team + "/dashboard");
+          } else {
             navigate("/");
           }
     }
