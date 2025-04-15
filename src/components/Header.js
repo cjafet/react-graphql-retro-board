@@ -238,7 +238,7 @@ const Header = (props) => {
             <li>
               <Link to="/settings">Settings</Link>
             </li>
-            {userTeam.toString() === "" && authUser !== null && authUser.organization !== "" && (
+            {userTeam?.toString() === "" && authUser !== null && authUser?.organization !== "" && (
               <li
                 style={{
                   marginTop: "5px",
@@ -249,7 +249,7 @@ const Header = (props) => {
                 <strong>{userTeam.toString().toUpperCase()} TEAM</strong>
               </li>
             )}
-            {userTeam.toString() === "" && authUser !== null && authUser.organization !== "" && (
+            {userTeam?.toString() === "" && authUser !== null && authUser?.organization !== "" && (
               <li
                 style={{
                   marginTop: "5px",
