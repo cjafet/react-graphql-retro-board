@@ -184,7 +184,6 @@ const DashBoard = (props) => {
         <div
           style={{
             marginTop: "20px",
-            backgroundColor: themeColor,
             borderRadius: "8px",
             display: "flex",
             width: "460px",
