@@ -12,9 +12,10 @@ import M from "materialize-css";
  */
 const SignUp = () => {
     const { themeColor, actions } = useContext(ThemeContext);
-    const team = useRef(null)
-    const organization = useRef(null)
-    const email = useRef(null)
+    const team = useRef(null);
+    const organization = useRef(null);
+    const name = useRef(null);
+    const email = useRef(null);
     const username = useRef(null);
     const password = useRef(null);
 
@@ -24,6 +25,7 @@ const SignUp = () => {
         event.preventDefault();
 
         const credentials = {
+            name: name.current.value,
             email: email.current.value,
             userName: username.current.value,
             team: team.current.value,
@@ -32,11 +34,11 @@ const SignUp = () => {
         };
 
         const user = await actions.signUp(credentials);
-          if (user !== null && user.team !== "" && user.userName != "" && user.organization !== "") {
-            navigate("/" + user.team + "/dashboard");
-          } else {
-            M.toast({ html: "<span>An unexpected error occurred. Please,<br/>try again later!</span>" });
-          } 
+        if (user !== null && user.team !== "" && user.userName != "" && user.organization !== "") {
+          navigate("/" + user.team + "/dashboard");
+        } else {
+          M.toast({ html: "<span>An unexpected error occurred. Please,<br/>try again later!</span>" });
+        } 
           
     }
 
@@ -51,7 +53,7 @@ const SignUp = () => {
     <div style={{display: "inline-flex", alignItems: "center", width: "100%", height: "550px"}}>
         <div style={{borderRadius: "8px", display: "block", width: "100%", marginTop: "160px"}}>
           <form onSubmit={handleSignUp}>
-            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "575px", textAlign: "center", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "640px", textAlign: "center", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
               <div className="col s12 m12 l12">
                 <div className="row" style={{backgroundColor: "#4B0B6D", color: "white", height: "42px", alignContent: "center", marginTop: "0"}}>
                     <div className="col s12 m12 l12">
