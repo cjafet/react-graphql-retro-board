@@ -45,7 +45,7 @@ const UserSignIn = () => {
     return (
 
     <div style={{display: "inline-flex", alignItems: "center", width: "100%", height: "400px"}}>
-        <div style={{borderRadius: "8px", display: "block", width: "100%"}}>
+        <div style={{borderRadius: "8px", display: "block", width: "100%", marginTop: "40px"}}>
           <form onSubmit={handleUserSignIn}>
             <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "325px", textAlign: "center", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
               <div className="col s12 m12 l12">
@@ -68,7 +68,7 @@ const UserSignIn = () => {
                       id="exampleInputEmail1"
                       aria-describedby="emailHelp"
                       ref={username}
-                      placeholder="Enter email"
+                      placeholder="Enter an username"
                     />
                   </div>
                 </div>

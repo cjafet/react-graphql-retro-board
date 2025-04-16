@@ -11,9 +11,10 @@ import M from "materialize-css";
  */
 const UserSignUp = () => {
     const { themeColor, actions } = useContext(ThemeContext);
-    const userTeam = useRef(null)
-    const name = useRef(null)
-    const email = useRef(null)
+    const username = useRef(null);
+    const userTeam = useRef(null);
+    const name = useRef(null);
+    const email = useRef(null);
     const password = useRef(null);
     const userHash = useRef(null);
     let { team, hash } = useParams();
@@ -28,6 +29,7 @@ const UserSignUp = () => {
             name: name.current.value,
             email: email.current.value,
             team: userTeam.current.value,
+            userName: username.current.value,
             password: password.current.value,
             hash: userHash.current.value
         };
@@ -49,9 +51,9 @@ const UserSignUp = () => {
     return (
 
     <div style={{display: "inline-flex", alignItems: "center", width: "100%", height: "400px"}}>
-        <div style={{borderRadius: "8px", display: "block", width: "100%", marginTop: "100px"}}>
+        <div style={{borderRadius: "8px", display: "block", width: "100%", marginTop: "160px"}}>
           <form onSubmit={handleSignUp}>
-            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "425px", textAlign: "center", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
+            <div className="row" style={{backgroundColor: "#8634A5", marginBottom: "25px !important", width: "500px", height: "460px", textAlign: "center", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px"}}>
               <div className="col s12 m12 l12">
                 <div className="row" style={{backgroundColor: "#4B0B6D", color: "white", height: "42px", alignContent: "center", marginTop: "0"}}>
                     <div className="col s12 m12 l12">
@@ -104,6 +106,19 @@ const UserSignUp = () => {
                   ref={userHash}
                   defaultValue={hash}
                 />
+                <div className="row" style={{color: "white", textAlign: "left"}}>
+                  <div className="col s1 m1 l1"></div>
+                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
+                    <input
+                      type="username"
+                      className="form-control login"
+                      id="exampleInputEmail1"
+                      aria-describedby="emailHelp"
+                      ref={username}
+                      placeholder="Enter an username"
+                    />
+                  </div>
+                </div>
                 <div className="row" style={{color: "white", textAlign: "left"}}>
                   <div className="col s1 m1 l1"></div>
                   <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
