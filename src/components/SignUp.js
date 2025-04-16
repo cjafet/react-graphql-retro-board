@@ -72,7 +72,7 @@ const SignUp = () => {
                       className="form-control login"
                       id="name"
                       aria-describedby="name"
-                      ref={email}
+                      ref={name}
                       placeholder="Enter your name"
                     />
                   </div>
