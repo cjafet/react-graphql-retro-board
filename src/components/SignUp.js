@@ -1,6 +1,8 @@
 import React, {useContext, useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "./context/ThemeContext";
+import M from "materialize-css";
+
 
 /**
  * SignUp component.
@@ -30,11 +32,12 @@ const SignUp = () => {
         };
 
         const user = await actions.signUp(credentials);
-          if (user.team !== "" && user.userName != "" && user.organization !== "") {
+          if (user !== null && user.team !== "" && user.userName != "" && user.organization !== "") {
             navigate("/" + user.team + "/dashboard");
           } else {
-            navigate("/");
-          }
+            M.toast({ html: "<span>An unexpected error occurred. Please,<br/>try again later!</span>" });
+          } 
+          
     }
 
     const handleCancel = (event) => {
@@ -58,6 +61,19 @@ const SignUp = () => {
                 <div className="row">
                     <div className="col s1 m1 l1"></div>
                     <div className="col s10 m10 l10" style={{color: "white", textAlign: "center", padding: "0"}}>Welcome to your team's new retrospective board!</div>
+                </div>
+                <div className="row" style={{color: "white", textAlign: "left"}}>
+                  <div className="col s1 m1 l1"></div>
+                  <div className="col s10 m10 l10" style={{padding: 0, margin: 0}}>
+                    <input
+                      type="text"
+                      className="form-control login"
+                      id="name"
+                      aria-describedby="name"
+                      ref={email}
+                      placeholder="Enter your name"
+                    />
+                  </div>
                 </div>
                 <div className="row" style={{color: "white", textAlign: "left"}}>
                   <div className="col s1 m1 l1"></div>
