@@ -88,6 +88,8 @@ export const Provider = (props) => {
 
     credentials.password = hash;
 
+    // create input object
+
     let user = {};
 
     let data = {
@@ -114,7 +116,7 @@ export const Provider = (props) => {
     if (response.status === 200) {
       user = await response.json();
 
-      if (user !== null) {
+      if (user !== null && user.errors.length === 0) {
         const loggedUser = {"name": user.data.signUp.name, "team": user.data.signUp.team, "organization": user.data.signUp.organization, "userName": user.data.signUp.userName};
         setAuthUser({...loggedUser});
         localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
