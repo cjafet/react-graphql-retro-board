@@ -144,19 +144,19 @@ const DashBoard = (props) => {
             <th key="sprint-sentiment" scope="col">
               Sentiment
             </th>
-            <th key="sprint-sentiment" scope="col">
+            <th key="sprint-mood-angry" scope="col">
               Angry
             </th>
-            <th key="sprint-sentiment" scope="col">
+            <th key="sprint-mood-sad" scope="col">
               Sad
             </th>
-            <th key="sprint-sentiment" scope="col">
+            <th key="sprint-mood-tired" scope="col">
               Tired
             </th>
-            <th key="sprint-sentiment" scope="col">
+            <th key="sprint-mood-happy" scope="col">
               Happy
             </th>
-            <th key="sprint-sentiment" scope="col">
+            <th key="sprint-mood-xhappy" scope="col">
               XHappy
             </th>
           </tr>

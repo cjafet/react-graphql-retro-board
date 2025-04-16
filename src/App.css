@@ -72,6 +72,11 @@ body {
   font-weight: 400;
 }
 
+th {
+  border-radius: 0 !important;
+  border: 0 !important;
+}
+
 .retro-error-message {
   color: #282c34;
   font-family: 'Raleway', sans-serif !important;
