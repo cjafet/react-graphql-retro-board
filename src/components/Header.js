@@ -209,7 +209,7 @@ const Header = (props) => {
             {/* <li style={{position: "relative"}}><RetrospectiveModal teams={props.team} last_iteration={data?.allRetrosByTeam[data?.allRetrosByTeam.length-1].iteration} /> </li> */}
             {/* <li style={{position: "relative"}}><Link to="#"><span style={{fontSize: "28px", position: "absolute", left: "0"}}>+</span> New Team</Link></li> */}
             <li>
-              <a href="/dashboard">Dashboard</a>
+              <a href={userTeam + '/dashboard'}>Dashboard</a>
             </li>
             {data?.allRetrosByTeam.length > 0 && (
               <li>
