@@ -18,6 +18,8 @@ import Admin from "./components/admin/Admin";
 import UserSignUp from "./components/UserSignUp";
 import UserSignIn from "./components/UserSignIn";
 import Teams from "./components/admin/Teams";
+// import Stripe from "./components/stripe/Stripe";
+import Pricing from "./components/Pricing";
 
 /**
  * Main app component.
@@ -57,7 +59,9 @@ function App() {
           />
           {/* <Route path="/retros" element={<UserRetros team={team} />} /> */}
           <Route path="/" element={<Home />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/admin" element={<Admin />} />
+          {/* <Route path="/checkout" element={<Stripe />} /> */}
           <Route path="/admin/teams" element={<Teams />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/settings" element={<Settings />} />

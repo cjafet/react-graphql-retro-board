@@ -41,12 +41,6 @@ const UserSignUp = () => {
           M.toast({ html: "<span>An unexpected error occurred. Please,<br/>try again later!</span>" });
         } 
     }
-
-    const handleCancel = (event) => {
-        event.preventDefault();
-        // navigate("/");
-    };
-
     
     return (
 

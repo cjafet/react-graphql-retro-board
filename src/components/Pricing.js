@@ -1,8 +1,8 @@
-import React, {useContext, useRef} from "react";
+import React, {useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "./context/ThemeContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faUserGroup, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 
 /**
@@ -12,39 +12,14 @@ import { faCheck, faUserGroup, faShoppingCart } from "@fortawesome/free-solid-sv
  * @author [Carlos Jafet Neto](https://github.com/cjafet)
  */
 const Pricing = () => {
-    const { themeColor, timerColor, actions } = useContext(ThemeContext);
-    const username = useRef(null);
-    const password = useRef(null);
-
+    const { themeColor } = useContext(ThemeContext);
     const navigate = useNavigate();
-
-    const handleLogin = async (event) => {  
-        event.preventDefault();
-
-        const credentials = {
-            userName: username.current.value,
-            password: password.current.value,
-        };
-
-        const user = await actions.signIn(credentials);
-          if (user) {
-            console.log("Logged user", user.data);
-            // navigate("/" + user.team + "/dashboard");
-            navigate("/admin");
-          }
-    }
-
-    const handleCancel = (event) => {
-        event.preventDefault();
-        // navigate("/");
-    };
 
     /** Function used to send user to sign up page*/
     const handleUserSignUp = (event) => {
       event.preventDefault();
       navigate("/signup");
     };
-
     
     return (
 
